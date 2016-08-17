@@ -19,6 +19,31 @@ public class Marque {
     private String origine;
 
 
+    public Marque() {
+    }
 
+    public Marque(String nomMarque) {
+        this.nomMarque = nomMarque;
+    }
 
+    public Marque(String nomMarque, String origine) {
+        this.nomMarque = nomMarque;
+        this.origine = origine;
+    }
+
+    public String getNomMarque() {
+        return nomMarque;
+    }
+
+    public void setNomMarque(String nomMarque) {
+        this.nomMarque = nomMarque;
+    }
+
+    public String getOrigine() {
+        return origine;
+    }
+
+    public void setOrigine(String origine) {
+        this.origine = origine;
+    }
 }

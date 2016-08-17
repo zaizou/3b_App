@@ -4,10 +4,10 @@ import dz.ifa.model.gestion_utilisateurs.Fonctionnalite;
 import dz.ifa.model.gestion_utilisateurs.Notification;
 import dz.ifa.model.gestion_utilisateurs.Tache;
 import dz.ifa.model.gestion_utilisateurs.Utilisateur;
-import dz.ifa.repository.FonctionnaliteRepository;
-import dz.ifa.repository.NotificationRepository;
-import dz.ifa.repository.TacheRepository;
-import dz.ifa.repository.UtilisateurRepository;
+import dz.ifa.repository.user_management.FonctionnaliteRepository;
+import dz.ifa.repository.user_management.NotificationRepository;
+import dz.ifa.repository.user_management.TacheRepository;
+import dz.ifa.repository.user_management.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

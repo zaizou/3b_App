@@ -1,6 +1,4 @@
 package dz.ifa;
-import dz.ifa.repository.UtilisateurRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

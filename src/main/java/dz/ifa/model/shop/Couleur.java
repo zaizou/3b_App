@@ -16,4 +16,27 @@ public class Couleur {
     @Column
     private String intituleCouleur;
 
+    public Couleur() {
+    }
+
+    public Couleur(String codeCouleur, String intituleCouleur) {
+        this.codeCouleur = codeCouleur;
+        this.intituleCouleur = intituleCouleur;
+    }
+
+    public String getCodeCouleur() {
+        return codeCouleur;
+    }
+
+    public void setCodeCouleur(String codeCouleur) {
+        this.codeCouleur = codeCouleur;
+    }
+
+    public String getIntituleCouleur() {
+        return intituleCouleur;
+    }
+
+    public void setIntituleCouleur(String intituleCouleur) {
+        this.intituleCouleur = intituleCouleur;
+    }
 }

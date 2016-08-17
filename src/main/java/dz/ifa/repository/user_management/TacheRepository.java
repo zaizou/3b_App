@@ -1,4 +1,4 @@
-package dz.ifa.repository;
+package dz.ifa.repository.user_management;
 
 import dz.ifa.model.gestion_utilisateurs.Notification;
 import dz.ifa.model.gestion_utilisateurs.Tache;

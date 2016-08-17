@@ -18,4 +18,35 @@ public class Prix {
     @JsonManagedReference
     Monnaie monnaie;
 
+    public Prix() {
+    }
+
+    public Prix(Double valeur, Monnaie monnaie) {
+        this.valeur = valeur;
+        this.monnaie = monnaie;
+    }
+
+    public Integer getIdPrix() {
+        return idPrix;
+    }
+
+    public void setIdPrix(Integer idPrix) {
+        this.idPrix = idPrix;
+    }
+
+    public Double getValeur() {
+        return valeur;
+    }
+
+    public void setValeur(Double valeur) {
+        this.valeur = valeur;
+    }
+
+    public Monnaie getMonnaie() {
+        return monnaie;
+    }
+
+    public void setMonnaie(Monnaie monnaie) {
+        this.monnaie = monnaie;
+    }
 }

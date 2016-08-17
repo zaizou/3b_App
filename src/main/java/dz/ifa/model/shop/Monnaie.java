@@ -25,7 +25,44 @@ public class Monnaie {
     private List<Prix> prixList;
 
 
+    public Monnaie() {
+    }
 
+    public Monnaie(String label, String nom, Double poids) {
+        this.label = label;
+        this.nom = nom;
+        this.poids = poids;
+    }
 
+    public String getLabel() {
+        return label;
+    }
 
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Double getPoids() {
+        return poids;
+    }
+
+    public void setPoids(Double poids) {
+        this.poids = poids;
+    }
+
+    public List<Prix> getPrixList() {
+        return prixList;
+    }
+
+    public void setPrixList(List<Prix> prixList) {
+        this.prixList = prixList;
+    }
 }
