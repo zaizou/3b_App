@@ -49,12 +49,11 @@ jQuery(document).ready(function($){
 
 
 
-	$("#FilterSelect").on('change', function(){
-		//alert(this.value);
-		//$container
-			$(".cd-gallery ul").mixItUp('filter', this.value);
+	
 
-	});
+
+
+
 
 
 

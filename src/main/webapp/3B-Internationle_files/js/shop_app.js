@@ -5,6 +5,13 @@
 $(document).ready(function ($) {
 
     //$('#Container').mixItUp();
+    $('.chips').material_chip();
+ 
+
+
+
+
+
 
 });
 

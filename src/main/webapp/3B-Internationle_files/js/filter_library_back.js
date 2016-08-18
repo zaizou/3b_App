@@ -70,7 +70,7 @@ jQuery(document).ready(function($){
 		http://codepen.io/patrickkunka/
 	*************************************/
 
-	//buttonFilter.init();
+	buttonFilter.init();
 	$('.cd-gallery ul').mixItUp({
 	    controls: {
 	    	enable: false
@@ -107,98 +107,6 @@ jQuery(document).ready(function($){
 	MixItUp - Define a single object literal
 	to contain all filter custom functionality
 *****************************************************/
-var selectedCategory="";
-var selectedPointure="";
-var filterString="";
-var $container=$('.cd-gallery ul');
-
-
-
-
-
-$("li.filter").on("click",function () {
-	if($container.mixItUp('isLoaded')){
-		filterString="."+$(this).attr('id');
-		$('.cd-gallery ul').mixItUp('filter',filterString);
-		console.log(filterString);
-	}
-});
-
-
-	$("#categoryFilterSelect").on('change',function () {
-
-		if($container.mixItUp('isLoaded')){
-			if(selectedCategory!=""){
-				console.log("previously selected cat is :  "+selectedCategory);
-				filterString=filterString.replace(selectedCategory,'');
-			}
-			if($(this).val() !="all"){
-				selectedCategory=$(this).val();
-				filterString+=selectedCategory;
-			}
-
-			console.log("Current filter String is :  "+filterString);
-			applyFilter();
-
-		}
-
-	});
-
-
-	$("#pointureFilterSelect").on('change',function () {
-
-		if($container.mixItUp('isLoaded')){
-			if(selectedPointure!=""){
-				console.log("previously selected cat is :  "+selectedPointure);
-				filterString=filterString.replace(selectedPointure,'');
-			}
-			if($(this).val() !="all") {
-				selectedPointure="."+$(this).val();
-				filterString+=selectedPointure;
-			}
-
-			console.log("Current filter String is :  "+filterString);
-			applyFilter();
-
-		}
-
-	});
-
-
-
-
-
-	function applyFilter(){
-		if(filterString=="")
-			filterString="all";
-		$container.mixItUp('filter',filterString);
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var buttonFilter = {
   	// Declare any variables we will need as properties of the object
   	$filters: null,
@@ -223,73 +131,40 @@ var buttonFilter = {
 		    });
 	    });
 
-/*
-
-		$("li.filter").on("click",function () {
-			filterString=$(this).attr('id');
-			//alert(filterString);
-			//$('.cd-gallery ul').mixItUp('filter',"all");
-			$('.cd-gallery ul').mixItUp('filter',filterString);
-
-		});
-*/
-
-
-
-
-		//self.bindHandlers();
+	    self.bindHandlers();
   	},
 
   	// The "bindHandlers" method will listen for whenever a button is clicked.
   	bindHandlers: function(){
     	var self = this;
 
-		$("li.filter").on("click",function () {
-			//filterString=$(this).attr('id');
-			//alert(filterString);
-			//$('.cd-gallery ul').mixItUp('filter',"all");
-			//$('.cd-gallery ul').mixItUp('filter',filterString);
-			self.parseFilters();
-
-		});
-    	/*self.$filters.on('click', 'a', function(e){
-			alert("click");
+    	self.$filters.on('click', 'a', function(e){
 	      	self.parseFilters();
-    	});*/
+    	});
 	    self.$filters.on('change', function(){
-	    	 self.parseFilters();
+	    //  self.parseFilters();
 	    });
   	},
 
   	parseFilters: function(){
 	    var self = this;
+
 	    // loop through each filter group and grap the active filter from each one.
 	    for(var i = 0, group; group = self.groups[i]; i++){
 	    	group.active = [];
 	    	group.$inputs.each(function(){
 	    		var $this = $(this);
-					 if( $this.find('.selected').length > 0 )
-					group.active.push($this.attr('data-filter'));
-
-
+	    		if($this.is('input[type="radio"]') || $this.is('input[type="checkbox"]')) {
+	    			if($this.is(':checked') ) {
+	    				group.active.push($this.attr('data-filter'));
+	    			}
+	    		} else if($this.is('select')){
+	    			group.active.push($this.val());
+	    		} else if( $this.find('.selected').length > 0 ) {
+	    			group.active.push($this.attr('data-filter'));
+	    		}
 	    	});
 	    }
-
-		$("#categoryFilterSelect").on('change',function () {
-			if(selectedCategory!=""){
-				console.log("previously selected cat is :  "+selectedCategory);
-				console.log("previously self was :  "+filterString);
-				//filterString=filterString.replace(selectedCategory,'');
-				console.log("after selected cat is :  "+filterString);
-			}
-			selectedCategory=$(this).val();
-			//self.outputString+=$(this).val();
-			group.active.push($this.val());
-		});
-
-
-
-
 	    self.concatenate();
   	},
 
@@ -298,15 +173,11 @@ var buttonFilter = {
 
     	self.outputString = ''; // Reset output string
 
-	   for(var i = 0, group; group = self.groups[i]; i++){
+	    for(var i = 0, group; group = self.groups[i]; i++){
 	      	self.outputString += group.active;
 	    }
 
-
-		console.log(self.outputString);
-
-
-		// If the output string is empty, show all rather than none:
+	    // If the output string is empty, show all rather than none:
 	    !self.outputString.length && (self.outputString = 'all');
 
     	// Send the output string to MixItUp via the 'filter' method:
@@ -314,6 +185,10 @@ var buttonFilter = {
 	    	self.$container.mixItUp('filter', self.outputString);
 		}
   	}
+
+
+
+
 
 
 
