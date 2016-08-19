@@ -21,7 +21,7 @@
 
 
                 <ul class="main-menu">
-                    <li ><a href="index.jsp"><i class="zmdi zmdi-home"></i> Acceuil</a></li>
+                    <li ><a href="gestion_dashboard.html"><i class="zmdi zmdi-home"></i> Tableau de Bord</a></li>
 
 
                     <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
@@ -34,7 +34,19 @@
                         </ul>
                     </li>
 
-                    </sec:authorize>
+                    </sec:authorize>Art
+
+
+
+                    <li class="sub-menu">
+                        <a href="#"><i class="zmdi zmdi-home"></i> Recettes</a>
+                        <ul>
+                            <li><a href="recettes_introduction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Introduire les Recettes</a></li>
+                        </ul>
+                    </li>
+
+
+
 
 
 

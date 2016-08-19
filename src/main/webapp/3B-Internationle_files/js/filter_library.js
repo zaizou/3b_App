@@ -104,8 +104,52 @@ jQuery(document).ready(function($){
 });
 
 /*****************************************************
-	MixItUp - Define a single object literal
-	to contain all filter custom functionality
+Prix Slider
+ *****************************************************/
+
+	var rangeSlider=document.getElementById('prix_range_slider');
+
+	noUiSlider.create(rangeSlider, {
+		range:{
+			min:0,
+			max:30000
+		},
+		behaviour: 'drag',
+		start:[10000,16000],
+		connect: true,
+		step:1000,
+		format: wNumb({
+			decimals: 0,
+			thousand: '',
+			postfix: ' DZ',
+		})
+
+	});
+
+	rangeSlider.noUiSlider.on('update', function( values, handle ) {
+		$("#inf_prix_range").val(rangeSlider.noUiSlider.get()[0]);
+		$("#inf_prix_range").text(rangeSlider.noUiSlider.get()[0]);
+		$("#sup_prix_range").val(rangeSlider.noUiSlider.get()[1]);
+		$("#sup_prix_range").text(rangeSlider.noUiSlider.get()[1]);
+		//snapValues[handle].innerHTML = values[handle];
+	});
+
+	rangeSlider.setAttribute('disabled',true);
+	$('#priceSwitche').on('change',function () {
+		console.log($(this).prop('checked')	);
+		if($(this).prop('checked'))
+			rangeSlider.removeAttribute('disabled');
+		else{
+			rangeSlider.setAttribute('disabled', true );
+
+		}
+
+
+	});
+
+
+/*****************************************************
+	MixItUp
 *****************************************************/
 var selectedCategory="";
 var selectedPointure="";
@@ -113,13 +157,10 @@ var filterString="";
 var $container=$('.cd-gallery ul');
 
 
-
-
-
 $("li.filter").on("click",function () {
 	if($container.mixItUp('isLoaded')){
 		filterString="."+$(this).attr('id');
-		$('.cd-gallery ul').mixItUp('filter',filterString);
+		$container.mixItUp('filter',filterString);
 		console.log(filterString);
 	}
 });
@@ -174,153 +215,71 @@ $("li.filter").on("click",function () {
 		$container.mixItUp('filter',filterString);
 	}
 
+	function addArticleView(classString,imageLink,price,model,stock,detailLink){
+		var elem="";
+		elem += "            <li class=\"mix "+classString+" \">";
+		elem += "                <div class=\"demo-card-image card  mdl-shadow--2dp\">";
+		elem += "                    <div class=\"mdl-card__title mdl-card--expand\">titre de l'image<\/div>";
+		elem += "                    <div class=\"mdl-card__media\">";
+		elem += "                        <div class=\"hover01\">";
+		elem += "                            <figure>";
+		elem += "                                <img class=\"item-img\" src=\" "+imageLink+" \"\/>";
+		elem += "                            <\/figure>";
+		elem += "                        <\/div>";
+		elem += "                    <\/div>";
+		elem += "";
+		elem += "                <\/div>";
+		elem += "                <div class=\"mdl-card__actions product-title\" style=\"background: green\">";
+		elem += "                    <span class=\"demo-card-image__filename\">"+model+"<\/span>";
+		elem += "                <\/div>";
+		elem += "                <div class=\"mdl-card__actions\">";
+		elem += "                    <div class=\"row\">";
+		elem += "                        <div class=\"chip\">";
+		elem += "                            <a><i class=\"fa fa-money\"><\/i> "+price+" DA <\/a>";
+		elem += "                        <\/div>";
+		elem += "";
+		elem += "                        <div class=\"chip\">";
+		elem += "                            <a><i class=\"zmdi zmdi-store\"><\/i> "+stock+" Restants<\/a>";
+		elem += "                        <\/div>";
+		elem += "";
+		elem += "                    <\/div>";
+		elem += "                    <a href=\""+detailLink+"\" class=\"waves-effect waves-light btn center-block\"><i class=\"zmdi zmdi-eye \"><\/i> Consulter<\/a>";
+		elem += "";
+		elem += "                <\/div>";
+		elem += "";
+		elem += "                <\/div>";
+		elem += "            <\/li>";
+		elem += "";
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var buttonFilter = {
-  	// Declare any variables we will need as properties of the object
-  	$filters: null,
-  	groups: [],
-  	outputArray: [],
-  	outputString: '',
-
-  	// The "init" method will run on document ready and cache any jQuery objects we will need.
-  	init: function(){
-    	var self = this; // As a best practice, in each method we will asign "this" to the variable "self" so that it remains scope-agnostic. We will use it to refer to the parent "buttonFilter" object so that we can share methods and properties between all parts of the object.
-
-    	self.$filters = $('.cd-main-content');
-    	self.$container = $('.cd-gallery ul');
-
-	    self.$filters.find('.cd-filters').each(function(){
-	      	var $this = $(this);
-
-		    self.groups.push({
-		        $inputs: $this.find('.filter'),
-		        active: '',
-		        tracker: false
-		    });
-	    });
-
-/*
-
-		$("li.filter").on("click",function () {
-			filterString=$(this).attr('id');
-			//alert(filterString);
-			//$('.cd-gallery ul').mixItUp('filter',"all");
-			$('.cd-gallery ul').mixItUp('filter',filterString);
-
-		});
-*/
-
-
-
-
-		//self.bindHandlers();
-  	},
-
-  	// The "bindHandlers" method will listen for whenever a button is clicked.
-  	bindHandlers: function(){
-    	var self = this;
-
-		$("li.filter").on("click",function () {
-			//filterString=$(this).attr('id');
-			//alert(filterString);
-			//$('.cd-gallery ul').mixItUp('filter',"all");
-			//$('.cd-gallery ul').mixItUp('filter',filterString);
-			self.parseFilters();
-
-		});
-    	/*self.$filters.on('click', 'a', function(e){
-			alert("click");
-	      	self.parseFilters();
-    	});*/
-	    self.$filters.on('change', function(){
-	    	 self.parseFilters();
-	    });
-  	},
-
-  	parseFilters: function(){
-	    var self = this;
-	    // loop through each filter group and grap the active filter from each one.
-	    for(var i = 0, group; group = self.groups[i]; i++){
-	    	group.active = [];
-	    	group.$inputs.each(function(){
-	    		var $this = $(this);
-					 if( $this.find('.selected').length > 0 )
-					group.active.push($this.attr('data-filter'));
-
-
-	    	});
-	    }
-
-		$("#categoryFilterSelect").on('change',function () {
-			if(selectedCategory!=""){
-				console.log("previously selected cat is :  "+selectedCategory);
-				console.log("previously self was :  "+filterString);
-				//filterString=filterString.replace(selectedCategory,'');
-				console.log("after selected cat is :  "+filterString);
-			}
-			selectedCategory=$(this).val();
-			//self.outputString+=$(this).val();
-			group.active.push($this.val());
+		$container.mixItUp('append',elem,function (state) {
+			alert(state.$show);
 		});
 
 
-
-
-	    self.concatenate();
-  	},
-
-  	concatenate: function(){
-    	var self = this;
-
-    	self.outputString = ''; // Reset output string
-
-	   for(var i = 0, group; group = self.groups[i]; i++){
-	      	self.outputString += group.active;
-	    }
-
-
-		console.log(self.outputString);
-
-
-		// If the output string is empty, show all rather than none:
-	    !self.outputString.length && (self.outputString = 'all');
-
-    	// Send the output string to MixItUp via the 'filter' method:
-		if(self.$container.mixItUp('isLoaded')){
-	    	self.$container.mixItUp('filter', self.outputString);
-		}
-  	}
+	}
 
 
 
 
 
 
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

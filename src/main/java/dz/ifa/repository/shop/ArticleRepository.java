@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article,String> {
-	Fonctionnalite save(Fonctionnalite fonctionnalite);
+	Article save(Article article);
 
 	@Query("SELECT c FROM Fonctionnalite c WHERE (c.designation) = (:designation)")
 	public List<Fonctionnalite> getFonctionnaliteByDesignation(@Param("designation") String designation);

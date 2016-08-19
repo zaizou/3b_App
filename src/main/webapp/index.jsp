@@ -68,9 +68,9 @@
                         src="3B-Internationle_files/99.png" width="100" height="50"></a>
                 <div class="row"></div>
                 <ul class="right">
-                    <li class=""><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li class="active"><a href="/login.html">Authentification</a></li>
+                    <li class=""><a href="">Home</a></li>
+                    <li><a href="">Shop</a></li>
+                    <li class="active"><a href="/gestion_dashboard.html">Management</a></li>
                 </ul>
 
 
@@ -90,17 +90,17 @@
                     <a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
                 </li>
                 <!-- <li class="filter"><a class="selected" href="#0" data-type="all">Tout</a></li> -->
-                <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Habillements</a></li>
-                <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Chaussures</a></li>
-                <li style="" class="filter right-align" data-filter=".color-2"><a href="#0" data-type="color-2"><img
+                <li id="habim" class="filter" data-filter=".habim"><a  href="#0" data-type="habim">Habillements</a></li>
+                <li id="chauss" class="filter" data-filter=".chauss"><a  href="#0" data-type="chauss">Chaussures</a></li>
+                <li id="imac" style="" class="filter right-align" data-filter=".imac"><a  href="#0" data-type="imac"><img
                         src="img/imac_trans.png" height="50" width="100"></a></li>
-                <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2"><img
+                <li id="franzoni" class="filter" data-filter=".franzoni"><a  href="#0" data-type="franzoni"><img
                         src="img/franzoni_trans.png" height="50" width="100"></a></li>
-                <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2"><img
+                <li id="iginco" class="filter" data-filter=".iginco"><a href="#0" data-type="iginco"><img
                         src="img/igieco_trans.png" height="50" width="100"></a></li>
-                <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2"><img
+                <li id="opaline" class="filter" data-filter=".opaline"><a  href="#0" data-type="opaline"><img
                         src="img/opaline.png" height="50" width="100"></a></li>
-                <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2"><img
+                <li id="primigi" class="filter" data-filter=".primigi"><a  href="#0" data-type="primigi"><img
                         src="img/primigi.png" height="50" width="100"></a></li>
             </ul> <!-- cd-filters -->
             <ul class="cd-filters">
@@ -109,45 +109,385 @@
         </div> <!-- cd-tab-filter -->
     </div> <!-- cd-tab-filter-wrapper -->
 
-    <c:set var="nbArticles" scope="session" value="0"/>
     <section class="cd-gallery ">
         <ul>
-            <c:forEach begin="0" end="10" varStatus="loop">
-                <c:set var="nbArticles"  value="${nbArticles+1}"/>
-                <li class="mix color-1 check1 radio1 option1">
-                    <div class="demo-card-image card  mdl-shadow--2dp">
-                        <div class="mdl-card__title mdl-card--expand">titre de l'imgae</div>
-                        <div class="mdl-card__media">
-                            <div class="view view-first">
+
+
+            <li class="mix homme primigi ">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
                                 <img class="item-img" src="img/1.png"/>
-                                <div class="mask">
-                                    <h2>Title</h2>
-                                    <p>Your Text</p>
-                                    <a href="#" class="info">Read More</a>
-                                </div>
-                            </div>
+                            </figure>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
                         </div>
 
                     </div>
+                    <a class="filterBtn waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
 
-                    <div class="mdl-card__actions product-title">
-                        <span class="demo-card-image__filename">Compfortable Wear</span>
+                </div>
+
+                </div>
+            </li>
+            <li class="mix color-1 homme chauss">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="img/1.png"/>
+                            </figure>
+
+                        </div>
                     </div>
-                    <div class="mdl-card__actions">
-                        <span class="mdl-button--accent">Buy</span>
-                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear 2</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                        </div>
 
                     </div>
-                </li>
-            </c:forEach>
+                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
 
-            <c:forEach begin="0" end="${nbArticles-2}" varStatus="loop">
-                <li class="gap"></li>
-            </c:forEach>
+                </div>
+
+                </div>
+            </li>
+
+            <li class="mix  femme">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="img/1.png"/>
+                            </figure>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear Femme</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                        </div>
+
+                    </div>
+                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+
+                </div>
+
+                </div>
+            </li>
+            <li class="mix enfant ">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="img/1.png"/>
+                            </figure>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear enfant</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                        </div>
+
+                    </div>
+                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+
+                </div>
+
+                </div>
+            </li>
+            <li class="mix bebe">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="img/1.png"/>
+                            </figure>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear bebe</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                        </div>
+
+                    </div>
+                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+
+                </div>
+
+                </div>
+            </li>
+            <li class="mix ">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="img/1.png"/>
+                            </figure>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear primigi</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                        </div>
+
+                    </div>
+                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+
+                </div>
+
+                </div>
+            </li>
+            <li class="mix color-1 check1 radio1 option1">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="img/1.png"/>
+                            </figure>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                        </div>
+
+                    </div>
+                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+
+                </div>
+
+                </div>
+            </li>
+
+            <li class="mix color-1 check1 radio1 option1">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="img/2.png"/>
+                            </figure>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                        </div>
+
+                    </div>
+                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+
+                </div>
+
+                </div>
+            </li>
+            <li class="mix color-1 check1 radio1 option1">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="img/1.png"/>
+                            </figure>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                        </div>
+
+                    </div>
+                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+
+                </div>
+
+                </div>
+            </li>
+            <li class="mix color-1 check1 radio1 option1">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="img/1.png"/>
+                            </figure>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                        </div>
+
+                    </div>
+                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+
+                </div>
+
+                </div>
+            </li>
+            <li class="mix color-1 check1 radio1 option1">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="img/1.png"/>
+                            </figure>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                        </div>
+
+                    </div>
+                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+
+                </div>
+
+                </div>
+            </li>
 
 
-
-
+            <li class="gap"></li>
+            <li class="gap"></li>
+            <li class="gap"></li>
+            <li class="gap"></li>
+            <li class="gap"></li>
+            <li class="gap"></li>
+            <li class="gap"></li>
+            <li class="gap"></li>
+            <li class="gap"></li>
 
 
         </ul>
@@ -155,7 +495,7 @@
     </section> <!-- cd-gallery -->
 
     <div class="cd-filter">
-        <form >
+        <form>
 
             <!--
 
@@ -169,9 +509,18 @@
             <br>
             <div class="cd-filter-block clearfix">
                 <div class="col ">
-                    <strong>Prix</strong>
+                    <div class="row">
+                        <strong>Prix</strong>
+                        <div  class="switch pull-right">
+                            <label>
+                                <input id="priceSwitche" type="checkbox">
+                                <span class="lever"></span>
+                            </label>
+                        </div>
+
+                    </div>
                     <br>
-                    <br>
+
                     <br>
                     <div id="prix_range_slider"></div>
                     <strong id="inf_prix_range" class="pull-left " style="margin-top: 15px">20</strong>
@@ -184,12 +533,21 @@
 
             <div class="cd-filter-block clearfix">
                 <div class=" input-field col s12 m6">
-                    <select id="FilterSelect"  class="filter icons categories">
-                        <option  disabled selected style="">Catégorie</option>
-                        <option value=".color-1" data-icon="./3B-Internationle_files/img/homme.png"  class="left circle">Homme </option>
-                        <option value="all" data-icon="./3B-Internationle_files/img/homme.png" class="left circle">Femme</option>
-                        <option  value="none"  data-icon="./3B-Internationle_files/img/homme.png" class="left circle">Enfant</option>
-                        <option  value=".color-18" data-icon="./3B-Internationle_files/img/homme.png" class="left circle">Bébé</option>
+                    <select id="categoryFilterSelect" class=" filter icons categories">
+                        <option disabled selected style="">Catégorie</option>
+                        <option value="all">Tout</option>
+                        <option value=".homme" data-icon="./3B-Internationle_files/img/homme.png" class="left circle">
+                            Homme
+                        </option>
+                        <option value=".femme" data-icon="./3B-Internationle_files/img/homme.png" class="left circle">
+                            Femme
+                        </option>
+                        <option value=".enfant" data-icon="./3B-Internationle_files/img/homme.png" class="left circle">
+                            Enfant
+                        </option>
+                        <option value=".bebe" data-icon="./3B-Internationle_files/img/homme.png"
+                                class="left circle">Bébé
+                        </option>
                     </select>
                 </div>
             </div>
@@ -197,8 +555,9 @@
 
             <div class="clearfix">
                 <div class="cd-filter-block  col s12 l3">
-                    <select class="filter chosen-select tailles" data-placeholder="Choose a Country..." tabindex="1">
+                    <select id="pointureFilterSelect" class="filter chosen-select tailles" data-placeholder="Choose a Country..." tabindex="1">
                         <option value="" disabled selected>Pointure</option>
+                        <option value="all">Tout</option>
                         <option value="38">38</option>
                         <option value="38.5">38/39</option>
                         <option value="39">39</option>
@@ -245,7 +604,6 @@
 <script src="./3B-Internationle_files/js/nouislider.min.js"></script>
 
 <script src="./3B-Internationle_files/js/material.js"></script>
-
 
 
 <script src="./3B-Internationle_files/js/ion.rangeSlider.min.js"></script>

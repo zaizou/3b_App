@@ -5,6 +5,7 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Assou on 17/08/2016.
@@ -15,8 +16,8 @@ public class Article {
 
     @Column
     private String model;
-    @Column
-    private String imageUrl;
+    @ElementCollection
+    private List<String> imageUrl;
     @Column
     private String type;  //Chaussure //Habillellement
     @Column Double pointure;
@@ -29,9 +30,14 @@ public class Article {
     @ManyToOne
     @JsonManagedReference
     private Marque marqueArticle;
-    @ManyToOne
+    @ManyToMany
     @JsonManagedReference
-    private Couleur couleur;
+    private List<Couleur> couleurs;
+
+    @OneToMany
+    @JsonManagedReference
+    private List<Article> relatedArticles;
+
 
     @Id
     private Integer idArticle;
@@ -59,12 +65,20 @@ public class Article {
         this.model = model;
     }
 
-    public String getImageUrl() {
+    public List<String> getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(List<String> imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<Article> getRelatedArticles() {
+        return relatedArticles;
+    }
+
+    public void setRelatedArticles(List<Article> relatedArticles) {
+        this.relatedArticles = relatedArticles;
     }
 
     public String getType() {
@@ -107,22 +121,11 @@ public class Article {
         this.marqueArticle = marqueArticle;
     }
 
-    public Couleur getCouleur() {
-        return couleur;
+    public List<Couleur> getCouleurs() {
+        return couleurs;
     }
 
-    public void setCouleur(Couleur couleur) {
-        this.couleur = couleur;
+    public void setCouleurs(List<Couleur> couleurs) {
+        this.couleurs = couleurs;
     }
-
-
-
-
-
-
-
-
-
-
-
 }

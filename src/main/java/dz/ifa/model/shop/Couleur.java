@@ -15,6 +15,10 @@ public class Couleur {
     private String codeCouleur;
     @Column
     private String intituleCouleur;
+    @Column
+    private String iconLink;
+
+
 
     public Couleur() {
     }
@@ -39,4 +43,15 @@ public class Couleur {
     public void setIntituleCouleur(String intituleCouleur) {
         this.intituleCouleur = intituleCouleur;
     }
+
+    public String getIconLink() {
+        return iconLink;
+    }
+
+    public void setIconLink(String iconLink) {
+        this.iconLink = iconLink;
+    }
+
+
+
 }
