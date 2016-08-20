@@ -1,0 +1,24 @@
+#showRoot{
+    background: firebrick;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
+
+#infoRoot{
+    background-color: #00bfa5;
+    height: 500px;
+}
+
+#showImageContainer{
+    background-color: #0FFF88;
+    height:400px;
+    /*margin-top: 50vh;*/
+
+
+
+
+}
