@@ -16,9 +16,17 @@
 #showImageContainer{
     background-color: #0FFF88;
     height:400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     /*margin-top: 50vh;*/
 
+}
 
-
+#detailImg{
 
 }
+
+.fotorama__nav-wrap{
+}
+
