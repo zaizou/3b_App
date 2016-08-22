@@ -153,8 +153,23 @@ Prix Slider
 *****************************************************/
 var selectedCategory="";
 var selectedPointure="";
+var selectedTaille="";
+var selectedTailleStandard="";
 var filterString="";
+var habillements=false;
 var $container=$('.cd-gallery ul');
+
+
+jQuery(document).ready(function($){
+
+	$( "li.mix" ).each(function( index ) {
+		console.log( index + ": " + $( this ).text() );
+	});
+
+});
+
+
+
 
 
 $("li.filter").on("click",function () {
@@ -162,11 +177,46 @@ $("li.filter").on("click",function () {
 		filterString="."+$(this).attr('id');
 		$container.mixItUp('filter',filterString);
 		console.log(filterString);
+
+		switch ( $(this).attr('id') ) {
+			case "habim" : 	handleHabimChoose(); break;
+			case "chauss":  handleChaussChoose(); break;
+			default :handleDefaultChoose(); break
+		}
+
+
 	}
 });
 
 
-	$("#categoryFilterSelect").on('change',function () {
+
+function handleHabimChoose(){
+	$("#pointureBlock").css('display','none');
+	$("#tailleBlock").css('display','');
+	$("#tailleStandardBlock").css('display','');
+
+
+}
+
+function handleChaussChoose(){
+
+	$("#pointureBlock").css('display','');
+	$("#tailleBlock").css('display','none');
+	$("#tailleStandardBlock").css('display','none');
+
+
+
+}
+
+function handleDefaultChoose(){
+	$("#pointureBlock").css('display','');
+	$("#tailleBlock").css('display','');
+	$("#tailleStandardBlock").css('display','');
+
+}
+
+
+$("#categoryFilterSelect").on('change',function () {
 
 		if($container.mixItUp('isLoaded')){
 			if(selectedCategory!=""){
@@ -183,7 +233,7 @@ $("li.filter").on("click",function () {
 
 		}
 
-	});
+});
 
 
 	$("#pointureFilterSelect").on('change',function () {
@@ -207,13 +257,51 @@ $("li.filter").on("click",function () {
 
 
 
+$("#tailleFilterSelect").on('change',function () {
+
+	if($container.mixItUp('isLoaded')){
+		if(selectedTaille!=""){
+			console.log("previously selected cat is :  "+selectedTaille);
+			filterString=filterString.replace(selectedTaille,'');
+		}
+		if($(this).val() !="all") {
+			selectedTaille="."+$(this).val();
+			filterString+=selectedTaille;
+		}
+
+		console.log("Current filter String is :  "+filterString);
+		applyFilter();
+
+	}
+
+});
 
 
-	function applyFilter(){
+$("#tailleStandardFilterSelect").on('change',function () {
+
+	if($container.mixItUp('isLoaded')){
+		if(selectedTailleStandard!=""){
+			console.log("previously selected cat is :  "+selectedTailleStandard);
+			filterString=filterString.replace(selectedTailleStandard,'');
+		}
+		if($(this).val() !="all") {
+			selectedTailleStandard="."+$(this).val();
+			filterString+=selectedTailleStandard;
+		}
+
+		console.log("Current filter String is :  "+filterString);
+		applyFilter();
+
+	}
+
+});
+
+
+function applyFilter(){
 		if(filterString=="")
 			filterString="all";
 		$container.mixItUp('filter',filterString);
-	}
+}
 
 	function addArticleView(classString,imageLink,price,model,stock,detailLink){
 		var elem="";

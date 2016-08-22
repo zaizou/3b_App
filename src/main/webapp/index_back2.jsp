@@ -506,6 +506,7 @@
             <br>
             -->
             <br>
+            <br>
             <div class="cd-filter-block clearfix">
                 <div class="col ">
                     <div class="row">
@@ -530,7 +531,7 @@
 
             <br>
 
-            <div  class="cd-filter-block clearfix">
+            <div class="cd-filter-block clearfix">
                 <div class=" input-field col s12 m6">
                     <select id="categoryFilterSelect" class=" filter icons categories">
                         <option disabled selected style="">Catégorie</option>
@@ -549,62 +550,40 @@
                         </option>
                     </select>
                 </div>
-
-                 <div id="pointureBlock" class=" col s12 l3">
-                        <select id="pointureFilterSelect" class="filter chosen-select tailles" data-placeholder="Choose a Country..." tabindex="1">
-                            <option value="" disabled selected>Pointure</option>
-                            <option value="all">Tout</option>
-                            <option value="38">38</option>
-                            <option value="38.5">38/39</option>
-                            <option value="39">39</option>
-                            <option value="39.5">39/40</option>
-                            <option value="40">40</option>
-                            <option value="41">41</option>
-                            <option value="41.5">41/42</option>
-                            <option value="42">42</option>
-                            <option value="43">43</option>
-                            <option value="43.5">43/44</option>
-                            <option value="44">44</option>
-                            <option value="44.5">44/45</option>
-                            <option value="45">45</option>
-                            <option value="46">46</option>
-                            <option value="46.5">46/47</option>
-                            <option value="47">47</option>
-                            <option value="48">48</option>
-                            <option value="48.5">48/49</option>
-                            <option value="49">49</option>
-                            <option value="50.5">50/51</option>
-                            <option value="52">52</option>
-                        </select>
-                    </div>
-
-                    <div  id="tailleBlock"  class=" col s12 l3">
-                        <select id="tailleFilterSelect" class="filter chosen-select tailles" data-placeholder="" tabindex="1">
-                            <option value="" disabled selected>Taille</option>
-                            <option value="all">Tout</option>
-                            <option value="38">H33-W33</option>
-                        </select>
-                    </div>
-
-                    <div id="tailleStandardBlock" class="  col s12 l3">
-                        <select id="tailleStandardFilterSelect" class="filter chosen-select tailles" data-placeholder="" tabindex="1">
-                            <option value="" disabled selected>Taille Standard</option>
-                            <option value="all">Tout</option>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
-
-                        </select>
-                    </div>
             </div>
 
 
+            <div class="clearfix">
+                <div class="cd-filter-block  col s12 l3">
+                    <select id="pointureFilterSelect" class="filter chosen-select tailles" data-placeholder="Choose a Country..." tabindex="1">
+                        <option value="" disabled selected>Pointure</option>
+                        <option value="all">Tout</option>
+                        <option value="38">38</option>
+                        <option value="38.5">38/39</option>
+                        <option value="39">39</option>
+                        <option value="39.5">39/40</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="41.5">41/42</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="43.5">43/44</option>
+                        <option value="44">44</option>
+                        <option value="44.5">44/45</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                        <option value="46.5">46/47</option>
+                        <option value="47">47</option>
+                        <option value="48">48</option>
+                        <option value="48.5">48/49</option>
+                        <option value="49">49</option>
+                        <option value="50.5">50/51</option>
+                        <option value="52">52</option>
+                    </select>
+                </div>
 
 
-
+            </div>
 
 
         </form>

@@ -34,14 +34,14 @@
                         </ul>
                     </li>
 
-                    </sec:authorize>Art
+                    </sec:authorize>
 
 
 
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-home"></i> Recettes</a>
                         <ul>
-                            <li><a href="recettes_introduction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Introduire les Recettes</a></li>
+                            <li><a href="comptabilite_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Introduire les Recettes</a></li>
                         </ul>
                     </li>
 
