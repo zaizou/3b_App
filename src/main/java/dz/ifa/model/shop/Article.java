@@ -20,7 +20,7 @@ public class Article {
     private List<String> imageUrl;
     @Column
     private String type;  //Chaussure //Habillellement
-    @Column Double pointure;
+
     @Column
     private String categorie;
 
@@ -37,6 +37,9 @@ public class Article {
     @OneToMany
     @JsonManagedReference
     private List<Article> relatedArticles;
+
+    @Column
+    Double pointure;
 
 
     @Id

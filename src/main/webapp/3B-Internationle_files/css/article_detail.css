@@ -11,14 +11,26 @@
 #infoRoot{
     background-color: #00bfa5;
     height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: inherit;
+
 }
+
+#infos-card{
+    height: 500px;
+}
+
 
 #showImageContainer{
     background-color: #0FFF88;
     height:400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: inline-block;
+    justify-content: flex-start;
+
+
+
+
     /*margin-top: 50vh;*/
 
 }
@@ -27,6 +39,6 @@
 
 }
 
-.fotorama__nav-wrap{
+.fotorama{
 }
 
