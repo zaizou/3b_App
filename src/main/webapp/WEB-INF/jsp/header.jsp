@@ -10,11 +10,11 @@
                 <div class="line bottom"></div>
             </div>
         </li>
-
+<!--
         <li class="logo hidden-xs" style="position: absolute; right: 0px;" >
             <img src="img/Dev17.png" style="height:53px;">
         </li>
-
+-->
 
  	</ul>
 

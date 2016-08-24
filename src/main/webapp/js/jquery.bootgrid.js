@@ -174,7 +174,10 @@
             for (var i = 0; i < that.columns.length; i++)
             {
                 column = that.columns[i];
-                if (column.searchable && column.visible && 
+               if(column.id=="commands")
+                    return false;
+
+                if (  column.searchable && column.visible &&
                     column.converter.to(row[column.id]).search(searchPattern) > -1)
                 {
                     return true;

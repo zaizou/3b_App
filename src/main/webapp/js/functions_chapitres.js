@@ -15,40 +15,6 @@ var data_section = {
 //Initialisation du tableau contenant les sections
 $(document).ready(function () {
 
-    //Initialisation
-    $.getJSON('nomenclatures_sections_list.json', {
-        ajax: 'true'
-    }, function (result) {
-        var htln = "";
-        for (var i = 0; i < result.sectionList.length; i++) {
-            console.log("Section " + i);
-            console.log("Code Section " + result.sectionList[i].codeSection);
-            console.log("Designation" + result.sectionList[i].designation);
-            htln += '<option value=';
-            htln += "" + result.sectionList[i].codeSection;
-            htln += '>';
-            htln += "" + result.sectionList[i].designation;
-            htln += '</option>';
-        }
-        //alert(htln);
-        $("#chapitre-select-section")
-            .html(htln)
-         .selectpicker('refresh');
-
-        //$("#chapitre-select-section").append(htln);
-//            append(htln);
-    }).done(function () {
-        console.log("apres success");
-    })
-        .fail(function () {
-            console.log("error");
-        })
-        .always(function () {
-            console.log("complete toujours succes ou erreur");
-        });
-
-
-    //databinding
     $("#data-table-command").bootgrid({
         css: {
             icon: 'zmdi icon',
