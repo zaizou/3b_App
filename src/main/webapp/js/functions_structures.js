@@ -279,8 +279,6 @@ function afficherCreateSectionMessage() {
 
 
 function afficherSupprChapitre(code_struct, selectedRow) {
-
-
     console.log("the chapitre code is :" + selectedRow);
 
     swal({
