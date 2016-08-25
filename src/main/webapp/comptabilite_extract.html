@@ -10,8 +10,11 @@
     <link href="css/malihu-scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
     <link href="css/sweetalert2.css" rel="stylesheet">
     <link href="css/jquery.bootgrid.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/comptabilite_extract.css" rel="stylesheet">
     <link href="css/app.min.1.css" rel="stylesheet">
     <link href="css/app.min.2.css" rel="stylesheet">
+
     <title></title>
 </head>
 <body>
@@ -31,11 +34,6 @@
 
     </ul>
 
-
-
-
-
-
 </header>
 <!--Le sidebar/navigation drawer (android) -->
 
@@ -47,6 +45,7 @@
     <section id="content">
         <div class="container">
 
+
             <div class="card depneses_recettes">
                 <!--L'entete de la page' -->
                 <div class="card-header">
@@ -57,13 +56,73 @@
                 </div>
 
                 <div class="card-body">
-                        <div class="m-l-20 m-sm-10 ">
+                    <div class="m-l-20 m-sm-10 ">
                             <span class="btn btn-primary btn-file m-r-10 waves-effect">
-                                Sélectionner un fichier Excel
+                                Charger un fichier Excel
                             <object id="file-object"></object>
                             </span>
 
+
+                        <button id="clearBtn" style="display: none" class="btn btn-default btn-danger btn-icon-text waves-effect"><i class="zmdi zmdi-delete zmdi-hc-fw"></i> Vider les tables</button>
+                        <button id="sendBtn" style="display: none" class="btn btn-default btn-icon-text waves-effect"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Envoyer les Données</button>
+
+
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="m-l-20 m-sm-10 col-sm-4 input-group">
+                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                        <div class="fg-line">
+                            <input id="sheetName" type="text" class="form-control" placeholder="Nom de la feuille Excel">
                         </div>
+                    </div>
+                    <br>
+                    <br>
+
+
+                    <div class="row">
+                        <div class="m-l-20 m-sm-10 col-sm-4">
+                            <p class="c-black f-500 m-b-20">Du :</p>
+
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                <div class="dtp-container fg-line">
+                                    <input id="fromDate"  type='text' class="form-control date-picker" placeholder="Cliquer ici...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-l-20 m-sm-10  col-sm-4">
+                            <p class="c-black f-500 m-b-20">Au :</p>
+
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                <div class="dtp-container fg-line">
+                                    <input id="toDate"  type='text' class="form-control date-picker" placeholder="Cliquer ici...">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="card depneses_recettes">
+                <!--L'entete de la page' -->
+                <div class="card-header">
+                    <h2>Recettes et Dépenses
+                        <small>Affichage des actvités du magazin.</small>
+                    </h2>
+                    </h2>
+                </div>
+
+                <div class="card-body">
+
 
 
                     <!--Le tableau qui affiche la liste des comptes -->
@@ -72,7 +131,7 @@
                         <!--l'entete du tableau' -->
                         <thead>
                         <tr>
-                            <th data-column-id="id" data-identifier="true" data-type="numeric"  data-width="7%" >ID</th>
+                            <th data-column-id="id" data-identifier="true" data-type="numeric"  data-width="7%" ></th>
                             <th  data-column-id="date_trans"   >Date</th>
                             <th data-column-id="jour_trans" class="text-left" >Jour</th>
                             <th data-column-id="montant_trans" class="text-left"   >Montant</th>
@@ -111,27 +170,18 @@
                         <thead>
                         <tr>
                             <th data-column-id="id" data-identifier="true" data-type="numeric"  data-width="7%" ></th>
-                            <th data-column-id="code_chapitre"   >Date</th>
-                            <th data-column-id="CompteLabel" class="text-left" >Jour</th>
-                            <th data-column-id="CompteLabel" class="text-left"  >Montant</th>
-                            <th data-column-id="CompteLabel" class="text-left" >Trans</th>
-                            <th data-column-id="CompteLabel" class="text-left" >Observation</th>
+                            <th data-column-id="date_transf"   >Date</th>
+                            <th data-column-id="jour_transf" class="text-left" >Jour</th>
+                            <th data-column-id="montant_transf" class="text-left"  >Montant</th>
+                            <th data-column-id="transf" class="text-left" >Trans</th>
+                            <th data-column-id="obser_transf" class="text-left" >Observation</th>
                             <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
                         </tr>
                         </thead>
 
                         <!--Les lignes du tableau -->
                         <tbody>
-                        <c:if test="${listChapitres.size()>0}">
-                            <c:forEach begin="0" end="${listChapitres.size()-1}" varStatus="loop">
-                                <tr data-row-id="${loop.index}">
-                                    <td class="text-left" style="">1000</td>
-                                    <td class="text-left " style=""></td>
-                                    <td class="text-left" style=""></td>
-                                </tr>
 
-                            </c:forEach>
-                        </c:if>
                         </tbody>
                     </table>
 
@@ -154,15 +204,16 @@
 <script type="text/javascript" src="js/bootstrap-select.js"></script>
 
 <script type="text/javascript" src="js/waves.min.js"></script>
-<script type="text/javascript" src="js/typeahead.bundle.js"></script>
 <script type="text/javascript" src="js/sweetalert2.min.js"></script>
 <!--Bibliotheque pour le sidebar -->
 <script type="text/javascript" src="js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="js/jquery.bootgrid.js"></script>
 <script type="text/javascript" src="js/sugar.min.js"></script>
-<script type="text/javascript" src="js/fileinput.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="js/sheetjs.all.min.js"></script>
 <script type="text/javascript" src="js/excelplus-2.4.min.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
 <script type="text/javascript" src="js/functions_comptabilite_extract.js"></script>
 
 </body>

@@ -1,24 +1,11 @@
 /*Projet Comptable et Budgétaire functions*/
-
-
-
-$(document).ready(function(){
-
-
-
-
-
-
-    });
-
-    $("#excelFile").on('change',function (e) {
-
-        /* DO SOMETHING WITH workbook HERE */
-
-
-
-    });
-
+var rows = new Array();
+var rowsTransfert = new Array();
+var startingRow=4;
+var selectedSheet;
+var startingDate="1/1/00";
+var endingDate="31/12/99";
+var currentSheet;
 
 
 
@@ -28,6 +15,25 @@ $(document).ready(function(){
 
 //Initialisation du tableau contenant les sections
 $(document).ready(function () {
+
+
+
+    $("#sheetName").on("keyup",function (e) {
+            selectedSheet=$(this).val();
+    });
+
+
+
+    $("#fromDate").on("dp.change",function (e) {
+        $('#toDate').data("DateTimePicker").minDate(e.date);
+        startingDate=moment(e.date).format("MM/DD/YY");
+    });
+
+    $("#toDate").on('dp.change',function (e) {
+        endingDate=moment(e.date).format("MM/DD/YY");
+    });
+
+
 
     $("#data-table-command").bootgrid({
         css: {
@@ -68,81 +74,129 @@ $(document).ready(function () {
     });
 
 
-
-
-
-
-
 }).on("loaded.rs.jquery.bootgrid", function () {
 
 
-    var ep=new ExcelPlus();
-    ep.openLocal({
+    var excelDocument=new ExcelPlus();
+      excelDocument.openLocal({
         "labelButton":"Open an Excel file"
-    },function() {
-        // show the content of the first sheet
-        //var records=ep.selectSheet("An2016").read("A4:E4");
-        var currentSheet = ep.selectSheet("An");
+    },function () {
+        appendDataTables(excelDocument);
+        //$("#loadBtn").css('display','');
+        $("#clearBtn").css('display','');
+        $("#sendBtn").css('display','');
+    });
+
+
+
+  $("#sendBtn").on("click",function () {
+
+    });
+
+    $("#clearBtn").on("click",function () {
+        viderTablesConfirmation();
+    });
+
+
+
+
+    function appendDataTables(){
+        console.log(excelDocument.getSheetNames());
+        currentSheet = excelDocument.selectSheet(selectedSheet);
         //console.table(records);
         var data;
-        var rows = new Array();
-        var startingRow=4;
-        var startingDate="3/10/15";
-        var endingDate="3/18/15";
         var record;
         var i=0,j=0;
-        record = currentSheet.read("A"+(i+startingRow)+":"+"E"+(i+startingRow));
+        record = currentSheet.read("A"+(i+startingRow)+":"+"K"+(i+startingRow));
         var canAdd=false;
 
         while (record[0][0]!=null){
-            record = currentSheet.read("A"+(i+startingRow)+":"+"E"+(i+startingRow));
-            if(record[0][0]==startingDate )
+
+            record = currentSheet.read("A"+(i+startingRow)+":"+"K"+(i+startingRow));
+
+            if(moment(record[0][0]).isAfter(startingDate)){
                 canAdd=true;
-            if(record[0][0]==endingDate)
+                console.log("We can add the element");
+            }
+
+            if(moment(record[0][0]).isAfter(endingDate)){
+                console.log("Break invoked");
                 break;
+            }
 
+            if(record[0][0]=="TOTAL")
+                canAdd=false;
 
-            console.log(record[0][0]);
-          /*  if(record[0][0]=="TOTAL")
-                alert("its a total");*/
             if(canAdd){
                 rows [j] = {
                     "id": j+1,
-                    "date_trans": record[0][0],
+                    "date_trans": moment(record[0][0],"MM/DD/YY").format("DD/MM/YYYY"),
                     "jour_trans": record[0][1],
                     "montant_trans": record[0][2],
                     "depense_trans": record[0][3],
-                     "observation_trans": record[0][4]
+                    "observation_trans": record[0][4]
                 };
-                console.log(rows[j]);
+
+                rowsTransfert[j]= {
+                    "id": j+1,
+                    "date_transf":moment(record[0][6],"MM/DD/YY").format("DD/MM/YYYY"),
+                    "jour_transf": record[0][7],
+                    "montant_transf": record[0][8],
+                    "transf": record[0][9],
+                    "obser_transf": record[0][10]
+                };
+
+                //console.log(rows[j]);
                 j++
             }
 
             i++;
         }
         $("#data-table-command").bootgrid("append", rows);
+        $("#data-table-command-transferts").bootgrid("append", rowsTransfert);
+
+        $("#sendBtn").css('display','');
+
+    }
+
+    function viderTablesConfirmation() {
+
+        swal({
+                title: 'Etes Vous Sure ?',
+                text: "Voulez vous vraiment vider les tables",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Oui, Confirmer!',
+                cancelButtonText: 'Annuler',
+                confirmButtonClass: 'btn btn-danger',
+                cancelButtonClass: 'btn',
+                buttonsStyling: false,
+                closeOnConfirm: true,
+
+            },
+            function (isConfirm) {
+                if(isConfirm){
+                    $("#data-table-command").bootgrid("clear");
+                    $("#data-table-command-transferts").bootgrid("clear");
+
+                    $("#loadBtn").css('display','none');
+                    $("#clearBtn").css('display','none');
+                    $("#sendBtn").css('display','none');
+
+                }
+            }
+
+
+            );
+
+
+    }
 
 
 
-    /*    for (i = 0; i < 10; i++) {
-            var record = currentSheet.read("A"+(i+startingRow)+":"+"E"+(i+startingRow));
-            if(record[0][0]=="TOTAL")
-                alert("its a total");
-            rows [i] = {
-                "id": i,
-                "date_trans": record[0][0],
-                "jour_trans": record[0][1],
-                "montant_trans": record[0][2],
-                "depense_trans": record[0][3],
-                "observation_trans": record[0][4]
-            };
-        }
 
-        $("#data-table-command").bootgrid("append", rows);
 
-        */
-
-    });
 
 
     $("#data-table-command").find('button.compte-suppr.extern').on("click", function (e) {
@@ -151,8 +205,7 @@ $(document).ready(function () {
         var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
         afficherSupprChapitre(idUtilisateur, rows);
 
-    })
-        .end().find("button.showingInfos").on("click", function (e) {
+    }).end().find("button.showingInfos").on("click", function (e) {
         var rows = Array();
         rows[0] = $(this).data("row-id");
         var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
@@ -163,9 +216,15 @@ $(document).ready(function () {
 
 
 
+    function handleDuChanged(){
+        // ,
+
+    }
+
+    function handleAuChanged(){
 
 
-
+    }
 
 
 
