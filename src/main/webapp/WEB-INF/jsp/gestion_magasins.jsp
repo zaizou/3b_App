@@ -28,15 +28,12 @@
     <section id="content">
         <div class="container">
 
-            <c:import url="./gestion_utilisateurs/list_utilisateurs.jsp">
-
-            </c:import>
-            <c:import url="./gestion_utilisateurs/creer_utilisateur.jsp">
-
-
+            <c:import url="gestion_utilisateurs_pages/list_utilisateurs.jsp">
+                <c:param name="listMagasins" value="${listMagasins}"/>
             </c:import>
 
-        </div>
+            <c:import url="gestion_utilisateurs_pages/utilisateur_create.jsp">
+            </c:import>
 
 
         </div>

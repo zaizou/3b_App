@@ -21,6 +21,7 @@
 
 
                 <ul class="main-menu">
+
                     <li ><a href="gestion_dashboard.html"><i class="zmdi zmdi-home"></i> Tableau de Bord</a></li>
 
 
@@ -36,6 +37,8 @@
 
                     </sec:authorize>
 
+
+                    <li ><a href="gestion_magasins_magasins.html"><i class="zmdi zmdi-home"></i>Gestion des Magasins</a></li>
 
 
                     <li class="sub-menu">
