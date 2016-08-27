@@ -1,9 +1,6 @@
 package dz.ifa.model.shop;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Assou on 21/08/2016.
@@ -12,6 +9,7 @@ import javax.persistence.Table;
 @Table
 public class Mesure {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer idMesure;
     @Column
     private String type; ///taille,pointure ...

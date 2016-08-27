@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Table
 public class Prix {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer idPrix;
     @Column
     private Double valeur;

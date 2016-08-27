@@ -35,6 +35,10 @@ public class Utilisateur {
 	private String prenom;
 	@Column
 	private String tel;
+	@OneToOne
+	@JsonManagedReference
+	private Magasin magasin;
+
 
 
 
@@ -67,21 +71,24 @@ public class Utilisateur {
 
 
 
-
-
-
 	public void prepareList(){
 		this.foncts=new ArrayList<Fonctionnalite>();
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
 
+	public Magasin getMagasin() {
+		return magasin;
+	}
+
+	public void setMagasin(Magasin magasin) {
+		this.magasin = magasin;
+	}
 
 	public String getId() {
 		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getPasswd() {

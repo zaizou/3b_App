@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Repository
-public interface ComptaRepository extends JpaRepository<Compta,Date> {
+public interface ComptaRepository extends JpaRepository<Compta,Integer> {
 	Compta save(Compta compta);
 
 	@Query("SELECT c FROM Compta c WHERE (c.dateCompta) = (:date)")

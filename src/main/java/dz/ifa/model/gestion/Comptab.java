@@ -1,63 +1,32 @@
 package dz.ifa.model.gestion;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import dz.ifa.model.gestion_utilisateurs.Magasin;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Date;
 
 /**
  * Created by Assou on 25/08/2016.
  */
-@Entity
-@Table
-public class Compta {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+
+public class Comptab {
     private Integer idCompta;
-    @Column
-    private Date dateCompta;
-    @Column
+    private String dateCompta;
     private String jourCompta;
-    @Column
     private Double montantCompta;
-    @Column
     private Double depense;
-    @Column
     private String observationCompta;
-    @ManyToOne
-    @JsonManagedReference
-    private Magasin magasin;
 
 
-
-
-    public Compta() {
+    public Comptab() {
 
     }
 
-    public Compta(Date dateCompta, String jourCompta, Double montantCompta, Double depense, String observationCompta, Magasin magasin) {
-        this.dateCompta = dateCompta;
-        this.jourCompta = jourCompta;
-        this.montantCompta = montantCompta;
-        this.depense = depense;
-        this.observationCompta = observationCompta;
-        this.magasin = magasin;
-    }
-
-    public Compta(Date dateCompta, Double montantCompta, Double depense, Magasin magasin) {
+    public Comptab(String dateCompta, Double montantCompta, Double depense) {
         this.dateCompta = dateCompta;
         this.montantCompta = montantCompta;
         this.depense = depense;
-        this.magasin = magasin;
-    }
-
-    public Magasin getMagasin() {
-        return magasin;
-    }
-
-    public void setMagasin(Magasin magasin) {
-        this.magasin = magasin;
     }
 
     public Integer getIdCompta() {
@@ -68,11 +37,11 @@ public class Compta {
         this.idCompta = idCompta;
     }
 
-    public Date getDateCompta() {
+    public String getDateCompta() {
         return dateCompta;
     }
 
-    public void setDateCompta(Date dateCompta) {
+    public void setDateCompta(String dateCompta) {
         this.dateCompta = dateCompta;
     }
 

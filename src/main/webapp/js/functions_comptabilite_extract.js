@@ -1,4 +1,8 @@
 /*Projet Comptable et Budgétaire functions*/
+
+Constant_firstDate="1/1/00";
+Constant_lastDate="31/12/99";
+
 var rowsComptabilite = new Array();
 var rowsTransfert = new Array();
 var startingRow = 4;
@@ -93,7 +97,6 @@ $(document).ready(function () {
 
          excelDocument= new ExcelPlus();
         excelDocument.openLocal({
-            "flashPath":"./swfobject/",
             "labelButton": "Open an Excel file"
         }, function () {
             try {
@@ -118,7 +121,7 @@ $(document).ready(function () {
 
 
     $("#sendBtn").on("click", function () {
-
+        sendDataConfirmation();
     });
 
 
@@ -139,6 +142,12 @@ $(document).ready(function () {
         var canAddCompta = true;
         var transfertIndex = 0;
         var comptaIndex = 0;
+
+        if(startingDate==null || endingDate==null){
+            startingDate=Constant_firstDate;
+            endingDate=Constant_lastDate;
+        }
+
 
         while (record[0][0] != null) {
             record = currentSheet.read("A" + (i + startingRow) + ":" + "K" + (i + startingRow));
@@ -161,30 +170,28 @@ $(document).ready(function () {
                 else
                     canAddCompta = true;
 
-
                 if (canAddCompta) {
-                    console.log("converting to number "+ record[0][2]);
                     rowsComptabilite [comptaIndex] = {
-                        "id": comptaIndex + 1,
-                        "date_trans": moment(record[0][0], "MM/DD/YY").format("DD/MM/YYYY"),
-                        "jour_trans": record[0][1],
-                        "montant_trans":  (record[0][2]==null ) ? 0 : parseFloat(record[0][2].replace(',',''))   ,
-                        "depense_trans": (record[0][3]==null ) ? 0 : parseFloat(record[0][3].replace(',',''))  ,
-                        "observation_trans":  (record[0][4]==null ) ? "" : record[0][4]
+                        "idCompta": comptaIndex + 1,
+                        "dateCompta": moment(record[0][0], "MM/DD/YY").format("DD/MM/YYYY"),
+                        "jourCompta": record[0][1],
+                        "montantCompta":  (record[0][2]==null ) ? 0 : parseFloat(record[0][2].replace(',',''))   ,
+                        "depense": (record[0][3]==null ) ? 0 : parseFloat(record[0][3].replace(',',''))  ,
+                        "observationCompta":  (record[0][4]==null ) ? "" : record[0][4]
                     };
                     comptaIndex++;
 
                 }
 
+      
                 if (canAddTransfert) {
-
                     rowsTransfert[transfertIndex] = {
-                        "id": transfertIndex + 1,
-                        "date_transf": moment(record[0][6], "MM/DD/YY").format("DD/MM/YYYY"),
-                        "jour_transf":(record[0][7]==null ) ? "" : record[0][7],
-                        "montant_transf": (record[0][8]==null ) ? 0 : parseFloat(record[0][8].replace(',',''))  ,
-                        "transf": (record[0][9]==null ) ? "" : record[0][9],
-                        "obser_transf":  (record[0][10]==null ) ? "" : record[0][10]
+                        "idTransfert": transfertIndex + 1,
+                        "dateTransfert": moment(record[0][6], "MM/DD/YY").format("DD/MM/YYYY"),
+                        "jourTransfert":(record[0][7]==null ) ? "" : record[0][7],
+                        "montantTransfert": (record[0][8]==null ) ? 0 : parseFloat(record[0][8].replace(',',''))  ,
+                        "transferant": (record[0][9]==null ) ? "" : record[0][9],
+                        "observationTransfert":  (record[0][10]==null ) ? "" : record[0][10]
                     };
                     transfertIndex++;
                 }
@@ -273,13 +280,15 @@ $(document).ready(function () {
             },
             function (isConfirm) {
                 if (isConfirm) {
+
+
                     if (table == 0) {
                         $('#data-table-command').bootgrid("remove", row);
-                        rowsComptabilite.removeValue("date_trans", idRow);
+                        rowsComptabilite.removeValue("dateCompta", idRow);
                     }
                     else if (table == 1) {
                         $('#data-table-command-transferts').bootgrid("remove", row);
-                        rowsTransfert.removeValue("date_transf", idRow);
+                        rowsTransfert.removeValue("dateTransfert", idRow);
                         console.table(rowsTransfert);
                     }
 
@@ -299,11 +308,11 @@ $(document).ready(function () {
 
         if (!table) {
             selectedElement = rowsComptabilite.getElementByProperty("id", idRow)[0];
-            date = selectedElement.date_trans;
-            var jour = selectedElement.jour_trans;
-            var montant = selectedElement.montant_trans;
-            var depense = selectedElement.depense_trans;
-            var observation = selectedElement.observation_trans;
+            date = selectedElement.dateCompta;
+            var jour = selectedElement.jourCompta;
+            var montant = selectedElement.montantCompta;
+            var depense = selectedElement.depense;
+            var observation = selectedElement.observationCompta;
 
             htmlString = "<div class='row'><pre><strong>Date : </strong>" + date + "</pre></div>" + "<div class='row'><pre><strong>Jour : </strong>" + jour + "</pre></div>" + ""
                 + "<div class='row'><pre><strong>Montant : </strong>" + montant + " DZ</pre></div>" + "<div class='row'><pre><strong>Dépense : </strong>" + depense + " DZ</pre></div>" + ""
@@ -311,11 +320,11 @@ $(document).ready(function () {
 
         } else {
             selectedElement = rowsTransfert.getElementByProperty("id", idRow)[0];
-            date = selectedElement.date_transf;
-            var jour = selectedElement.jour_transf;
-            var montant = selectedElement.montant_transf;
-            var transf = ( selectedElement.transf == null) ?  "" : selectedElement.transf ;
-            var observation = (selectedElement.obser_transf == null) ?  "" : selectedElement.obser_transf ;
+            date = selectedElement.dateTransfert;
+            var jour = selectedElement.jourTransfert;
+            var montant = selectedElement.montantTransfert;
+            var transf = ( selectedElement.transferant == null) ?  "" : selectedElement.transferant ;
+            var observation = (selectedElement.observationTransfert == null) ?  "" : selectedElement.observationTransfert ;
 
             htmlString = "<div class='row'><pre><strong>Date : </strong>" + date + "</pre></div>" + "<div class='row'><pre><strong>Jour : </strong>" + jour + "</pre></div>" + ""
                 + "<div class='row'><pre><strong>Montant : </strong>" + montant + "DZ</pre></div>" + "<div class='row'><pre><strong>Le Transférant : </strong>" + transf + "</pre></div>" + ""
@@ -362,6 +371,22 @@ $(document).ready(function () {
     }
 
     function sendDataConfirmation() {
+
+
+        
+        var list
+
+/*
+        console.log("Loggging the comptas");
+        console.log(comptas);
+        console.log("loggin the table");
+        console.table(comptas.listCompta);
+*/
+
+        //console.log("Loggging the stringify");
+        //console.log(JSON.stringify(rowsComptabilite));
+        //var list_compta=JSON.stringify(rowsComptabilite);
+
         swal({
             title: "Etes Vous Sure ?",
             text: "Voulez vous vraiment Effectuer l'envoi ?",
@@ -373,9 +398,13 @@ $(document).ready(function () {
         }, function () {
             $.ajax(
                 {
+
                     type: "POST",
-                    url: "nomenclatures_strcuture_create.html",
-                    data: {list_compta: rowsComptabilite, list_transfert: rowsTransfert}
+                    dataType    : 'json',
+                    contentType :'application/json',
+                    url: "comptabilite_extraction_send.json",
+                    data: JSON.stringify(rowsComptabilite)
+                    //{list_compta:rowsComptabilite.toArray}
 
                 }
                 )
@@ -383,6 +412,9 @@ $(document).ready(function () {
                     if (JSON.parse(data) == "100") {
                         swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
                     //    window.location.replace("gestion_utilisateurs_utilisateurs.html");
+                    }
+                    else{
+                        swal("Succès!",JSON.parse(data) , "error");
                     }
 
                 })

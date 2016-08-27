@@ -38,11 +38,13 @@ public class Article {
     @JsonManagedReference
     private List<Article> relatedArticles;
 
-    @Column
-    Double pointure;
+    @ManyToMany
+    @JsonManagedReference
+    private List<Mesure> mesure;
 
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer idArticle;
 
 
@@ -50,6 +52,15 @@ public class Article {
     }
 
 
+
+
+    public List<Mesure> getMesure() {
+        return mesure;
+    }
+
+    public void setMesure(List<Mesure> mesure) {
+        this.mesure = mesure;
+    }
 
     public Integer getIdArticle() {
         return idArticle;
@@ -92,13 +103,7 @@ public class Article {
         this.type = type;
     }
 
-    public Double getPointure() {
-        return pointure;
-    }
 
-    public void setPointure(Double pointure) {
-        this.pointure = pointure;
-    }
 
     public String getCategorie() {
         return categorie;

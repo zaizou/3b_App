@@ -2,10 +2,7 @@ package dz.ifa.model.shop;
 
 import org.springframework.cache.annotation.CacheConfig;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Assou on 17/08/2016.
@@ -14,6 +11,7 @@ import javax.persistence.Table;
 @Table
 public class Marque {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private String nomMarque;
     @Column
     private String origine;

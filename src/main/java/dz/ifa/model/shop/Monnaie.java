@@ -14,6 +14,7 @@ import java.util.List;
 @Table(name = "monnaie")
 public class Monnaie {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private String label;
     @Column
     private String nom;

@@ -134,12 +134,13 @@
                         <!--l'entete du tableau' -->
                         <thead>
                         <tr>
-                            <th data-column-id="id" data-identifier="true" data-type="numeric"  data-width="7%" ></th>
-                            <th  data-column-id="date_trans"   >Date</th>
-                            <th data-column-id="jour_trans" class="text-left" >Jour</th>
-                            <th data-column-id="montant_trans" class="text-left"   >Montant</th>
-                            <th data-column-id="depense_trans" class="text-left"     >Dépense</th>
-                            <th data-column-id="observation_trans" class="text-left" data-width=30%" >Observation</th>
+
+                            <th data-column-id="idCompta" data-identifier="true" data-type="numeric"  data-width="7%" ></th>
+                            <th  data-column-id="dateCompta"   >Date</th>
+                            <th data-column-id="jourCompta" class="text-left" >Jour</th>
+                            <th data-column-id="montantCompta" class="text-left"   >Montant</th>
+                            <th data-column-id="depense" class="text-left"     >Dépense</th>
+                            <th data-column-id="observationCompta" class="text-left" data-width=30%" >Observation</th>
                             <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
                         </tr>
                         </thead>
@@ -172,12 +173,12 @@
                         <!--l'entete du tableau' -->
                         <thead>
                         <tr>
-                            <th data-column-id="id" data-identifier="true" data-type="numeric"  data-width="7%" ></th>
-                            <th data-column-id="date_transf "    >Date</th>
-                            <th data-column-id="jour_transf" class="text-left" >Jour</th>
-                            <th data-column-id="montant_transf" class="text-left"  >Montant</th>
-                            <th data-column-id="transf" class="text-left" >Trans</th>
-                            <th data-column-id="obser_transf" class="text-left" data-width="30%">Observation</th>
+                            <th data-column-id="idTransfert" data-identifier="true" data-type="numeric"  data-width="7%" ></th>
+                            <th data-column-id="dateTransfert "    >Date</th>
+                            <th data-column-id="jourTransfert" class="text-left" >Jour</th>
+                            <th data-column-id="montantTransfert" class="text-left"  >Montant</th>
+                            <th data-column-id="transferant" class="text-left" >Trans</th>
+                            <th data-column-id="observationTransfert" class="text-left" data-width="30%">Observation</th>
                             <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
                         </tr>
                         </thead>

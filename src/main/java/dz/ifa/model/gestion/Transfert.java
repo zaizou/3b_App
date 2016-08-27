@@ -1,9 +1,9 @@
 package dz.ifa.model.gestion;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import dz.ifa.model.gestion_utilisateurs.Magasin;
+
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -24,14 +24,36 @@ public class Transfert {
     private String transferant;
     @Column
     private String observationTransfert;
+    @ManyToOne
+    @JsonManagedReference
+    private Magasin magasin;
 
 
     public Transfert() {
     }
 
-    public Transfert(Date dateTransfert, Double montantTransfert) {
+    public Transfert(Date dateTransfert, String jourTransfert, Double montantTransfert, String transferant, String observationTransfert, Magasin magasin) {
+        this.dateTransfert = dateTransfert;
+        this.jourTransfert = jourTransfert;
+        this.montantTransfert = montantTransfert;
+        this.transferant = transferant;
+        this.observationTransfert = observationTransfert;
+        this.magasin = magasin;
+    }
+
+    public Transfert(Date dateTransfert, Double montantTransfert, String transferant, Magasin magasin) {
         this.dateTransfert = dateTransfert;
         this.montantTransfert = montantTransfert;
+        this.transferant = transferant;
+        this.magasin = magasin;
+    }
+
+    public Magasin getMagasin() {
+        return magasin;
+    }
+
+    public void setMagasin(Magasin magasin) {
+        this.magasin = magasin;
     }
 
     public Integer getIdTransfert() {
