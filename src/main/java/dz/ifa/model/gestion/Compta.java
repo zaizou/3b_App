@@ -30,8 +30,6 @@ public class Compta {
     private Magasin magasin;
 
 
-
-
     public Compta() {
 
     }
@@ -43,6 +41,14 @@ public class Compta {
         this.depense = depense;
         this.observationCompta = observationCompta;
         this.magasin = magasin;
+    }
+
+    public Compta(Date dateCompta, String jourCompta, Double montantCompta, Double depense, String observationCompta) {
+        this.dateCompta = dateCompta;
+        this.jourCompta = jourCompta;
+        this.montantCompta = montantCompta;
+        this.depense = depense;
+        this.observationCompta = observationCompta;
     }
 
     public Compta(Date dateCompta, Double montantCompta, Double depense, Magasin magasin) {

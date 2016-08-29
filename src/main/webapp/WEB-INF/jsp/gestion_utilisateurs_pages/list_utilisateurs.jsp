@@ -19,22 +19,23 @@
             <!--l'entete du tableau' -->
             <thead>
             <tr>
-                <th data-column-id="id" data-identifier="true" data-type="numeric" data-width="7%"></th>
+                <th data-column-id="id" data-identifier="true" data-type="numeric">Id</th>
+                <th data-column-id="idUtilisateur" class="text-left" >Id Utilisateur</th>
                 <th data-column-id="nom" class="text-left" >Nom</th>
-                <th data-column-id="prenom" class="text-left" >Wilaya</th>
-                <th data-column-id="codeStrcuture" class="text-left" >Responsable</th>
+                <th data-column-id="prenom" class="text-left" >Prénom</th>
+                <th data-column-id="codeStrcuture" class="text-left" >Code Structure</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
             </tr>
             </thead>
             <!--Les lignes du tableau -->
             <tbody>
-            <c:if test="${listMagasins.size() >0}">
-                <c:forEach begin="0" end="${listMagasins.size()-1}" varStatus="loop">
+            <c:if test="${listUtilisateurs.size() >0}">
+                <c:forEach begin="0" end="${listUtilisateurs.size()-1}" varStatus="loop">
                     <tr data-row-id="${loop.index}" class="147">
                         <td class="text-left" style="">${loop.index+1}</td>
-                        <td class="text-left" style="">${listMagasins.get(loop.index).getNomMagazin()}</td>
-                        <td class="text-left" style="">${listMagasins.get(loop.index).getWilayaMagasin().getIntituleWilaya()}</td>
-                        <td class="text-left" style="">${listMagasins.get(loop.index).getResponsableMagasin().getNom()+" "+listMagasins.get(loop.index).getResponsableMagasin().getPrenom()}</td>
+                        <td class="text-left" style="">${listUtilisateurs.get(loop.index).getId()}</td>
+                        <td class="text-left" style="">${listUtilisateurs.get(loop.index).getNom()}</td>
+                        <td class="text-left" style="">${listUtilisateurs.get(loop.index).getPrenom()}</td>
                     </tr>
 
                 </c:forEach>

@@ -12,25 +12,41 @@ var data_section = {
 };
 
 
+function prepareGMAPS_view() {
+    $('#mapSelector').locationpicker({
+        location: {latitude: 36.718863059742844, longitude: 3.183347702026367},
+        radius:0,
+        enableAutocomplete: true,
+        inputBinding: {
+            latitudeInput: $('#latitudeInput'),
+            longitudeInput: $('#longitudeInput'),
+            locationNameInput: $('#addressInput')
+        }
+    });
+}
+
 //Initialisation du tableau contenant les sections
 $(document).ready(function () {
 
+
     //Initialisation
-    $.getJSON('nomenclatures_structures_list.json', {
+    $.getJSON('gestion_utilisateurs_utilisateurs_list.json', {
         ajax: 'true'
     }, function (result) {
         var htln = "";
-        for (var i = 0; i < result.structureList.length; i++) {
+        console.log("loggin the result");
+        console.log(result);
+        for (var i = 0; i < result.utilisateurList.length; i++) {
             console.log("Section " + i);
-            console.log("Code Strcuture " + result.structureList[i].codeStructure);
-            console.log("Designation" + result.structureList[i].nom);
+            console.log("Code Strcuture " + result.utilisateurList[i].codeStructure);
+            console.log("Designation" + result.utilisateurList[i].nom);
             htln += '<option value=';
-            htln += "" + result.structureList[i].codeStructure;
+            htln += "" + result.utilisateurList[i].id;
             htln += '>';
-            htln += "" + result.structureList[i].nom;
+            htln += "" + result.utilisateurList[i].nom+" "+result.utilisateurList[i].prenom;
             htln += '</option>';
         }
-        $("#structure-select-section")
+        $("#responsable-select")
             .html(htln)
             .selectpicker('refresh');
 
@@ -38,40 +54,50 @@ $(document).ready(function () {
         console.log("apres success");
     })
         .fail(function () {
-            console.log("error");
+            console.log("error dans la requete d'ajout de responsables");
         })
         .always(function () {
             console.log("complete toujours succes ou erreur");
         });
 
+
+
     //Initialisation
-    $.getJSON('gestion_utilisateurs_fonctionnalites_list.json', {
+    $.getJSON('wilayas_list.json', {
         ajax: 'true'
     }, function (result) {
         var htln = "";
-        for (var i = 0; i < result.fonctionnaliteList.length; i++) {
-            console.log("Section " + i);
-            console.log("Code Strcuture " + result.fonctionnaliteList[i].idFonctionnalite);
-            console.log("Designation" + result.fonctionnaliteList[i].designation);
+        console.log("loggin the result");
+        console.log(result);
+        for (var i = 0; i < result.wilayaList.length; i++) {
             htln += '<option value=';
-            htln += "" + result.fonctionnaliteList[i].idFonctionnalite;
+            htln += "" + result.wilayaList[i].matriculeWilaya;
             htln += '>';
-            htln += "" + result.fonctionnaliteList[i].designation;
+            htln += "" + result.wilayaList[i].matriculeWilaya+" - "+result.wilayaList[i].intituleWilaya;
             htln += '</option>';
         }
-        $("#fonctionnlaite-select")
+        $("#wilaya-select")
             .html(htln)
             .selectpicker('refresh');
 
     }).done(function () {
-        console.log("apres success");
-    })
+            console.log("apres success");
+        })
         .fail(function () {
-            console.log("error");
+            console.log("error dans la requete d'ajout de responsables");
         })
         .always(function () {
             console.log("complete toujours succes ou erreur");
         });
+
+
+
+
+
+
+
+
+
 
 
 
@@ -93,6 +119,12 @@ $(document).ready(function () {
 
 
     }).on("loaded.rs.jquery.bootgrid", function () {
+
+
+
+
+
+
 
 
         grid.find('button.compte-suppr.extern').on("click", function (e) {
@@ -117,6 +149,7 @@ $(document).ready(function () {
         compteEditMode = false;
         compteShowingMode = false;
         afficherSection();
+        prepareGMAPS_view();
     });
 
 
@@ -270,33 +303,18 @@ $(document).ready(function () {
 
     function afficherCreateChapitreMessage() {
 
-        /* var code_rubr = $('#creat_input_codechap ').val();
-         var designation_rubr = $('#creat_input_designation').val();
-         var code_rubr=$('#chapitre-select-section').val();*/
+
         var in_nom = $("#creat_input_nom").val();
-        var in_prenom = $("#creat_input_prenom").val();
-        var in_passw = $("#creat_input_passw").val();
-        var in_reppss = $("#creat_input_reppasswd").val();
-        var in_mail = $("#creat_input_email").val();
-        var in_tel = $("#creat_input_telephone").val();
-        var in_adr = $("#creat_input_addresse").val();
-        var in_id_user = $("#creat_input_id_user").val();
-        var in_struct = $("#structure-select-section").val();
-        var in_actif = $("#state-select").val();
-
-
-        var items = new Array();
-        $('#fonctionnlaite-select :selected').each(function (i, selected) {
-            console.log("parsing the element " + i);
-            console.log("selected val : " + $(selected).val());
-            items[i] = $(selected).val();
-            console.log("Items " + items[i]);
-        });
+        var wilaya = $("#wilaya-select").val();
+        var responsable = $("#responsable-select").val();
+        var lati = $("#latitudeInput").val();
+        var longi= $("#longitudeInput").val();
+        var address = $("#addressInput").val();
 
 
         swal({
             title: "Etes Vous Sure ?",
-            text: "Voulez vous vraiment Ajouter cette Rubrique ?",
+            text: "Voulez vous vraiment Ajouter ce Magasin ?",
             type: "info",
             showCancelButton: true,
             closeOnConfirm: false,
@@ -306,33 +324,30 @@ $(document).ready(function () {
             $.ajax(
                 {
                     type: "POST",
-                    url: "gestion_utilisateurs_utilisateur_create.html",
+                    url: "gestion_magasin_magasin_create.html",
                     data: {
                         nom: in_nom,
-                        prenom: in_prenom,
-                        passwd: in_passw,
-                        reppassw: in_reppss,
-                        mail: in_mail,
-                        addresse: in_adr,
-                        id_utilisateur: in_id_user,
-                        code_structure: in_struct,
-                        fonctionnalites: items,
-                        actif: in_actif
+                        wilaya: wilaya,
+                        responsable:responsable,
+                        latitude: lati,
+                        longitude: longi,
+                        addresse: address,
                     }
                 }
             )
                 .done(function (data) {
                     if (JSON.parse(data) == "100") {
-                        swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
+                        swal("Succès!", "Le Magasin est ajouté avec Succès", "success");
                         window.location.replace("gestion_utilisateurs_utilisateurs.html");
                     }
                     else if (JSON.parse(data) == "602")
-                        swal("Erreur", "l'utilisateur Existe deja verifier votre Id Utilisateur", "error");
-                    else if (JSON.parse(data) == "603")
-                        swal("Erreur", "Le Champ Repeter Mot de passe ne Correspond pas au Mot de passe ", "error");
+                        swal("Erreur", "le Magasin Existe déja ", "error");
+                    else if (JSON.parse(data) == "101")
+                        swal("Erreur", "Interdit d'affecter un responsable à plusieurs magasins ", "error");
+
                 })
                 .error(function (data) {
-                    swal("Erreur", "L'Utilisateur n'est pas ajouté", "error");
+                    swal("Erreur", "Le Magasin n'est pas ajouté", "error");
                 });
         });
     }

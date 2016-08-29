@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lan="fr">
 <head>
     <meta charset="UTF-8">
@@ -28,13 +29,12 @@
     <section id="content">
         <div class="container">
 
-            <c:import url="gestion_utilisateurs_pages/list_utilisateurs.jsp">
+            <c:import url="gestion_magasins_pages/list_magasins.jsp">
                 <c:param name="listMagasins" value="${listMagasins}"/>
             </c:import>
 
-            <c:import url="gestion_utilisateurs_pages/utilisateur_create.jsp">
+            <c:import url="gestion_magasins_pages/magasin_create.jsp">
             </c:import>
-
 
         </div>
     </section>
@@ -57,8 +57,16 @@
 <script type="text/javascript" src="js/jquery.bootgrid.updated.min.js"></script>
 <script type="text/javascript" src="js/sugar.min.js"></script>
 <script type="text/javascript" src="js/jquerymy-1.2.4.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUtsGVCuVLk9MrJvg0hV0PXcR7h-zLZ8I" type="text/javascript"></script>
+
+<!--
+
+<script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
+-->
+<script type="text/javascript" src="js/locationpicker.jquery.min.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
-<script type="text/javascript" src="js/functions_gestion_utilisateurs.js"></script>
+<script type="text/javascript" src="js/functions_gestion_magasins.js"></script>
 
 </body>
 

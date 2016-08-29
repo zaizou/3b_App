@@ -82,15 +82,11 @@ public class GestionUtilisateurController {
             method = {RequestMethod.GET}
     )
     public List<Utilisateur> getUtilisateursList() {
-        List<Utilisateur> fonctionnalites = gestionUtilisateursService.getAllUtilisateurs();
-        List<Utilisateur> users=new ArrayList<>();
-        for(int i=0;i<20;i++){
-            users.addAll(fonctionnalites);
-        }
+        List<Utilisateur> listUsers = gestionUtilisateursService.getAllUtilisateurs();
+        if(listUsers==null)
+            listUsers=new ArrayList<Utilisateur>();
 
-        if (fonctionnalites == null)
-            fonctionnalites = new ArrayList<>();
-        return users;
+        return listUsers;
     }
 
 
@@ -158,7 +154,7 @@ public class GestionUtilisateurController {
             method = {RequestMethod.POST}
     )
     @ResponseBody
-    public String postCreateRNomenclatureComptable(@RequestParam("nom") String nom,
+    public String postCreateUtilisateur(@RequestParam("nom") String nom,
                                                    @RequestParam("prenom") String prenom,
                                                    @RequestParam("passwd") String passw,
                                                    @RequestParam("reppassw") String reppasswd,

@@ -22,4 +22,13 @@ public interface MagasinRepository extends JpaRepository<Magasin,Integer> {
 	@Query("SELECT m FROM Magasin m WHERE (m.IdMagasin) = (:idMagasin)")
 	public List<Magasin> getMagasinById(@Param("idMagasin") Integer idMagasin);
 
+
+	@Query("SELECT m FROM Magasin m WHERE (m.responsableMagasin.id) = (:idReponsable)")
+	public List<Magasin> getMagasinByIdResponsable(@Param("idReponsable") String idReponsable);
+
+
+	@Query("select new Magasin(m.latitude, m.longitude) from Magasin m where m.nomMagazin = ?1")
+	List<Magasin> findMagasinLatLongByNom(String nom);
+
+
 }

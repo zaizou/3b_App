@@ -24,12 +24,15 @@ public class Magasin {
     @ManyToOne
     @JsonManagedReference
     private Wilaya wilayaMagasin;
+    @Column
+    private Double latitude;
+    @Column
+    private Double longitude;
+
     @OneToOne
     @JsonManagedReference
-    private GeoLocation coordonneSpacialesMagazin;
-    @OneToOne(mappedBy = "magasin")
-    @JsonBackReference
     private Utilisateur responsableMagasin;
+
     @OneToMany(mappedBy = "magasin",fetch = FetchType.LAZY)
     @JsonBackReference
     private List<Compta> comptabiliteMagasin;
@@ -38,13 +41,9 @@ public class Magasin {
     private List<Transfert> transfertsMagasin;
 
 
-    public Magasin(String nomMagazin, String adresseMagasin, Wilaya wilayaMagasin, GeoLocation coordonneSpacialesMagazin, Utilisateur responsableMagasin) {
-        this.nomMagazin = nomMagazin;
-        this.adresseMagasin = adresseMagasin;
-        this.wilayaMagasin = wilayaMagasin;
-        this.coordonneSpacialesMagazin = coordonneSpacialesMagazin;
-        this.responsableMagasin = responsableMagasin;
-    }
+
+
+
 
     public Magasin(String nomMagazin, String adresseMagasin, Wilaya wilayaMagasin, Utilisateur responsableMagasin) {
         this.nomMagazin = nomMagazin;
@@ -59,6 +58,35 @@ public class Magasin {
     }
 
     public Magasin() {
+    }
+
+    public Magasin(Double latitude, Double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Magasin(String nomMagazin, String adresseMagasin, Double latitude, Double longitude, Utilisateur responsableMagasin) {
+        this.nomMagazin = nomMagazin;
+        this.adresseMagasin = adresseMagasin;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.responsableMagasin = responsableMagasin;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public Integer getIdMagasin() {
@@ -89,13 +117,7 @@ public class Magasin {
         this.wilayaMagasin = wilayaMagasin;
     }
 
-    public GeoLocation getCoordonneSpacialesMagazin() {
-        return coordonneSpacialesMagazin;
-    }
 
-    public void setCoordonneSpacialesMagazin(GeoLocation coordonneSpacialesMagazin) {
-        this.coordonneSpacialesMagazin = coordonneSpacialesMagazin;
-    }
 
     public Utilisateur getResponsableMagasin() {
         return responsableMagasin;

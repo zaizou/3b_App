@@ -17,6 +17,8 @@ public interface MagasinService {
     public Integer supprimerMagasin(Magasin magasin);
     public List<Magasin> getMagasinByNom(String nom);
     public List<Magasin> getMagasinById(Integer idMagasin);
+    public List<Magasin> getMagasinByIdResponsable(String idResponsable);
+
 
 
 }

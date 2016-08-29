@@ -26,7 +26,7 @@ public class ComptabiliteController {
 
 
     @RequestMapping(
-            value = {"/comptabilite_extraction"},
+            value = {"/private_comptabilite_extraction"},
             method = {RequestMethod.GET}
     )
     public String getFonctionnalites(Model model) {
@@ -61,7 +61,7 @@ public class ComptabiliteController {
         java.util.Date date;
         java.sql.Date dateSql;
         Compta compta;
-/*
+
         for(int i=0;i<comptas.length;i++){
             System.out.println("Compta : "+i);
             System.out.println("Date "+comptas[i].getDateCompta());
@@ -83,7 +83,7 @@ public class ComptabiliteController {
 
         }
 
-        */
+
 
 
 /*

@@ -28,18 +28,6 @@
     <section id="content">
         <div class="container">
 
-            <c:import url="./chapitres/list_chapitres.jsp">
-                <c:param name="listChapitres" value="${listChapitres}"/>
-
-            </c:import>
-
-
-
-            <c:import url="./chapitres/chapitre_create.jsp">
-            </c:import>
-
-            <c:import url="./chapitres/rubrique_create.jsp">
-            </c:import>
 
 
         </div>

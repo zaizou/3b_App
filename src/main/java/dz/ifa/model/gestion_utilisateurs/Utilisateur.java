@@ -35,8 +35,9 @@ public class Utilisateur {
 	private String prenom;
 	@Column
 	private String tel;
-	@OneToOne
-	@JsonManagedReference
+
+	@OneToOne(mappedBy = "responsableMagasin")
+	@JsonBackReference
 	private Magasin magasin;
 
 
