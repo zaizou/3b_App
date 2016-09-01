@@ -1,7 +1,7 @@
 /*Projet Comptable et Budgétaire functions*/
 
-Constant_firstDate="1/1/00";
-Constant_lastDate="31/12/99";
+Constant_firstDate = "1/1/00";
+Constant_lastDate = "31/12/99";
 
 var rowsComptabilite = new Array();
 var rowsTransfert = new Array();
@@ -92,10 +92,9 @@ $(document).ready(function () {
     prepareExcelInput();
 
 
+    function prepareExcelInput() {
 
-    function prepareExcelInput(){
-
-         excelDocument= new ExcelPlus();
+        excelDocument = new ExcelPlus();
         excelDocument.openLocal({
             "labelButton": "Open an Excel file"
         }, function () {
@@ -103,10 +102,11 @@ $(document).ready(function () {
                 appendDataTables(excelDocument);
                 $("#clearBtn").css('display', '');
                 $("#sendBtn").css('display', '');
+                $("#sendBtnTransferts").css('display', '');
                 excelDocument.reset();
                 prepareExcelInput();
             }
-            catch (e){
+            catch (e) {
                 errorSheetNotSelected();
             }
             finally {
@@ -118,10 +118,12 @@ $(document).ready(function () {
     }
 
 
-
-
     $("#sendBtn").on("click", function () {
         sendDataConfirmation();
+    });
+
+    $("#sendBtnTransferts").on("click", function () {
+        sendTransfertsConfirmation();
     });
 
 
@@ -143,9 +145,9 @@ $(document).ready(function () {
         var transfertIndex = 0;
         var comptaIndex = 0;
 
-        if(startingDate==null || endingDate==null){
-            startingDate=Constant_firstDate;
-            endingDate=Constant_lastDate;
+        if (startingDate == null || endingDate == null) {
+            startingDate = Constant_firstDate;
+            endingDate = Constant_lastDate;
         }
 
 
@@ -165,7 +167,7 @@ $(document).ready(function () {
                     canAddTransfert = false;
                 else canAddTransfert = true;
 
-                if ( ( record[0][3] == "" || typeof record[0][3] == 'undefined' || record[0][3] == null ) && ( record[0][2] == "" || typeof record[0][2] == 'undefined' || record[0][2] == null ) )
+                if (( record[0][3] == "" || typeof record[0][3] == 'undefined' || record[0][3] == null ) && ( record[0][2] == "" || typeof record[0][2] == 'undefined' || record[0][2] == null ))
                     canAddCompta = false;
                 else
                     canAddCompta = true;
@@ -175,23 +177,23 @@ $(document).ready(function () {
                         "idCompta": comptaIndex + 1,
                         "dateCompta": moment(record[0][0], "MM/DD/YY").format("DD/MM/YYYY"),
                         "jourCompta": record[0][1],
-                        "montantCompta":  (record[0][2]==null ) ? 0 : parseFloat(record[0][2].replace(',',''))   ,
-                        "depense": (record[0][3]==null ) ? 0 : parseFloat(record[0][3].replace(',',''))  ,
-                        "observationCompta":  (record[0][4]==null ) ? "" : record[0][4]
+                        "montantCompta": (record[0][2] == null ) ? 0 : parseFloat(record[0][2].replace(',', '')),
+                        "depense": (record[0][3] == null ) ? 0 : parseFloat(record[0][3].replace(',', '')),
+                        "observationCompta": (record[0][4] == null ) ? "" : record[0][4]
                     };
                     comptaIndex++;
 
                 }
 
-      
+
                 if (canAddTransfert) {
                     rowsTransfert[transfertIndex] = {
                         "idTransfert": transfertIndex + 1,
                         "dateTransfert": moment(record[0][6], "MM/DD/YY").format("DD/MM/YYYY"),
-                        "jourTransfert":(record[0][7]==null ) ? "" : record[0][7],
-                        "montantTransfert": (record[0][8]==null ) ? 0 : parseFloat(record[0][8].replace(',',''))  ,
-                        "transferant": (record[0][9]==null ) ? "" : record[0][9],
-                        "observationTransfert":  (record[0][10]==null ) ? "" : record[0][10]
+                        "jourTransfert": (record[0][7] == null ) ? "" : record[0][7],
+                        "montantTransfert": (record[0][8] == null ) ? 0 : parseFloat(record[0][8].replace(',', '')),
+                        "transferant": (record[0][9] == null ) ? "" : record[0][9],
+                        "observationTransfert": (record[0][10] == null ) ? "" : record[0][10]
                     };
                     transfertIndex++;
                 }
@@ -323,8 +325,8 @@ $(document).ready(function () {
             date = selectedElement.dateTransfert;
             var jour = selectedElement.jourTransfert;
             var montant = selectedElement.montantTransfert;
-            var transf = ( selectedElement.transferant == null) ?  "" : selectedElement.transferant ;
-            var observation = (selectedElement.observationTransfert == null) ?  "" : selectedElement.observationTransfert ;
+            var transf = ( selectedElement.transferant == null) ? "" : selectedElement.transferant;
+            var observation = (selectedElement.observationTransfert == null) ? "" : selectedElement.observationTransfert;
 
             htmlString = "<div class='row'><pre><strong>Date : </strong>" + date + "</pre></div>" + "<div class='row'><pre><strong>Jour : </strong>" + jour + "</pre></div>" + ""
                 + "<div class='row'><pre><strong>Montant : </strong>" + montant + "DZ</pre></div>" + "<div class='row'><pre><strong>Le Transférant : </strong>" + transf + "</pre></div>" + ""
@@ -355,14 +357,14 @@ $(document).ready(function () {
     function errorSheetNotSelected() {
 
         swal({
-                title: 'Feuille non Séléctionnée',
-                text: "Veuillez Sélectionner le nom de la feuille Excel que vous voulez importer ",
-                type: 'error',
-                confirmButtonText: 'OK',
-                confirmButtonClass: 'btn btn-file',
-                closeOnConfirm: true,
+            title: 'Feuille non Séléctionnée',
+            text: "Veuillez Sélectionner le nom de la feuille Excel que vous voulez importer ",
+            type: 'error',
+            confirmButtonText: 'OK',
+            confirmButtonClass: 'btn btn-file',
+            closeOnConfirm: true,
 
-            },function (isCon) {
+        }, function (isCon) {
             excelDocument.reset();
             prepareExcelInput();
         });
@@ -370,22 +372,11 @@ $(document).ready(function () {
 
     }
 
-    function sendDataConfirmation() {
+
+    function sendTransfertsConfirmation() {
 
 
-        
-        var list
 
-/*
-        console.log("Loggging the comptas");
-        console.log(comptas);
-        console.log("loggin the table");
-        console.table(comptas.listCompta);
-*/
-
-        //console.log("Loggging the stringify");
-        //console.log(JSON.stringify(rowsComptabilite));
-        //var list_compta=JSON.stringify(rowsComptabilite);
 
         swal({
             title: "Etes Vous Sure ?",
@@ -395,37 +386,101 @@ $(document).ready(function () {
             closeOnConfirm: false,
             confirmButtonText: "Confirmer",
             confirmButtonClass: "btn  btn-success waves-effect",
-        }, function () {
+        }, function (confirm) {
+            if(confirm){
+                rowsTransfert[rowsTransfert.length] = {
+                    "idTransfert": idMagasin,
+                    "dateTransfert": "01/01/2000",
+                    "jourTransfert": "",
+                    "montantTransfert": 0,
+                    "transferant": "",
+                    "observationTransfert": ""
+
+                };
+
+                console.log("id du magasin is : " + idMagasin);
+
             $.ajax(
                 {
+                    type: "POST",
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url:"comptabilite_extraction_transferts_send.json",
+                    data: JSON.stringify(rowsTransfert)
+                }
+                )
+                .done(function (data) {
+                    if (JSON.parse(data) == "100") {
+                        swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
+                        //    window.location.replace("gestion_utilisateurs_utilisateurs.html");
+                    }
+                    else if (JSON.parse(data) == "200")
+                        swal("Succès!", "Vous avez envoyé une table de transferts vides", "error");
+                    else if (JSON.parse(data) == "202")
+                        swal("Succès!", "Le Le magasin n'existe pas ", "error");
 
+
+                })
+                .error(function (data) {
+                    swal("Erreur", "Erreur", "error");
+                });
+            }
+        });
+    }
+
+
+
+    function sendDataConfirmation() {
+
+
+
+        swal({
+            title: "Etes Vous Sure ?",
+            text: "Voulez vous vraiment Effectuer l'envoi ?",
+            type: "info",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            confirmButtonText: "Confirmer",
+            confirmButtonClass: "btn  btn-success waves-effect",
+        }, function (confirm) {
+            if(confirm){
+                rowsComptabilite[rowsComptabilite.length] = {
+                    "idCompta": idMagasin,
+                    "dateCompta": "01/01/2000",
+                    "jourCompta": "",
+                    "montantCompta": 0,
+                    "depense": 0,
+                    "observationCompta": ""
+
+                };
+
+            $.ajax(
+                {
                     type: "POST",
                     dataType    : 'json',
                     contentType :'application/json',
                     url: "comptabilite_extraction_send.json",
                     data: JSON.stringify(rowsComptabilite)
-                    //{list_compta:rowsComptabilite.toArray}
 
                 }
                 )
                 .done(function (data) {
                     if (JSON.parse(data) == "100") {
                         swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
-                    //    window.location.replace("gestion_utilisateurs_utilisateurs.html");
+                        //    window.location.replace("gestion_utilisateurs_utilisateurs.html");
                     }
                     else{
-                        swal("Succès!",JSON.parse(data) , "error");
+                        swal("Erreur!","Données non insérée" , "error");
                     }
 
                 })
                 .error(function (data) {
                     swal("Erreur", "Erreur", "error");
                 });
+
+            }
         });
     }
-
-
-
 
 
 

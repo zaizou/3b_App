@@ -36,6 +36,21 @@ public class GestionMagasinsController {
 
 
     @RequestMapping(
+            value = {"/gestion_dashboard"},
+            method = {RequestMethod.GET}
+    )
+    public String getDashboard(Model model) {
+        List<Magasin> magasins = magasinService.getAllMagasins();
+        if (magasins == null)
+            magasins = new ArrayList<Magasin>();
+        model.addAttribute("listMagasins", magasins);
+        return "dashboard";
+    }
+
+
+
+
+    @RequestMapping(
             value = {"/gestion_magasins_magasins"},
             method = {RequestMethod.GET}
     )
@@ -55,9 +70,6 @@ public class GestionMagasinsController {
         else
             System.out.println("Responsable null");
 
-
-
-
         model.addAttribute("listMagasins", magasins);
         return "gestion_magasins";
     }
@@ -76,11 +88,6 @@ public class GestionMagasinsController {
         return wilayas;
     }
 
-
-
-
-
-
     @RequestMapping(value = "/gestion_magasins_get_magasin.html", method = RequestMethod.GET)
     public String getMagasin(@RequestParam("id_magasin") Integer id_magasin, Model model) {
         List<Magasin> magasins=magasinService.getMagasinById(id_magasin);
@@ -93,8 +100,6 @@ public class GestionMagasinsController {
         model.addAttribute("magasin", magasins.get(0));
         return "gestion_magasins_pages/magasin_detail";
     }
-
-
 
 
 

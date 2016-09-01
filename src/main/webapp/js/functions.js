@@ -17,7 +17,7 @@ $(window).load(function () {
 
         }
     }
-})
+});
 
 $(document).ready(function(){
     /* --------------------------------------------------------
@@ -459,6 +459,20 @@ $(document).ready(function(){
     	    format: 'DD/MM/YYYY'
     	});
     }
+
+
+    //year
+    if ($('.year-picker')[0]) {
+        $('.year-picker').datepicker( {
+            format: " yyyy", // Notice the Extra space at the beginning
+            viewMode: "years",
+            minViewMode: "years"
+        });
+    }
+
+
+
+
 
     /*
      * Form Wizard

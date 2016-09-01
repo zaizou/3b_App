@@ -22,22 +22,9 @@
 </head>
 <body>
 <!--Le header/toolbar la barre en haut qui contient les notification et les traitements generaux  -->
-<header id="header" class="clearfix" data-current-skin="bluegray">
-
-    <ul class="header-inner" style="display: inline-flex; width: 100%;">
-        <li id="menu-trigger" data-trigger="#sidebar" class="">
-            <div class="line-wrap">
-                <div class="line top"></div>
-                <div class="line center"></div>
-                <div class="line bottom"></div>
-            </div>
-        </li>
-
-
-
-    </ul>
-
-</header>
+<c:import url="./header.jsp"></c:import>
+<!--Le sidebar/navigation drawer (android) -->
+<c:import url="./sidebar.jsp"></c:import>
 <!--Le sidebar/navigation drawer (android) -->
 
 <!-- L'interface principale -->
@@ -48,11 +35,17 @@
     <section id="content">
         <div class="container">
 
+            <script>
+                var idMagasin="${magasin.idMagasin}";
+
+
+            </script>
+
 
             <div class="card depneses_recettes">
                 <!--L'entete de la page' -->
                 <div class="card-header">
-                    <h2>Recettes et Dépenses
+                    <h2>Recettes, Dépenses et Transferts du Magasin : ${magasin.nomMagazin}
                         <small>Affichage des actvités du magazin.</small>
                     </h2>
                     </h2>
@@ -65,9 +58,9 @@
                             <object id="file-object"></object>
                             </span>
 
-
                         <button id="clearBtn" style="display: none" class="btn btn-default btn-danger btn-icon-text waves-effect"><i class="zmdi zmdi-delete zmdi-hc-fw"></i> Vider les tables</button>
-                        <button id="sendBtn" style="display: none" class="btn btn-default btn-icon-text waves-effect"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Envoyer les Données</button>
+                        <button id="sendBtn" style="display: none" class="btn btn-default btn-icon-text waves-effect"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Envoyer les Recettes/Dépenses</button>
+                        <button id="sendBtnTransferts" style="display: none" class="btn btn-default btn-icon-text waves-effect"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Envoyer les Recettes/Dépenses</button>
 
 
                     </div>
@@ -134,7 +127,6 @@
                         <!--l'entete du tableau' -->
                         <thead>
                         <tr>
-
                             <th data-column-id="idCompta" data-identifier="true" data-type="numeric"  data-width="7%" ></th>
                             <th  data-column-id="dateCompta"   >Date</th>
                             <th data-column-id="jourCompta" class="text-left" >Jour</th>

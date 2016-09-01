@@ -1,60 +1,28 @@
 package dz.ifa.model.gestion;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import dz.ifa.model.gestion_utilisateurs.Magasin;
-
-import javax.persistence.*;
-import java.sql.Date;
-
 /**
- * Created by Assou on 25/08/2016.
+ * Created by Assou on 30/08/2016.
  */
-@Entity
-@Table
-public class Transfert {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+public class TransfertO {
+
     private Integer idTransfert;
-    @Column
-    private Date dateTransfert;
-    @Column
+    private String dateTransfert;
     private String jourTransfert;
-    @Column
     private Double montantTransfert;
-    @Column
     private String transferant;
-    @Column
     private String observationTransfert;
-    @ManyToOne
-    @JsonManagedReference
-    private Magasin magasin;
 
 
-    public Transfert() {
+    public TransfertO() {
     }
 
-    public Transfert(Date dateTransfert, String jourTransfert, Double montantTransfert, String transferant, String observationTransfert, Magasin magasin) {
+    public TransfertO(Integer idTransfert, String dateTransfert, String jourTransfert, Double montantTransfert, String transferant, String observationTransfert) {
+        this.idTransfert = idTransfert;
         this.dateTransfert = dateTransfert;
         this.jourTransfert = jourTransfert;
         this.montantTransfert = montantTransfert;
         this.transferant = transferant;
         this.observationTransfert = observationTransfert;
-        this.magasin = magasin;
-    }
-
-    public Transfert(Date dateTransfert, Double montantTransfert, String transferant, Magasin magasin) {
-        this.dateTransfert = dateTransfert;
-        this.montantTransfert = montantTransfert;
-        this.transferant = transferant;
-        this.magasin = magasin;
-    }
-
-    public Magasin getMagasin() {
-        return magasin;
-    }
-
-    public void setMagasin(Magasin magasin) {
-        this.magasin = magasin;
     }
 
     public Integer getIdTransfert() {
@@ -65,11 +33,11 @@ public class Transfert {
         this.idTransfert = idTransfert;
     }
 
-    public Date getDateTransfert() {
+    public String getDateTransfert() {
         return dateTransfert;
     }
 
-    public void setDateTransfert(Date dateTransfert) {
+    public void setDateTransfert(String dateTransfert) {
         this.dateTransfert = dateTransfert;
     }
 
