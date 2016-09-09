@@ -22,7 +22,7 @@
 
                 <ul class="main-menu">
 
-                    <li ><a href="gestion_dashboard.html"><i class="zmdi zmdi-home"></i> Tableau de Bord</a></li>
+                    <li > <a href="gestion_dashboard.html"><i class="zmdi zmdi-home"></i> Tableau de Bord</a></li>
 
 
                     <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
@@ -42,9 +42,11 @@
 
 
                     <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-home"></i> Recettes</a>
+                        <a href="#"><i class="zmdi zmdi-home"></i> Comptabilité</a>
                         <ul>
-                            <li><a href="comptabilite_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Introduire les Recettes</a></li>
+                            <li><a href="comptabilite_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Introduire les Recettes Dépenses et Transferts</a></li>
+                            <li><a href="comptabilite_extraction_recettes_depenses.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Recettes/Dépenses</a></li>
+                            <li><a href="comptabilite_extraction_transferts.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Transferts</a></li>
                         </ul>
                     </li>
 
