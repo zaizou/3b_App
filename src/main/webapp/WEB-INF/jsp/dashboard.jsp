@@ -32,45 +32,30 @@
     <section id="content">
         <div class="container" >
 
-            <div class="card">
+            <div class="col-lg-offset-3 card col-sm-6">
                 <div class="card-header">
                     <h2>Paramètres</h2>
 
                 </div>
 
                 <div class="card-body card-padding-sm">
-
-
-
                     <div class="row">
-                        <div class="col-sm-4 " style="margin-left: 25px">
-                            <br/>
+                        <div class="center col-sm-4 " style="margin-left: 25px">
                             <select class="selectpicker" title="Année" id="year-select">
-                                    <option >2013</option>
-                                    <option>2014</option>
-                                    <option > 2015</option>
-                                    <option selected>2016</option>
-                                    <option>2017</option>
-                                    <option>2018</option>
-
                             </select>
                         </div>
-
                     </div>
-                    <br>
-                    <div class="m-sm-10 ">
-                        <button id="refGraphs" class="m-l-20 btn  btn-success  intern waves-effect section-create">Actualiser les Graphes</button>
-                    </div>
-
-
-
-
                 </div>
             </div>
 
 
+
+
+
+
             <script>
                 var years=new Array();
+                var yearsTransfert=new Array();
                 var mois=new Array();
                 var magasins=new Array();
 
@@ -125,8 +110,7 @@
                     magasin.nomResponsable="${listMagasins.get(count).responsableMagasin.nom}";
                     magasin.prenomResponsable="${listMagasins.get(count).responsableMagasin.prenom}";
                     magasin.comptas=new Array();
-                    magasin.somptas=new Array();
-                    magasin.sepenses=new Array();
+                    magasin.depenses=new Array();
 
                     var dat;
 
@@ -137,41 +121,24 @@
                         dat="${listMagasins.get(count).comptabiliteMagasin.get(loop.index).dateCompta}";
                     if( years.indexOf( moment(dat).year() ) <0 ){
                         years[years.length]=moment(dat).year();
-                        console.log(years);
-                        console.log(dat);
-                        console.log("loop : "+${loop.index});
-                        magasin.somptas[years.indexOf( moment(dat).year() ) ]=new Array();
-                        magasin.sepenses[years.indexOf( moment(dat).year() ) ]=new Array();
+                        magasin.comptas[years.indexOf( moment(dat).year() ) ]=new Array();
+                        magasin.depenses[years.indexOf( moment(dat).year() ) ]=new Array();
 
                         for(i=0;i<12;i++){
-                            magasin.somptas[years.indexOf( moment(dat).year() ) ][i]=0;
-                            magasin.sepenses[years.indexOf( moment(dat).year() ) ][i]=0;
-
+                            magasin.comptas[years.indexOf( moment(dat).year() ) ][i]=0;
+                            magasin.depenses[years.indexOf( moment(dat).year() ) ][i]=0;
                         }
 
-                        console.log("index of :"+  years.indexOf( moment(dat).year() )  );
                     }
 
 
 
-                    magasin.somptas[ years.indexOf( moment(dat).year() ) ][moment(dat).month()]+= parseFloat(${listMagasins.get(count).comptabiliteMagasin.get(loop.index).montantCompta});
-                    magasin.sepenses[ years.indexOf( moment(dat).year() ) ][moment(dat).month()]+= parseFloat(${listMagasins.get(count).comptabiliteMagasin.get(loop.index).depense});
+                    magasin.comptas[ years.indexOf( moment(dat).year() ) ][moment(dat).month()]+= parseFloat(${listMagasins.get(count).comptabiliteMagasin.get(loop.index).montantCompta});
+                    magasin.depenses[ years.indexOf( moment(dat).year() ) ][moment(dat).month()]+= parseFloat(${listMagasins.get(count).comptabiliteMagasin.get(loop.index).depense});
 
 
 
-/*
-                        magasin.somptas[ years.indexOf( moment(dat).year() ) ][${loop.index}]={
-                            date:dat,
-                            recette:"${listMagasins.get(count).comptabiliteMagasin.get(loop.index).montantCompta}",
-                            depense:"${listMagasins.get(count).comptabiliteMagasin.get(loop.index).depense}"
-                        }
 
-                        magasin.comptas[${loop.index}]={
-                            date:dat,
-                            recette:"${listMagasins.get(count).comptabiliteMagasin.get(loop.index).montantCompta}",
-                            depense:"${listMagasins.get(count).comptabiliteMagasin.get(loop.index).depense}"
-                        }
-*/
 
 
                         </c:forEach>
@@ -179,7 +146,7 @@
                     </c:if>
 
                     magasin.transferts=new Array();
-                    var yearsTransfert=new Array();
+
 
 
                     <c:if test="${listMagasins.get(count).transfertsMagasin!=null}">
@@ -190,23 +157,22 @@
 
                     if( yearsTransfert.indexOf( moment(dat).year() ) <0 ){
                         yearsTransfert[yearsTransfert.length]=moment(dat).year();
-                        magasin.somptas[years.indexOf( moment(dat).year() ) ]=new Array();
-                        magasin.sepenses[years.indexOf( moment(dat).year() ) ]=new Array();
                         magasin.transferts[yearsTransfert.indexOf( moment(dat).year() ) ]=new Array();
                         for(i=0;i<12;i++)
                             magasin.transferts[yearsTransfert.indexOf( moment(dat).year() ) ][i]=0;
-                    }
 
-/*
-                        magasin.transferts[${loop.index}]={
-                            date:"${listMagasins.get(count).transfertsMagasin.get(loop.index).dateTransfert}",
-                            transfert:"${listMagasins.get(count).transfertsMagasin.get(loop.index).montantTransfert}"
-                        }
-*/
+
+
+
+
+
+                    }
+                    magasin.transferts[ yearsTransfert.indexOf( moment(dat).year() ) ][moment(dat).month()]+= parseFloat(${listMagasins.get(count).transfertsMagasin.get(loop.index).montantTransfert});
+
                         </c:forEach>
                     </c:if>
                     </c:if>
-                    //console.log(years);
+
                     magasins.push(magasin);
 
                     </script>
@@ -237,12 +203,11 @@
 <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 <script src="js/flot/jquery.flot.js"></script>
+<script src="js/flot-orderBars/js/jquery.flot.pie.js"></script>
 <script src="js/flot/jquery.flot.resize.js"></script>
 <script src="js/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
 <script src="js/flot-orderBars/js/jquery.flot.orderBars.js"></script>
-<script src="js/flot.curvedlines/curvedLines.js"></script>
 <script src="js/flot-orderBars/js/jquery.flot.orderBars.js"></script>
-<script src="js/flot-charts/bar-chart.js"></script>
 <!--
 
 <script src="js/flot-charts/curved-line-chart.js"></script>

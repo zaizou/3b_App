@@ -1,4 +1,31 @@
-/* -------------------------------- 
+#headerToobar{
+    background-color: #ffffff;
+}
+
+#topHead{
+    display: flex;
+    background-color: #008000;
+    min-height: 40px;
+}
+
+#topHead > div{
+    margin: auto;
+    background-color: #008000;
+}
+
+#topMenu > li  >a{
+    color: #000;
+    font-size: large;
+    background-color: inherit;
+}
+
+
+.cd-filter::before {
+ background-color: #008000;
+}
+
+
+/* --------------------------------
 
 xgallery 
 
@@ -46,11 +73,12 @@ xgallery
 .cd-gallery .cd-fail-message {
     display: none;
     text-align: center;
-    background: #f50057;
+    background: #dbf4da;
 }
 @media only screen and (min-width: 768px) {
     .cd-gallery {
         padding: 40px 3%;
+
     }
     .cd-gallery ul {
         text-align: justify;
@@ -64,11 +92,14 @@ xgallery
         width: 48%;
         background: #ffad33;
         margin-bottom: 2em;
+
+
     }
 }
 @media only screen and (min-width: 1170px) {
     .cd-gallery {
         padding: 50px 2%;
+        padding-top: 5px;
         float: right;
         -webkit-transition: width 0.3s;
         -moz-transition: width 0.3s;
@@ -78,6 +109,8 @@ xgallery
         width: 20%;
         background: white;
         margin-bottom: 20px;
+
+
     }
 
 
@@ -112,34 +145,28 @@ xgallery
 
 
 
-    /*
-        section.cd-gallery.filter-is-visible > ul > li > div {
-            width: 80%;
-        }
 
-        section.cd-gallery.filter-is-visible > ul > li > div > div > img.cd-gallery  {
-            width: 272px;
-            height:240px;
-        }
-
-    */
-    /* reduce width when filter is visible */
-
-    /*.cd-gallery.filter-is-visible  li {
-
-        width: 20%;
-    }
-    */
 
 
 }
 /*
     Card
 */
+
+.mdl-card__media{
+    background-color: #ffffff;
+}
+
 div.demo-card-image.mdl-card > div.mdl-card__media{
     background: transparent;
 
 }
+
+.demo-card-image  {
+    margin-top: 0px;
+
+}
+
 
 .demo-card-image > .mdl-card__actions {
     height: 52px;
@@ -157,6 +184,17 @@ div.demo-card-image.mdl-card > div.mdl-card__media{
     color: #fff;
     font-size: 14px;
     font-weight: 500;
+}
+
+
+.action_btns{
+    margin: 0 auto;
+    display: block;
+}
+a.btn.waves-effect.waves-light{
+    margin: 0 auto;
+    display: inline-flex;
+
 }
 
 

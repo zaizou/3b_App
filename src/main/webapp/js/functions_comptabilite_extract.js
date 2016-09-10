@@ -21,6 +21,11 @@ Array.prototype.removeValue = function (name, value) {
     this.push.apply(this, array); //push all elements except the one we want to delete
 }
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 
 Array.prototype.getElementByProperty = function (name, value) {
     var array = $.map(this, function (v, i) {
@@ -177,8 +182,8 @@ $(document).ready(function () {
                         "idCompta": comptaIndex + 1,
                         "dateCompta": moment(record[0][0], "MM/DD/YY").format("DD/MM/YYYY"),
                         "jourCompta": record[0][1],
-                        "montantCompta": (record[0][2] == null ) ? 0 : parseFloat(record[0][2].replace(',', '')),
-                        "depense": (record[0][3] == null ) ? 0 : parseFloat(record[0][3].replace(',', '')),
+                        "montantCompta": (record[0][2] == null ) ? 0 :  parseFloat(record[0][2].replaceAll(',', '')    ),
+                        "depense": (record[0][3] == null ) ? 0 : parseFloat(record[0][3].replaceAll(',', '')),
                         "observationCompta": (record[0][4] == null ) ? "" : record[0][4]
                     };
                     comptaIndex++;
@@ -191,7 +196,7 @@ $(document).ready(function () {
                         "idTransfert": transfertIndex + 1,
                         "dateTransfert": moment(record[0][6], "MM/DD/YY").format("DD/MM/YYYY"),
                         "jourTransfert": (record[0][7] == null ) ? "" : record[0][7],
-                        "montantTransfert": (record[0][8] == null ) ? 0 : parseFloat(record[0][8].replace(',', '')),
+                        "montantTransfert": (record[0][8] == null ) ? 0 : parseFloat(  record[0][8].replaceAll(',', '')),
                         "transferant": (record[0][9] == null ) ? "" : record[0][9],
                         "observationTransfert": (record[0][10] == null ) ? "" : record[0][10]
                     };
@@ -232,6 +237,8 @@ $(document).ready(function () {
                     $("#loadBtn").css('display', 'none');
                     $("#clearBtn").css('display', 'none');
                     $("#sendBtn").css('display', 'none');
+                    $("#sendBtnTransferts").css('display', 'none');
+
 
                 }
             }

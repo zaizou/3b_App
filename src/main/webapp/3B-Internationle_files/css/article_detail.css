@@ -1,5 +1,33 @@
+#mainToolbar{
+    background-color: #ffffff;
+}
+
+#mainMenu >li >a{
+    color: #000000;
+    font-size: large;
+}
+
+
+#topHead{
+    display: flex;
+    background-color: #008000;
+    min-height: 40px;
+}
+
+#topHead > div{
+    margin: auto;
+    background-color: #008000;
+}
+
+#topMenu > li  >a{
+    color: #000;
+    font-size: large;
+    background-color: inherit;
+}
+
+
+
 #showRoot{
-    background: firebrick;
     height: 500px;
     display: flex;
     flex-direction: column;
@@ -9,7 +37,6 @@
 }
 
 #infoRoot{
-    background-color: #00bfa5;
     height: 500px;
     display: flex;
     flex-direction: column;
@@ -23,7 +50,6 @@
 
 
 #showImageContainer{
-    background-color: #0FFF88;
     height:400px;
     display: inline-block;
     justify-content: flex-start;

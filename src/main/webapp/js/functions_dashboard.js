@@ -34,38 +34,37 @@ function loadGraphs() {
 $(document).ready(function () {
 
     drawGraphs(2016);
-/*
+
     var htln = "";
     var idCompta = "";
     var idTransfert = "";
-    for (i = 0; i < magasins.length; i++) {
-        idCompta = "#titleCompta" + i;
-        idTransfert = "#titleTransert" + i;
-        $(idCompta).append("" + magasins[i].nom);
-        $(idTransfert).append("" + magasins[i].nom);
-
+    for (i = 0; i < years.length; i++) {
         htln += '<option value=';
-        htln += "" + i;
+        htln += "" + years[i];
         htln += '>';
-        htln += "" + magasins[i].nom;
+        htln += "" + years[i];
         htln += '</option>';
     }
-    $("#magasins-select")
+    $("#year-select")
         .html(htln)
         .selectpicker('refresh');
-*/
+
 
     $("#year-select").on('change', function () {
         selectedMagasins = $(this).val();
-    });
-    $("#refGraphs").on('click', function () {
         recettesGlobales = new Array();
         depensesGlobales = new Array();
         transfertsGlobaux = new Array();
-
-        drawGraphs(parseInt(selectedMagasins));
-        //drawGraphs(2015);
+        selectedMagasins=parseInt(selectedMagasins)
+        drawGraphs(selectedMagasins);
     });
+
+
+    for(i=0;i<magasins.length;i++){
+        $("#titleCompta"+i).append(magasins[i].nom);
+        $("#titleTransert"+i).append(magasins[i].nom);
+
+    }
 
 
 
@@ -159,7 +158,7 @@ $(document).ready(function () {
     function drawGraphTransferts(annee) {
         for(i=0;i<magasins.length;i++){
             plotTransferts(i,prepareTransfertsTables(i));
-            addingTooltips(i+4);
+            //addingTooltips(i+4);
         }
 
     }
@@ -172,10 +171,11 @@ $(document).ready(function () {
 
         for (i = 0; i < magasins.length; i++){
             plotRecettesDepenses(i,prepareComptaTables(i));
-            addingTooltips(i);
+            //addingTooltips(i);
         }
 
     }
+
 
     function prepareGraphData(annnee) {
         for (j = 0; j < magasins.length; j++) {
@@ -188,17 +188,30 @@ $(document).ready(function () {
             var transf;
             for (i = 1; i <= 12; i++) {
 
-                compta=sommeDepnsesRecettesMois(index, i, annnee, magasins[j].comptas);
+                //compta=//sommeDepnsesRecettesMois(index, i, annnee, magasins[j].comptas);
                /* var comp = {
                     rec: compta.recette,
                     dep: compta.depenses
                 }*/
-                index=compta.index;
-                recettesGlobales[j][i-1] = [i, compta.recette];
-                depensesGlobales[j][i-1] = [i, compta.depenses];
-                transf=sommeTransfertMois(indexTransfert, i, annnee, magasins[j].transferts);
-                indexTransfert=transf.index;
-                transfertsGlobaux[j][i-1] = [i, transf.transferts];
+                //index=compta.index;
+                console.log("index of");
+                console.log(years.indexOf(annnee));
+
+                if(typeof magasins[j].comptas[years.indexOf(annnee)] !="undefined"){
+                    recettesGlobales[j][i-1] = [i, magasins[j].comptas[years.indexOf(annnee)][i-1]];
+                    depensesGlobales[j][i-1] = [i,magasins[j].depenses[years.indexOf(annnee)][i-1]] ;
+                }else {
+                    recettesGlobales[j][i-1] = [i,0];
+                    depensesGlobales[j][i-1] = [i,0] ;
+                }
+
+
+                //transf=sommeTransfertMois(indexTransfert, i, annnee, magasins[j].transferts);
+                //indexTransfert=transf.index;
+                if(typeof magasins[j].transferts[yearsTransfert.indexOf(annnee)] !="undefined")
+                    transfertsGlobaux[j][i-1] = [i, magasins[j].transferts[yearsTransfert.indexOf(annnee)][i-1]];
+                else
+                    transfertsGlobaux[j][i-1] = [i, 0];
             }
         }
 
@@ -213,7 +226,7 @@ $(document).ready(function () {
             label: 'Recettes',
             bars: {
                 show: true,
-                barWidth: 0.2,
+                barWidth: 0.3,
                 order: 1,
                 lineWidth: 0,
                 fillColor: '#8BC34A'
@@ -225,7 +238,7 @@ $(document).ready(function () {
             label: 'Dépenses',
             bars: {
                 show: true,
-                barWidth: 0.2,
+                barWidth: 0.3,
                 order: 2,
                 lineWidth: 0,
                 fillColor: '#00BCD4'
@@ -293,10 +306,10 @@ $(document).ready(function () {
             label: 'Transferts',
             bars: {
                 show: true,
-                barWidth: 0.2,
+                barWidth: 0.3,
                 order: 1,
                 lineWidth: 0,
-                fillColor: '#8BC34A'
+                fillColor: '#EDC240'
             }
         });
 
@@ -352,10 +365,6 @@ $(document).ready(function () {
     }
 
 
-
-
-
-
     function addingTooltips(magasin) {
         /* Tooltips for Flot Charts */
 
@@ -378,6 +387,93 @@ $(document).ready(function () {
         }
 
     }
+
+
+
+    function addHexColor(c1, c2) {
+        var hexStr = (parseInt(c1, 16) + parseInt(c2, 16)).toString(16);
+        while (hexStr.length < 6) { hexStr = '0' + hexStr; } // Zero pad.
+        return hexStr;
+    }
+
+
+drawPieCharts(2016);
+    function drawPieCharts(annnee){
+        var pieData = [
+            {data: 1, color: '#F44336', label: 'Toyota'},
+            {data: 2, color: '#03A9F4', label: 'Nissan'},
+            {data: 3, color: '#8BC34A', label: 'Hyundai'},
+            {data: 4, color: '#FFEB3B', label: 'Scion'},
+            {data: 4, color: '#009688', label: 'Daihatsu'},
+        ];
+
+
+        var pieContainer=new Array();
+        var sum=0;
+        var color="F44336"
+        for(i=0;i<magasins.length;i++){
+            for(j=0;j<12;j++) {
+                if (typeof magasins[i].comptas[years.indexOf(annnee)] != "undefined")
+                    sum += magasins[i].comptas[years.indexOf(annnee)][j];
+
+            }
+            console.log("Data (sum) : "+sum);
+                pieContainer[i] = {
+                    data: sum,
+                    color: "#" + color,
+                    label: magasins[i].nom
+                }
+
+            sum=0;
+            addHexColor(color,'111111')
+            console.log(pieContainer);
+        }
+
+
+        if($('#pie-chart')[0]){
+            $.plot('#pie-chart', pieData, {
+                series: {
+                    pie: {
+                        show: true,
+                        stroke: {
+                            width: 2,
+                        },
+                    },
+                },
+                legend: {
+                    container: '.flc-pie',
+                    backgroundOpacity: 0.5,
+                    noColumns: 0,
+                    backgroundColor: "white",
+                    lineWidth: 0
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true
+                },
+                tooltip: true,
+                tooltipOpts: {
+                    content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                    shifts: {
+                        x: 20,
+                        y: 0
+                    },
+                    defaultTheme: false,
+                    cssClass: 'flot-tooltip'
+                }
+
+            });
+        }
+
+
+    }
+
+
+
+
+
+
+
 
 
 

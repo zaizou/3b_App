@@ -60,7 +60,7 @@
 
                         <button id="clearBtn" style="display: none" class="btn btn-default btn-danger btn-icon-text waves-effect"><i class="zmdi zmdi-delete zmdi-hc-fw"></i> Vider les tables</button>
                         <button id="sendBtn" style="display: none" class="btn btn-default btn-icon-text waves-effect"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Envoyer les Recettes/Dépenses</button>
-                        <button id="sendBtnTransferts" style="display: none" class="btn btn-default btn-icon-text waves-effect"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Envoyer les Recettes/Dépenses</button>
+                        <button id="sendBtnTransferts" style="display: none" class="btn btn-default btn-icon-text waves-effect"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Envoyer les Transferts</button>
 
 
                     </div>

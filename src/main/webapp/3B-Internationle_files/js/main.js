@@ -1,4 +1,10 @@
+
 jQuery(document).ready(function($){
+
+
+
+
+
 
 	$("#prix_range").ionRangeSlider({
 		type: "double",
@@ -12,11 +18,6 @@ jQuery(document).ready(function($){
 
 	$('select').material_select();
 
-
-
-
-
-
 	var selParent=$('select.categories').parent();
 	selParent.find('input').css("font-size","13px");
 	selParent=$('select.tailles').parent();
@@ -24,26 +25,7 @@ jQuery(document).ready(function($){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 
 
 
