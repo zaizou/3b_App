@@ -31,23 +31,35 @@
 
     <link rel="stylesheet" href="./3B-Internationle_files/css/reset.css">
     <link rel="stylesheet" href="./3B-Internationle_files/css/style.css">
+    <link rel="stylesheet" href="./3B-Internationle_files/css/special_styles.css">
     <link rel="stylesheet" href="./3B-Internationle_files/css/shop_app.css">
 
 
 </head>
 <body>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7&appId=1241675209216338";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
 <header>
 
 
-    <div class="modal-fixed-footer row" style="background: rebeccapurple;margin-bottom: 0px">
+    <div id="topHead" class="modal-fixed-footer row" style="margin-bottom: 0px">
 
-        <div class="offset-l1 offset-s1 col l5 s11 " style="background: indianred">
+        <div class="offset-l1 offset-s1 col l5 s11 " >
             <div class="col "><i class="zmdi zmdi-phone"></i>+213.560.06.72</div>
             <div class="col"><i class="zmdi zmdi-email"></i><a href="mailto:sarl3btrading@yahoo.fr"
                                                                style="color : #FFFFFF"> sarl3bTrading@yahoo.fr</a></div>
         </div>
-        <div class="offset-s2 offset-l1 col l5 s10 " style="background: green">
+        <div class="offset-s2 offset-l1 col l5 s10 ">
             <ul class=" ">
                 <span><a href="https://www.facebook.com/pages/3B-International-Trading/875526565846772?pnref=lhc"
                          class="fa fa-facebook"></a></span>
@@ -61,16 +73,15 @@
 
     <div class="">
 
-        <nav>
+        <nav id="headerToobar">
             <div class="nav-wrapper">
 
                 <a href="#" class="brand-logo hide-on-small-only " style="margin-left: 100px"><img
                         src="3B-Internationle_files/99.png" width="100" height="50"></a>
                 <div class="row"></div>
-                <ul class="right">
-                    <li class=""><a href="">Home</a></li>
-                    <li><a href="">Shop</a></li>
-                    <li class="active"><a href="/gestion_dashboard.html">Management</a></li>
+                <ul id="topMenu" class="right">
+                    <li class=""><a href="" style="color: #0a0a0a">Acceuil</a></li>
+                    <li class="active"><a href="/gestion_dashboard.html" style="color: #0a0a0a">Management</a></li>
                 </ul>
 
 
@@ -87,9 +98,9 @@
         <div class="cd-tab-filter">
             <ul class="cd-filters">
                 <li class="placeholder">
-                    <a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
+                    <a data-filter="." href="#0">Tout</a> <!-- selected option on mobile -->
                 </li>
-                <!-- <li class="filter"><a class="selected" href="#0" data-type="all">Tout</a></li> -->
+                 <li data-filter="" class="filter"><a class="selected" href="#0" data-type="all">Tout</a></li>
                 <li id="habim" class="filter" data-filter=".habim"><a  href="#0" data-type="habim">Habillements</a></li>
                 <li id="chauss" class="filter" data-filter=".chauss"><a  href="#0" data-type="chauss">Chaussures</a></li>
                 <li id="imac" style="" class="filter right-align" data-filter=".imac"><a  href="#0" data-type="imac"><img
@@ -113,80 +124,56 @@
         <ul>
 
 
-            <li class="mix homme primigi ">
+            <li class="mix homme bebe habim primigi ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
                     <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="img/1.png"/>
-                            </figure>
-
+                        <div class="caption-style-4">
+                                <img class="item-img" src="3B-Internationle_files/articles/baby_habim.jpg" />
+                                <div class="caption">
+                                    <div class="blur"></div>
+                                    <div class="caption-text">
+                                        <h1></h1>
+                                        <p>text</p>
+                                    </div>
+                                </div>
                         </div>
                     </div>
 
                 </div>
                 <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                    <span class="demo-card-image__filename">Jaquette bébé primigi</span>
                 </div>
                 <div class="mdl-card__actions">
                     <div class="row">
                         <div class="chip">
-                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                            <a><i class="fa fa-money"></i> 15000 DA </a>
                         </div>
 
                         <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                            <a><i class="zmdi zmdi-store"></i> 10 Articles</a>
                         </div>
 
                     </div>
-                    <a class="filterBtn waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+                    <div class="action_btns" >
+                    <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                    </a>
 
-                </div>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                            <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
+                        </a>
 
-                </div>
-            </li>
-            <li class="mix color-1 homme chauss">
-                <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
-                    <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="img/1.png"/>
-                            </figure>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear 2</span>
-                </div>
-                <div class="mdl-card__actions">
-                    <div class="row">
-                        <div class="chip">
-                            <a><i class="fa fa-money"></i> 30000 DA </a>
-                        </div>
-
-                        <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
-                        </div>
-
-                    </div>
-                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
 
                 </div>
 
                 </div>
             </li>
 
-            <li class="mix  femme">
+            <li class="mix homme bebe habim imac ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
                     <div class="mdl-card__media">
                         <div class="hover01">
                             <figure>
-                                <img class="item-img" src="img/1.png"/>
+                                <img class="item-img" src="3B-Internationle_files/articles/baby_habim2.jpg"/>
                             </figure>
 
                         </div>
@@ -194,197 +181,83 @@
 
                 </div>
                 <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear Femme</span>
+                    <span class="demo-card-image__filename">Bébé Habillement IMAC</span>
                 </div>
                 <div class="mdl-card__actions">
                     <div class="row">
                         <div class="chip">
-                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                            <a><i class="fa fa-money"></i> 6000 DA </a>
                         </div>
 
                         <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                            <a><i class="zmdi zmdi-store"></i> 3 Articles</a>
                         </div>
 
                     </div>
-                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+                    <div class="action_btns" >
+                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                        </a>
 
-                </div>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                            <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
+                        </a>
 
-                </div>
-            </li>
-            <li class="mix enfant ">
-                <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
-                    <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="img/1.png"/>
-                            </figure>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear enfant</span>
-                </div>
-                <div class="mdl-card__actions">
-                    <div class="row">
-                        <div class="chip">
-                            <a><i class="fa fa-money"></i> 30000 DA </a>
-                        </div>
-
-                        <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
-                        </div>
 
                     </div>
-                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
-
-                </div>
-
-                </div>
-            </li>
-            <li class="mix bebe">
-                <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
-                    <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="img/1.png"/>
-                            </figure>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear bebe</span>
-                </div>
-                <div class="mdl-card__actions">
-                    <div class="row">
-                        <div class="chip">
-                            <a><i class="fa fa-money"></i> 30000 DA </a>
-                        </div>
-
-                        <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
-                        </div>
-
-                    </div>
-                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
-
-                </div>
-
-                </div>
-            </li>
-            <li class="mix ">
-                <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
-                    <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="img/1.png"/>
-                            </figure>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear primigi</span>
-                </div>
-                <div class="mdl-card__actions">
-                    <div class="row">
-                        <div class="chip">
-                            <a><i class="fa fa-money"></i> 30000 DA </a>
-                        </div>
-
-                        <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
-                        </div>
-
-                    </div>
-                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
-
-                </div>
-
-                </div>
-            </li>
-            <li class="mix color-1 check1 radio1 option1">
-                <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
-                    <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="img/1.png"/>
-                            </figure>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear</span>
-                </div>
-                <div class="mdl-card__actions">
-                    <div class="row">
-                        <div class="chip">
-                            <a><i class="fa fa-money"></i> 30000 DA </a>
-                        </div>
-
-                        <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
-                        </div>
-
-                    </div>
-                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
 
                 </div>
 
                 </div>
             </li>
 
-            <li class="mix color-1 check1 radio1 option1">
+            <li class="mix chauss homme iginco enfant  ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
                     <div class="mdl-card__media">
                         <div class="hover01">
                             <figure>
-                                <img class="item-img" src="img/2.png"/>
+                                <img class="item-img" src="3B-Internationle_files/articles/chauss_enfant.jpg"/>
                             </figure>
+
                         </div>
                     </div>
 
                 </div>
                 <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                    <span class="demo-card-image__filename">Chaussures Junior Igi&Co</span>
                 </div>
                 <div class="mdl-card__actions">
                     <div class="row">
                         <div class="chip">
-                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                            <a><i class="fa fa-money"></i> 4000 DA </a>
                         </div>
 
                         <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                            <a><i class="zmdi zmdi-store"></i> 2 Articles</a>
                         </div>
 
                     </div>
-                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+                    <div class="action_btns" >
+                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                        </a>
+
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                            <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
+                        </a>
+
+
+                    </div>
 
                 </div>
 
                 </div>
             </li>
-            <li class="mix color-1 check1 radio1 option1">
+
+            <li class="mix chauss homme femme  ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
                     <div class="mdl-card__media">
                         <div class="hover01">
                             <figure>
-                                <img class="item-img" src="img/1.png"/>
+                                <img class="item-img" src="3B-Internationle_files/articles/chauss_femme.jpg"/>
                             </figure>
 
                         </div>
@@ -392,7 +265,7 @@
 
                 </div>
                 <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                    <span class="demo-card-image__filename">Chaussure Femmes</span>
                 </div>
                 <div class="mdl-card__actions">
                     <div class="row">
@@ -401,23 +274,32 @@
                         </div>
 
                         <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                            <a><i class="zmdi zmdi-store"></i> 30000 Articles</a>
                         </div>
 
                     </div>
-                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+                    <div class="action_btns" >
+                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                        </a>
+
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                            <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
+                        </a>
+
+
+                    </div>
 
                 </div>
 
                 </div>
             </li>
-            <li class="mix color-1 check1 radio1 option1">
+
+            <li class="mix chauss homme enfant  ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
                     <div class="mdl-card__media">
                         <div class="hover01">
                             <figure>
-                                <img class="item-img" src="img/1.png"/>
+                                <img class="item-img" src="3B-Internationle_files/articles/chauss_fille.jpg"/>
                             </figure>
 
                         </div>
@@ -425,32 +307,41 @@
 
                 </div>
                 <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                    <span class="demo-card-image__filename">Junior Fille</span>
                 </div>
                 <div class="mdl-card__actions">
                     <div class="row">
                         <div class="chip">
-                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                            <a><i class="fa fa-money"></i> 5000 DA </a>
                         </div>
 
                         <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                            <a><i class="zmdi zmdi-store"></i> 30000 Articles</a>
                         </div>
 
                     </div>
-                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+                    <div class="action_btns" >
+                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                        </a>
+
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                            <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
+                        </a>
+
+
+                    </div>
 
                 </div>
 
                 </div>
             </li>
-            <li class="mix color-1 check1 radio1 option1">
+
+            <li class="mix chauss homme enfant  ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
-                    <div class="mdl-card__title mdl-card--expand">titre de l'image</div>
                     <div class="mdl-card__media">
                         <div class="hover01">
                             <figure>
-                                <img class="item-img" src="img/1.png"/>
+                                <img class="item-img" src="3B-Internationle_files/articles/chauss_garcon.jpg"/>
                             </figure>
 
                         </div>
@@ -458,7 +349,7 @@
 
                 </div>
                 <div class="mdl-card__actions product-title" style="background: green">
-                    <span class="demo-card-image__filename">Compfortable Wear</span>
+                    <span class="demo-card-image__filename">Chaussures Garçons</span>
                 </div>
                 <div class="mdl-card__actions">
                     <div class="row">
@@ -467,11 +358,62 @@
                         </div>
 
                         <div class="chip">
-                            <a><i class="zmdi zmdi-store"></i> 30000 DA</a>
+                            <a><i class="zmdi zmdi-store"></i> 300 Articles</a>
                         </div>
 
                     </div>
-                    <a class="waves-effect waves-light btn center-block"><i class="zmdi zmdi-eye "></i> Consulter</a>
+                    <div class="action_btns" >
+                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                        </a>
+
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                            <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+                </div>
+            </li>
+
+            <li class="mix chauss homme homme  ">
+                <div class="demo-card-image card  mdl-shadow--2dp">
+                    <div class="mdl-card__media">
+                        <div class="hover01">
+                            <figure>
+                                <img class="item-img" src="3B-Internationle_files/articles/chausss_hmm.jpg"/>
+                            </figure>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions product-title" style="background: green">
+                    <span class="demo-card-image__filename">Chaussures Hommes</span>
+                </div>
+                <div class="mdl-card__actions">
+                    <div class="row">
+                        <div class="chip">
+                            <a><i class="fa fa-money"></i> 30000 DA </a>
+                        </div>
+
+                        <div class="chip">
+                            <a><i class="zmdi zmdi-store"></i> 300 Articles</a>
+                        </div>
+
+                    </div>
+                    <div class="action_btns" >
+                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                        </a>
+
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                            <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
+                        </a>
+
+
+                    </div>
 
                 </div>
 
@@ -485,9 +427,7 @@
             <li class="gap"></li>
             <li class="gap"></li>
             <li class="gap"></li>
-            <li class="gap"></li>
-            <li class="gap"></li>
-            <li class="gap"></li>
+
 
 
         </ul>
@@ -609,7 +549,7 @@
 
         </form>
 
-        <a href="#0" class="cd-close">Close</a>
+        <a href="#0" class="cd-close" style="background-color: #e60f08">Fermer</a>
     </div> <!-- cd-filter -->
 
     <a href="#0" class="cd-filter-trigger">Filtres</a>
@@ -629,9 +569,9 @@
 
 <script src="./3B-Internationle_files/js/ion.rangeSlider.min.js"></script>
 
-
-<script src="./3B-Internationle_files/js/main.js"></script>
 <script src="./3B-Internationle_files/js/filter_library.js"></script>
+<script src="./3B-Internationle_files/js/main.js"></script>
+
 
 </body>
 
