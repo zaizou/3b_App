@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lan="fr">
 <head>
     <meta charset="UTF-8">
@@ -37,23 +36,19 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-9">
-                            <h2>Fiche Utilisateur
-                                <small>Affichage des informations sur l'Utilisateur</small>
+                            <h2>Fiche Magasin
+                                <small>Les Informations d'un Magasin</small>
                             </h2>
 
                             <div class=""></div>
-                            <button class="btn btn-login compte-modif">Modifier l'Utilisateur</button>
-
-
-                            <button class="btn btn-login compte-modif-enreg" style="display: none">Enregistrer les
-                                modification
+                            <button class="btn btn-login compte-create-submit">Créer le Magasin
                             </button>
+                            <button class="btn btn-login btn-danger compte-create_cancel">Annuler</button>
 
 
                         </div>
                         <div class="col-sm-3" dir="rtl">
-
-                            <a href="gestion_magasins_magasins.html"
+                            <a href="#"
                                class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float section-return-btn"><i
                                     class="zmdi zmdi-arrow-left"></i></a>
                         </div>
@@ -70,29 +65,58 @@
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                                        aria-expanded="false" aria-controls="collapseOne">
-                                        Informations Personnelles
+                                        Identification du Magasin
                                     </a>
                                 </h4>
                             </div>
                             <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
+
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="fg-line">
                                                 <input id="creat_input_nom" placeholder="${magasin.getNomMagazin()}"
-                                                       class="form-control compte" readonly>
+                                                       class="form-control compte">
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                                <input id="creat_input_prenom" placeholder="${magasin.getAdresseMagasin()}"
-                                                       class="form-control compte" readonly>
+                                        <div class="col-sm-6">
+                                            <div id="wila_magasin">
+                                                <div class="fg-line">
+                                                    <input id="wilaya_magasin" placeholder="${magasin.getWilayaMagasin().getIntituleWilaya()}"
+                                                           class="form-control compte">
+                                                </div>
+                                            </div>
+
+                                            <div id="wilaya_sel" style="display: none">
+                                                <select class="selectpicker" title="Wilaya" id="wilaya-select"
+                                                        data-live-search="true">
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div  class="col-sm-6">
+
+                                            <div id="responsable">
+                                                <div class="fg-line">
+                                                    <input id="resp_magasin" placeholder="${magasin.getResponsableMagasin().getNom()}   ${magasin.getResponsableMagasin().getPrenom()}"
+                                                           class="form-control compte">
+                                                </div>
+                                            </div>
+
+                                            <div id="responsable_sel" style="display: none">
+                                            <select class="selectpicker" title="Responsable" id="responsable-select"
+                                                    data-live-search="true">
+                                            </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <br/>
-                                    <br/>
+
+
                                 </div>
                             </div>
                         </div>
@@ -109,111 +133,57 @@
                             </div>
                             <div id="collapseThree" class="collapse in" role="tabpanel" aria-labelledby="headingThree">
                                 <div class="panel-body">
+
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="fg-line">
-                                                <input id="creat_input_email" placeholder=" "
-                                                       type="email" class="form-control compte" readonly>
+                                                <input id="latitudeInput" placeholder="${magasin.getLatitude()}"
+                                                       class="form-control compte">
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-4">
                                             <div class="fg-line">
-                                                <input id="creat_input_telephone" placeholder=""
-                                                       type="tel" class="form-control compte" readonly>
+                                                <input id="longitudeInput" placeholder="${magasin.getLongitude()}"
+                                                       class="form-control compte">
                                             </div>
                                         </div>
+                                    </div>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input id="addressInput" placeholder="${magasin.getAdresseMagasin()}"
+                                                       class="form-control compte">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-offset-1 col-sm-9 " id="mapSelector"
+                                             style="height: 400px;"></div>
+                                        <span class="col-sm-3"></span>
                                     </div>
 
 
                                     <br/>
 
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="fg-line">
-                                                <input id="creat_input_addresse"
-                                                       placeholder=""
-                                                       class="form-control compte" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-collapse">
-                            <div class="panel-heading" role="tab" id="headingFour">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                       href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Informations Professionnelles
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseFour" class="collapse in" role="tabpanel" aria-labelledby="headingFour">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="fg-line">
-                                                <input id="creat_input_id_user" placeholder=""
-                                                       class="form-control compte" readonly>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="row" style="display: none">
-
-                                        <a href="gestion_utilisateurs_utilisateurs.html"
-                                           class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float section-return-btn"><i
-                                                class="zmdi zmdi-arrow-left"></i></a>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-
-                            <div class="card-contenu ">
-                                <div class="panel-group p-l-20" role="tablist" aria-multiselectable="true">
-
-
-                                    <div class="panel panel-collapse">
-                                        <div class="panel-heading" role="tab" id="headingTwo">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                   href="#collapseTwo" aria-expanded="false"
-                                                   aria-controls="collapseTwo">
-                                                    Fonctionnalités
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse in" role="tabpanel"
-                                             aria-labelledby="headingTwo">
-                                            <div class="panel-body">
-
-
-                                                <div class="row">
-
-                                                    <div class="col-sm-4 m-b-20">
-                                                        <br/>
-                                                    </div>
-
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-
 
                                 </div>
                             </div>
                         </div>
-                        </c:if>
+
 
                     </div>
+                </div>
+            </div>
+
+            </c:if>
+
     </section>
 
 
@@ -233,8 +203,10 @@
 <script type="text/javascript" src="js/jquery.bootgrid.js"></script>
 <script type="text/javascript" src="js/jquery.bootgrid.updated.min.js"></script>
 <script type="text/javascript" src="js/sugar.min.js"></script>
-<script type="text/javascript" src="js/jquerymy-1.2.4.min.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/locationpicker.jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAUtsGVCuVLk9MrJvg0hV0PXcR7h-zLZ8I"
+        type="text/javascript"></script>
 <script type="text/javascript" src="js/functions_gestion_utilisateurs_show.js"></script>
 
 </body>
