@@ -94,7 +94,7 @@ insert into tbi_schema.FONCTIONNALITE (DESIGNATION) values ('ROLE_USER');
 insert into tbi_schema.FONCTIONNALITE (DESIGNATION) values ('ROLE_ADMIN');
 insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('admin', 'ROLE_USER');
 insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('admin', 'ROLE_ADMIN');
-	insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('yazid', 'ROLE_USER');
+insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('yazid', 'ROLE_USER');
 insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('yazid', 'ROLE_ADMIN');
 insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('USER', 'ROLE_USER');
 
