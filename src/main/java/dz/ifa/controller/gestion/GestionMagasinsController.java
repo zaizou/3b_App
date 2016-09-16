@@ -48,8 +48,6 @@ public class GestionMagasinsController {
     }
 
 
-
-
     @RequestMapping(
             value = {"/gestion_magasins_magasins"},
             method = {RequestMethod.GET}
@@ -59,22 +57,9 @@ public class GestionMagasinsController {
         if (magasins == null)
             magasins = new ArrayList<Magasin>();
 
-        Magasin mag=magasinRepository.findMagasinLatLongByNom("3b bejaia").get(0);
-        System.out.println("testing the specific column selection");
-        if(mag.getLatitude()!=null)
-            System.out.println("Mag lat :"+mag.getLatitude());
-        if(mag.getLongitude()!=null)
-            System.out.println("long :"+mag.getLongitude());
-        if(mag.getResponsableMagasin()!=null)
-            System.out.println("resp "+mag.getResponsableMagasin().getId());
-        else
-            System.out.println("Responsable null");
-
         model.addAttribute("listMagasins", magasins);
         return "gestion_magasins";
     }
-
-
 
 
     @RequestMapping(
@@ -83,24 +68,23 @@ public class GestionMagasinsController {
     )
     public List<Wilaya> getWilayasList() {
         List<Wilaya> wilayas = wilayaRepository.findAll();
-        if (wilayas== null)
-            wilayas= new ArrayList<>();
+        if (wilayas == null)
+            wilayas = new ArrayList<>();
         return wilayas;
     }
 
     @RequestMapping(value = "/gestion_magasins_get_magasin.html", method = RequestMethod.GET)
     public String getMagasin(@RequestParam("id_magasin") Integer id_magasin, Model model) {
-        List<Magasin> magasins=magasinService.getMagasinById(id_magasin);
-        if(magasins.size()==0){
+        List<Magasin> magasins = magasinService.getMagasinById(id_magasin);
+        if (magasins.size() == 0) {
             System.out.println("Magasin inexistant");
             return "404";
         }
-        System.out.println("Magasin Existe   "+magasins.get(0).getNomMagazin());
+        System.out.println("Magasin Existe   " + magasins.get(0).getNomMagazin());
 
         model.addAttribute("magasin", magasins.get(0));
         return "gestion_magasins_pages/magasin_detail";
     }
-
 
 
     @RequestMapping(
@@ -109,32 +93,72 @@ public class GestionMagasinsController {
     )
     @ResponseBody
     public String postMagasin(@RequestParam("nom") String nom,
-                                                   @RequestParam(value ="wilaya",required = false) String wilaya,
-                                                   @RequestParam("responsable") String responsable,
-                                                   @RequestParam(value = "latitude", required = false) Double latitude,
-                                                   @RequestParam(value = "longitude", required = false) Double longitude,
-                                                   @RequestParam(value = "addresse", required = false) String addresse
+                              @RequestParam(value = "wilaya", required = false) String wilaya,
+                              @RequestParam("responsable") String responsable,
+                              @RequestParam(value = "latitude", required = false) Double latitude,
+                              @RequestParam(value = "longitude", required = false) Double longitude,
+                              @RequestParam(value = "addresse", required = false) String addresse
     ) {
 
 
-        if(magasinService.getMagasinByIdResponsable(responsable).size()>0)
-            //pas de responsable de plusieurs magasins
-            return "101";
-        Magasin magasin;
-        List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(responsable);
-        if(utilisateurs==null || utilisateurs.size()==0)
-            return "102";
+        try {
 
-        if(longitude==null || latitude==null || addresse==null)
-            magasin=new Magasin(nom,utilisateurs.get(0));
+            int matriculeW = Integer.parseInt(wilaya);
+            List<Wilaya> wilayas=wilayaRepository.getWilayaByMatricule(matriculeW);
+            if(wilayas.size()==0 || wilayas.get(0)==null)
+                return "105"; /// Wilaya n'existe pas
 
-        magasin=new Magasin(nom,addresse,latitude,longitude,utilisateurs.get(0));
-        if(magasinService.creerMagasin(magasin)!=null)
-            return "100";
-        else return "103";
+
+            if (magasinService.getMagasinByIdResponsable(responsable).size() > 0)
+                //pas de responsable de plusieurs magasins
+                return "101";
+            Magasin magasin;
+            List<Utilisateur> utilisateurs = gestionUtilisateursService.getUtilisateurByIdUtilisateur(responsable);
+            if (utilisateurs == null || utilisateurs.size() == 0)
+                return "102";
+
+            if (longitude == null || latitude == null || addresse == null)
+                magasin = new Magasin(nom, utilisateurs.get(0));
+
+            magasin = new Magasin(nom, addresse, latitude, longitude, utilisateurs.get(0));
+            magasin.setWilayaMagasin(wilayas.get(0));
+            if (magasinService.creerMagasin(magasin) != null)
+                return "100";
+            else return "103";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "104"; ///Format incorrect du Matricule Wilaya
+        }
 
     }
 
+
+    @RequestMapping(
+            value = {"/gestion_magasin_magasin_create_remove"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public String postRemoveMagasin(@RequestParam("nom_magasin") String nom_magasin ) {
+
+        List<Magasin> magasins=magasinRepository.getMagasinByNom(nom_magasin);
+        if(magasins.size()==0 || magasins.get(0)==null)
+            return "102";
+        Magasin magasin=magasins.get(0);
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("Suppression du Magasin "+magasin.getNomMagazin());
+
+        Integer result= magasinService.supprimerMagasin(magasin);
+        if(result !=null){
+            System.out.println("Utilisateur Removed "+result);
+            return "100";
+        }
+        else
+            return "101";
+
+    }
 
 
 

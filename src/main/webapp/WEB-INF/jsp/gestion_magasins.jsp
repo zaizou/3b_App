@@ -58,13 +58,14 @@
 <script type="text/javascript" src="js/sugar.min.js"></script>
 <script type="text/javascript" src="js/jquerymy-1.2.4.min.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUtsGVCuVLk9MrJvg0hV0PXcR7h-zLZ8I" type="text/javascript"></script>
+<script type="text/javascript" src="js/locationpicker.jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAUtsGVCuVLk9MrJvg0hV0PXcR7h-zLZ8I" type="text/javascript"></script>
 
 <!--
 
 <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
 -->
-<script type="text/javascript" src="js/locationpicker.jquery.min.js"></script>
+
 <script type="text/javascript" src="js/functions.js"></script>
 <script type="text/javascript" src="js/functions_gestion_magasins.js"></script>
 

@@ -34,12 +34,7 @@ $(document).ready(function () {
         ajax: 'true'
     }, function (result) {
         var htln = "";
-        console.log("loggin the result");
-        console.log(result);
         for (var i = 0; i < result.utilisateurList.length; i++) {
-            console.log("Section " + i);
-            console.log("Code Strcuture " + result.utilisateurList[i].codeStructure);
-            console.log("Designation" + result.utilisateurList[i].nom);
             htln += '<option value=';
             htln += "" + result.utilisateurList[i].id;
             htln += '>';
@@ -67,14 +62,18 @@ $(document).ready(function () {
         ajax: 'true'
     }, function (result) {
         var htln = "";
-        console.log("loggin the result");
-        console.log(result);
+        var matricule="";
         for (var i = 0; i < result.wilayaList.length; i++) {
+            if(result.wilayaList[i].matriculeWilaya < 10)
+                matricule="0"+result.wilayaList[i].matriculeWilaya;
+            else
+                matricule=""+result.wilayaList[i].matriculeWilaya;
             htln += '<option value=';
             htln += "" + result.wilayaList[i].matriculeWilaya;
             htln += '>';
-            htln += "" + result.wilayaList[i].matriculeWilaya+" - "+result.wilayaList[i].intituleWilaya;
+            htln += "" + matricule+" - "+result.wilayaList[i].intituleWilaya;
             htln += '</option>';
+            matricule="";
         }
         $("#wilaya-select")
             .html(htln)
@@ -136,8 +135,13 @@ $(document).ready(function () {
         }).end().find("button.showingInfos").on("click", function (e) {
             var rows = Array();
             rows[0] = $(this).data("row-id");
+
+            //$(this).html("<a href='www.google.com'/>");
+            //$(this).find("a").click();
+
             var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
-            window.location.replace("gestion_utilisateurs_get_utilisateur.html?id_utilisateur="+idUtilisateur);
+            //window.location.replace("gestion_utilisateurs_get_utilisateur.html?id_utilisateur="+idUtilisateur);
+            window.location.href="gestion_magasins_get_magasin.html?id_magasin="+idUtilisateur;
 
         });
     });
@@ -338,12 +342,18 @@ $(document).ready(function () {
                 .done(function (data) {
                     if (JSON.parse(data) == "100") {
                         swal("Succès!", "Le Magasin est ajouté avec Succès", "success");
-                        window.location.replace("gestion_utilisateurs_utilisateurs.html");
+                        window.location.replace("gestion_magasins_magasins.html");
+
                     }
                     else if (JSON.parse(data) == "602")
                         swal("Erreur", "le Magasin Existe déja ", "error");
                     else if (JSON.parse(data) == "101")
                         swal("Erreur", "Interdit d'affecter un responsable à plusieurs magasins ", "error");
+                    else if (JSON.parse(data) == "104")
+                        swal("Erreur", "Erreur dans le Format du Matricule ", "error");
+                    else if (JSON.parse(data) == "105")
+                        swal("Erreur", "La Wilaya Sélectionnée n'existe pas Veuillez contacter votre administrateur !", "error");
+
 
                 })
                 .error(function (data) {
@@ -355,7 +365,7 @@ $(document).ready(function () {
     function afficherSupprChapitre(idUtilisateur, selectedRow) {
         swal({
                 title: 'Ete Vous Sure ?',
-                text: "Voulez vous vraiment supprimer Ce Chapitre!",
+                text: "Voulez vous vraiment supprimer Ce Magasin!",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
@@ -376,21 +386,21 @@ $(document).ready(function () {
                         {
                             type: "POST",
                             dataType: 'json',
-                            url: "gestion_utilisateurs_utilisateur_remove.html",
-                            data: {id_utilisateur: idUtilisateur},
+                            url: "gestion_magasin_magasin_create_remove.html",
+                            data: {nom_magasin: idUtilisateur},
                         }
                     ).done(function (data) {
                         if (JSON.parse(data) == "100") {
 
                             $('#data-table-command').bootgrid("remove", selectedRow);
-                            swal("Succès!", "L'Utilisateur est supprimé avec Succès", "success");
+                            swal("Succès!", "Le Magasin est supprimé avec Succès", "success");
                         }
 
                         else
-                            swal("Erreur", "Utilisateur non  Supprimé", "error");
+                            swal("Erreur", "Magasin non  Supprimé \n code d'erreur : "+JSON.parse(data), "error");
                     })
                         .error(function (data) {
-                            swal("Erreur", "Utilisateur non  Supprimé", "error");
+                            swal("Erreur", "Magasin non  Supprimé", "error");
                         });
 
             });
