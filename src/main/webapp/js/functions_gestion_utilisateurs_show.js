@@ -9,13 +9,7 @@ var addresse;
 $(document).ready(function () {
 
 
-
-
-
     function prepareFonctionnalitesList(){
-
-
-
     $.getJSON('gestion_utilisateurs_fonctionnalites_list.json', {
         ajax: 'true'
     }, function (result) {

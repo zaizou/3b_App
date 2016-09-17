@@ -40,15 +40,15 @@
                                 <small>Les Informations d'un Magasin</small>
                             </h2>
 
-                            <div class=""></div>
-                            <button class="btn btn-login compte-create-submit">Créer le Magasin
+                            <button class="btn btn-login compte-mod-save" style="display:none">Enregistrer les
+                                Modifications
                             </button>
-                            <button class="btn btn-login btn-danger compte-create_cancel">Annuler</button>
+                            <button class="btn btn-login compte-mod">Modifier le Magasin</button>
 
 
                         </div>
                         <div class="col-sm-3" dir="rtl">
-                            <a href="#"
+                            <a href="gestion_magasins_magasins.html"
                                class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float section-return-btn"><i
                                     class="zmdi zmdi-arrow-left"></i></a>
                         </div>
@@ -81,14 +81,14 @@
                                         </div>
 
                                         <div class="col-sm-6">
-                                            <div id="wila_magasin">
+                                            <div class="shown_info" id="wila_magasin">
                                                 <div class="fg-line">
                                                     <input id="wilaya_magasin" placeholder="${magasin.getWilayaMagasin().getIntituleWilaya()}"
                                                            class="form-control compte">
                                                 </div>
                                             </div>
 
-                                            <div id="wilaya_sel" style="display: none">
+                                            <div class="hidden_edit" id="wilaya_sel" style="display: none">
                                                 <select class="selectpicker" title="Wilaya" id="wilaya-select"
                                                         data-live-search="true">
                                                 </select>
@@ -101,14 +101,14 @@
                                     <div class="row">
                                         <div  class="col-sm-6">
 
-                                            <div id="responsable">
+                                            <div class="shown_info" id="responsable">
                                                 <div class="fg-line">
                                                     <input id="resp_magasin" placeholder="${magasin.getResponsableMagasin().getNom()}   ${magasin.getResponsableMagasin().getPrenom()}"
                                                            class="form-control compte">
                                                 </div>
                                             </div>
 
-                                            <div id="responsable_sel" style="display: none">
+                                            <div class="hidden_edit" id="responsable_sel" style="display: none">
                                             <select class="selectpicker" title="Responsable" id="responsable-select"
                                                     data-live-search="true">
                                             </select>
@@ -163,7 +163,7 @@
                                     </div>
                                     <br>
                                     <br>
-                                    <div class="row">
+                                    <div class="hidden_edit" class="row" style="display: none">
                                         <div class="col-sm-offset-1 col-sm-9 " id="mapSelector"
                                              style="height: 400px;"></div>
                                         <span class="col-sm-3"></span>
@@ -207,7 +207,7 @@
 <script type="text/javascript" src="js/locationpicker.jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAUtsGVCuVLk9MrJvg0hV0PXcR7h-zLZ8I"
         type="text/javascript"></script>
-<script type="text/javascript" src="js/functions_gestion_utilisateurs_show.js"></script>
+<script type="text/javascript" src="js/functions_gestion_magasins_show.js"></script>
 
 </body>
 
