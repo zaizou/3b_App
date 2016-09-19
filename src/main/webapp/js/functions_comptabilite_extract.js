@@ -396,7 +396,7 @@ $(document).ready(function () {
         }, function (confirm) {
             if(confirm){
                 rowsTransfert[rowsTransfert.length] = {
-                    "idTransfert": idMagasin,
+                    "idTransfert": idMag,
                     "dateTransfert": "01/01/2000",
                     "jourTransfert": "",
                     "montantTransfert": 0,
@@ -405,7 +405,7 @@ $(document).ready(function () {
 
                 };
 
-                console.log("id du magasin is : " + idMagasin);
+                console.log("id du magasin is : " + idMag);
 
             $.ajax(
                 {
@@ -452,7 +452,7 @@ $(document).ready(function () {
         }, function (confirm) {
             if(confirm){
                 rowsComptabilite[rowsComptabilite.length] = {
-                    "idCompta": idMagasin,
+                    "idCompta": idMag,
                     "dateCompta": "01/01/2000",
                     "jourCompta": "",
                     "montantCompta": 0,

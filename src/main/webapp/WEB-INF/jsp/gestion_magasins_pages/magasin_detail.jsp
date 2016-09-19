@@ -78,6 +78,11 @@
                                                 <input id="creat_input_nom" placeholder="${magasin.getNomMagazin()}"
                                                        class="form-control compte">
                                             </div>
+
+                                            <div style="display: none">
+                                                <input  id="idMag" value="${magasin.idMagasin}" />
+                                            </div>
+
                                         </div>
 
                                         <div class="col-sm-6">

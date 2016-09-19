@@ -134,14 +134,81 @@ public class GestionMagasinsController {
     }
 
 
+
+
+
+    @RequestMapping(
+            value = {"/gestion_magasin_magasin_edit"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public String postMagasin(@RequestParam("idMagasin") Integer idMagasin,
+                              @RequestParam("nomMagasin") String nomMagasin,
+                              @RequestParam("ancienResponsable") String ancienResponsable,
+                              @RequestParam("responsable") String responsable,
+                              @RequestParam("wilayaMagasin") String wilaya,
+                              @RequestParam(value = "latitudeMag", required = false) Double latitude,
+                              @RequestParam(value = "longitudeMag", required = false) Double longitude,
+                              @RequestParam(value = "adresseMag", required = false) String addresse
+    ) {
+
+
+        try {
+
+            int matriculeW = Integer.parseInt(wilaya);
+            List<Wilaya> wilayas=wilayaRepository.getWilayaByMatricule(matriculeW);
+            if(wilayas.size()==0 || wilayas.get(0)==null)
+                return "105"; /// Wilaya n'existe pas
+
+
+            if (magasinService.getMagasinByIdResponsable(responsable).size() > 0 && ancienResponsable==responsable)
+                //pas de responsable de plusieurs magasins
+                return "101";
+
+
+            Magasin magasin;
+            List<Utilisateur> utilisateurs = gestionUtilisateursService.getUtilisateurByIdUtilisateur(responsable);
+            if (utilisateurs == null || utilisateurs.size() == 0)
+                return "102";
+
+            if (longitude == null || latitude == null || addresse == null)
+                magasin = new Magasin(nomMagasin, utilisateurs.get(0));
+
+            magasin = new Magasin(nomMagasin, addresse, latitude, longitude, utilisateurs.get(0));
+            magasin.setWilayaMagasin(wilayas.get(0));
+            magasin.setIdMagasin(idMagasin);
+            if (magasinService.creerMagasin(magasin) != null)
+                return "100";
+            else return "103";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "104"; ///Format incorrect du Matricule Wilaya
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @RequestMapping(
             value = {"/gestion_magasin_magasin_create_remove"},
             method = {RequestMethod.POST}
     )
     @ResponseBody
-    public String postRemoveMagasin(@RequestParam("nom_magasin") String nom_magasin ) {
+    public String postRemoveMagasin(@RequestParam("nom_magasin") Integer nom_magasin ) {
 
-        List<Magasin> magasins=magasinRepository.getMagasinByNom(nom_magasin);
+        List<Magasin> magasins=magasinRepository.getMagasinById(nom_magasin);
         if(magasins.size()==0 || magasins.get(0)==null)
             return "102";
         Magasin magasin=magasins.get(0);

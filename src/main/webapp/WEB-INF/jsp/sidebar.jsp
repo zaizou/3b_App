@@ -50,21 +50,9 @@
                         </ul>
                     </li>
 
-
-
-
-
-
-
                    <li><a href="logout"><i class="zmdi zmdi-time-restore"></i> Deconnexion</a></li>
 
                 </ul>
-
-
-
-
-
-
 
             </div>
         </div>

@@ -91,15 +91,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
-
-
-
     var grid = $("#data-table-command").bootgrid({
         css: {
             icon: 'zmdi icon',
@@ -118,11 +109,6 @@ $(document).ready(function () {
 
 
     }).on("loaded.rs.jquery.bootgrid", function () {
-
-
-
-
-
 
 
 

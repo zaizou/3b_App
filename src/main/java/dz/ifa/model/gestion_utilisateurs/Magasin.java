@@ -135,6 +135,10 @@ public class Magasin {
         this.comptabiliteMagasin = comptabiliteMagasin;
     }
 
+    public void setIdMagasin(Integer idMagasin) {
+        IdMagasin = idMagasin;
+    }
+
     public List<Transfert> getTransfertsMagasin() {
         return transfertsMagasin;
     }

@@ -197,6 +197,8 @@ jQuery(document).ready(function($){
 	}
 
 
+		/*Side Detail (Detail des Magasins)*/
+
 
 
 	var is_firefox = navigator.userAgent.indexOf('Firefox') > -1;
@@ -220,6 +222,28 @@ jQuery(document).ready(function($){
 		}
 
 	});
+
+	$('#magasins_dist').find('div.product-type-container').on('click', function(event){
+		event.preventDefault();
+		var selected_member = $(this).data('type');
+		//$('.cd-member-bio.'+selected_member+'').addClass('slide-in');
+		$('.cd-member-bio'+'.'+selected_member+'').addClass('slide-in');
+		$('.cd-member-bio-close').addClass('is-visible');
+
+		// firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
+		if( is_firefox ) {
+			$('main').addClass('slide-out').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+				$('body').addClass('overflow-hidden');
+			});
+		} else {
+			$('main').addClass('slide-out');
+			$('body').addClass('overflow-hidden');
+		}
+
+	});
+
+
+
 
 	//close team-member bio
 	$(document).on('click', '.cd-overlay, .cd-member-bio-close', function(event){
