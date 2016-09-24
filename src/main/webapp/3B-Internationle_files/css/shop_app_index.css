@@ -15,8 +15,16 @@
 
 #topMenu > li  >a{
     color: #000;
-    font-size: large;
+    font-size: small;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    padding-left: 8px;
+    padding-right: 8px;
     background-color: inherit;
+}
+
+a.topHIc.fa:hover {
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 
@@ -44,7 +52,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 400px;
+    height: 500px;
     opacity: 0;
     /* hide vertical scrollbar on IE11 */
     overflow: hidden;
@@ -54,6 +62,15 @@
     z-index: 2;
     opacity: 1;
 }
+
+.cd-slider > li  image{
+    height: 600px;
+}
+
+.cd-svg-wrapper{
+    padding-bottom: 100px;
+}
+
 .cd-slider > li.is-animating {
     z-index: 3;
     opacity: 1;
@@ -168,6 +185,9 @@ Slider dots/controls
 .no-touch .cd-slider-controls a:hover {
     background-color: #ffffff;
 }
+
+
+/*Slider end*/
 
 
 .title-section h2 {
@@ -781,11 +801,99 @@ xkeyframes
 }
 
 
+#contact .map-holder {
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #d6d6d6;
+    margin-bottom: 10px;
+}
+#contact .contact-info {
+    margin-top: 30px;
+}
+#contact .contact-info span {
+    /*margin-top: 20px;*/
+    display: block;
+    font-size: 14px;
+}
+#contact .contact-info span i {
+    /*color: #e3722e; */
+    font-size: 16px;
+    margin-right: 12px;
+
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 6px;
+    background: none repeat scroll 0% 0% #E3722E;
+    color: white;
+}
+
+#contact .contactMagasin-info {
+    margin-bottom: 30px;
+}
+#contact .contactMagasin-info span {
+    margin-top: 20px;
+    display: block;
+    font-size: 14px;
+}
+#contact .contactMagasin-info span i {
+    /*color: #e3722e; */
+    font-size: 16px;
+    margin-right: 12px;
+
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 6px;
+    background: none repeat scroll 0% 0% #E3722E;
+    color: white;
+}
+
+
+.titre-section{
+    font-size: 16px;
+}
 
 
 
 
 
+/*------------------------------------------------------
+	Footer Styles
+--------------------------------------------------------*/
+.site-footer {
+    margin-top: 100px;
+    /*background-color: #e3722e;*/
+    /*background-color: #008000;*/
+    color: white;
+    padding: 25px 0;
+    background-image: linear-gradient(81deg,#008000, red);
+}
+.site-footer p {
+    margin-top: 10px;
+}
+.site-footer a {
+    color: #ffffff;
+    text-align: center;
+    display: block;
+
+    width: 50px;
+    height: 50px;
+    border: 1px solid #FFF;
+    border-radius: 50%;
+    line-height: 30px;
+}
+.site-footer .go-top {
+    float: right;
+    text-transform: uppercase;
+}
+.site-footer .go-top i {
+    display: block;
+}
 
 
 

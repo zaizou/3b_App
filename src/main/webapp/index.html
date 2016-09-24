@@ -36,14 +36,14 @@
 <body>
 
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
+<script>(function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
+    js = d.createElement(s);
+    js.id = id;
     js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7&appId=1241675209216338";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
 
 
 <header>
@@ -51,10 +51,11 @@
 
     <div id="topHead" class="modal-fixed-footer row" style="margin-bottom: 0px">
 
-        <div class="offset-l1 offset-s1 col l5 s11 " >
+        <div class="offset-l1 offset-s1 col l5 s11 ">
             <div class="col "><i class="topHIc zmdi zmdi-phone"></i>+213.560.06.72</div>
             <div class="col"><i class="topHIc zmdi zmdi-email"></i><a href="mailto:sarl3btrading@yahoo.fr"
-                                                               style="color : #FFFFFF"> sarl3bTrading@yahoo.fr</a></div>
+                                                                      style="color : #FFFFFF">
+                sarl3bTrading@yahoo.fr</a></div>
         </div>
         <div class="offset-s2 offset-l1 col l5 s10 ">
             <ul class=" ">
@@ -74,11 +75,12 @@
             <div class="nav-wrapper">
 
                 <a href="#" class="brand-logo hide-on-small-only " style="margin-left: 100px"><img
-                        src="3B-Internationle_files/99.png" width="180" height="80"></a>
+                        src="3B-Internationle_files/99.png" width="180px" height="60px"></a>
                 <div class="row"></div>
                 <ul id="topMenu" class="right">
                     <li class="main-menu-elem"><a href="" style="color: #0a0a0a">Accueil</a></li>
-                    <li class=" main-menu-elem"><a href="/gestion_dashboard.html" style="color: #0a0a0a">Management</a></li>
+                    <li class=" main-menu-elem"><a href="/gestion_dashboard.html" style="color: #0a0a0a">Management</a>
+                    </li>
                 </ul>
 
 
@@ -93,22 +95,22 @@
 
     <div class="cd-tab-filter-wrapper ">
         <div class="cd-tab-filter">
-            <ul class="cd-filters">
+            <ul class="cd-filters" style="z-index: 2">
                 <li class="placeholder">
                     <a data-filter="." href="#0">Tout</a> <!-- selected option on mobile -->
                 </li>
-                 <li data-filter="" class="filter"><a class="selected" href="#0" data-type="all">Tout</a></li>
-                <li id="habim" class="filter" data-filter=".habim"><a  href="#0" data-type="habim">Habillements</a></li>
-                <li id="chauss" class="filter" data-filter=".chauss"><a  href="#0" data-type="chauss">Chaussures</a></li>
-                <li id="imac" style="" class="filter right-align" data-filter=".imac"><a  href="#0" data-type="imac"><img
+                <li data-filter="all" class="filter"><a class="selected" href="#0" data-type="all">Tout</a></li>
+                <li id="habim" class="filter" data-filter=".habim"><a href="#0" data-type="habim">Habillements</a></li>
+                <li id="chauss" class="filter" data-filter=".chauss"><a href="#0" data-type="chauss">Chaussures</a></li>
+                <li id="imac" style="" class="filter right-align" data-filter=".imac"><a href="#0" data-type="imac"><img
                         src="img/imac_trans.png" height="50" width="100"></a></li>
-                <li id="franzoni" class="filter" data-filter=".franzoni"><a  href="#0" data-type="franzoni"><img
+                <li id="franzoni" class="filter" data-filter=".franzoni"><a href="#0" data-type="franzoni"><img
                         src="img/franzoni_trans.png" height="50" width="100"></a></li>
                 <li id="iginco" class="filter" data-filter=".iginco"><a href="#0" data-type="iginco"><img
                         src="img/igieco_trans.png" height="50" width="100"></a></li>
-                <li id="opaline" class="filter" data-filter=".opaline"><a  href="#0" data-type="opaline"><img
+                <li id="opaline" class="filter" data-filter=".opaline"><a href="#0" data-type="opaline"><img
                         src="img/opaline.png" height="50" width="100"></a></li>
-                <li id="primigi" class="filter" data-filter=".primigi"><a  href="#0" data-type="primigi"><img
+                <li id="primigi" class="filter" data-filter=".primigi"><a href="#0" data-type="primigi"><img
                         src="img/primigi.png" height="50" width="100"></a></li>
             </ul> <!-- cd-filters -->
             <ul class="cd-filters">
@@ -119,21 +121,27 @@
 
     <section class="cd-gallery ">
         <ul>
-
-
             <li class="mix homme bebe habim primigi ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
                     <div class="mdl-card__media">
-                        <div class="caption-style-4">
-                                <img class="item-img" src="3B-Internationle_files/articles/baby_habim.jpg" />
-                                <div class="caption">
-                                    <div class="blur"></div>
-                                    <div class="caption-text">
-                                        <h1></h1>
-                                        <p>text</p>
+
+                        <div class="product-type-container" >
+
+                            <a href="www.google.com">
+                                <div class="product-type-overlay">
+                                    <div class="product-type-info">
+                                        <img class="svg-icon" src="3B-Internationle_files/img/icones/magnifying-glass-gold.svg" height="50px"  width="50px" alt="">
                                     </div>
                                 </div>
+                            </a>
+
+
+                            <img src="3B-Internationle_files/articles/baby_habim.jpg" alt=""
+                                 class=" product-type-img product-type-img-responsive">
+
                         </div>
+
+
                     </div>
 
                 </div>
@@ -151,16 +159,20 @@
                         </div>
 
                     </div>
-                    <div class="action_btns" >
-                    <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
-                    </a>
+                    <div class="action_btns">
+                        <a href="www.google.com"
+                           style="align-content:center;width: 60%;z-index: 0;background-color: #008000"
+                           class="btn waves-effect waves-light" name="action">Consulter
+                        </a>
 
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp"
+                           style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"
+                           name="action">
                             <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
                         </a>
 
 
-                </div>
+                    </div>
 
                 </div>
             </li>
@@ -168,12 +180,27 @@
             <li class="mix homme bebe habim imac ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
                     <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="3B-Internationle_files/articles/baby_habim2.jpg"/>
-                            </figure>
+
+                        <div class="product-type-container" >
+
+                            <a href="www.google.com">
+                                <div class="product-type-overlay">
+                                    <div class="product-type-info">
+                                        <img class="svg-icon" src="3B-Internationle_files/img/icones/magnifying-glass-gold.svg" height="50px"  width="50px" alt="">
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <img class="item-img" src="3B-Internationle_files/articles/baby_habim2.jpg"/>
 
                         </div>
+
+
+
+
+
+
                     </div>
 
                 </div>
@@ -191,11 +218,15 @@
                         </div>
 
                     </div>
-                    <div class="action_btns" >
-                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                    <div class="action_btns">
+                        <a href="www.google.com"
+                           style="align-content:center;width: 60%;z-index: 0;background-color: #008000"
+                           class="btn waves-effect waves-light" name="action">Consulter
                         </a>
 
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp"
+                           style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"
+                           name="action">
                             <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
                         </a>
 
@@ -210,12 +241,26 @@
             <li class="mix chauss homme iginco enfant  ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
                     <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="3B-Internationle_files/articles/chauss_enfant.jpg"/>
-                            </figure>
+                        <div class="product-type-container" >
+
+                            <a href="www.google.com">
+                                <div class="product-type-overlay">
+                                    <div class="product-type-info">
+                                        <img class="svg-icon" src="3B-Internationle_files/img/icones/magnifying-glass-gold.svg" height="50px"  width="50px" alt="">
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <img class="item-img" src="3B-Internationle_files/articles/chauss_enfant.jpg"/>
 
                         </div>
+
+
+
+
+
+
                     </div>
 
                 </div>
@@ -233,11 +278,15 @@
                         </div>
 
                     </div>
-                    <div class="action_btns" >
-                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                    <div class="action_btns">
+                        <a href="www.google.com"
+                           style="align-content:center;width: 60%;z-index: 0;background-color: #008000"
+                           class="btn waves-effect waves-light" name="action">Consulter
                         </a>
 
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp"
+                           style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"
+                           name="action">
                             <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
                         </a>
 
@@ -252,12 +301,26 @@
             <li class="mix chauss homme femme  ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
                     <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="3B-Internationle_files/articles/chauss_femme.jpg"/>
-                            </figure>
+
+                        <div class="product-type-container" >
+
+                            <a href="www.google.com">
+                                <div class="product-type-overlay">
+                                    <div class="product-type-info">
+                                        <img class="svg-icon" src="3B-Internationle_files/img/icones/magnifying-glass-gold.svg" height="50px"  width="50px" alt="">
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <img class="item-img" src="3B-Internationle_files/articles/chauss_femme.jpg"/>
 
                         </div>
+
+
+
+
+
                     </div>
 
                 </div>
@@ -275,11 +338,15 @@
                         </div>
 
                     </div>
-                    <div class="action_btns" >
-                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                    <div class="action_btns">
+                        <a href="www.google.com"
+                           style="align-content:center;width: 60%;z-index: 0;background-color: #008000"
+                           class="btn waves-effect waves-light" name="action">Consulter
                         </a>
 
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp"
+                           style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"
+                           name="action">
                             <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
                         </a>
 
@@ -294,12 +361,25 @@
             <li class="mix chauss homme enfant  ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
                     <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="3B-Internationle_files/articles/chauss_fille.jpg"/>
-                            </figure>
+                        <div class="product-type-container" >
+
+                            <a href="www.google.com">
+                                <div class="product-type-overlay">
+                                    <div class="product-type-info">
+                                        <img class="svg-icon" src="3B-Internationle_files/img/icones/magnifying-glass-gold.svg" height="50px"  width="50px" alt="">
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <img class="item-img" src="3B-Internationle_files/articles/chauss_fille.jpg"/>
 
                         </div>
+
+
+
+
+
                     </div>
 
                 </div>
@@ -317,11 +397,15 @@
                         </div>
 
                     </div>
-                    <div class="action_btns" >
-                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                    <div class="action_btns">
+                        <a href="www.google.com"
+                           style="align-content:center;width: 60%;z-index: 0;background-color: #008000"
+                           class="btn waves-effect waves-light" name="action">Consulter
                         </a>
 
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp"
+                           style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"
+                           name="action">
                             <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
                         </a>
 
@@ -336,12 +420,26 @@
             <li class="mix chauss homme enfant  ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
                     <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="3B-Internationle_files/articles/chauss_garcon.jpg"/>
-                            </figure>
+
+                        <div class="product-type-container" >
+
+                            <a href="www.google.com">
+                                <div class="product-type-overlay">
+                                    <div class="product-type-info">
+                                        <img class="svg-icon" src="3B-Internationle_files/img/icones/magnifying-glass-gold.svg" height="50px"  width="50px" alt="">
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <img class="item-img" src="3B-Internationle_files/articles/chauss_garcon.jpg"/>
 
                         </div>
+
+
+
+
+
                     </div>
 
                 </div>
@@ -359,11 +457,15 @@
                         </div>
 
                     </div>
-                    <div class="action_btns" >
-                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                    <div class="action_btns">
+                        <a href="www.google.com"
+                           style="align-content:center;width: 60%;z-index: 0;background-color: #008000"
+                           class="btn waves-effect waves-light" name="action">Consulter
                         </a>
 
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp"
+                           style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"
+                           name="action">
                             <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
                         </a>
 
@@ -378,12 +480,25 @@
             <li class="mix chauss homme homme  ">
                 <div class="demo-card-image card  mdl-shadow--2dp">
                     <div class="mdl-card__media">
-                        <div class="hover01">
-                            <figure>
-                                <img class="item-img" src="3B-Internationle_files/articles/chausss_hmm.jpg"/>
-                            </figure>
+
+                        <div class="product-type-container" >
+
+                            <a href="www.google.com">
+                                <div class="product-type-overlay">
+                                    <div class="product-type-info">
+                                        <img class="svg-icon" src="3B-Internationle_files/img/icones/magnifying-glass-gold.svg" height="50px"  width="50px" alt="">
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <img class="item-img" src="3B-Internationle_files/articles/chausss_hmm.jpg"/>
 
                         </div>
+
+
+
+
                     </div>
 
                 </div>
@@ -401,11 +516,15 @@
                         </div>
 
                     </div>
-                    <div class="action_btns" >
-                        <a href="www.google.com" style="align-content:center;width: 60%;z-index: 0;background-color: #008000" class="btn waves-effect waves-light"  name="action">Consulter
+                    <div class="action_btns">
+                        <a href="www.google.com"
+                           style="align-content:center;width: 60%;z-index: 0;background-color: #008000"
+                           class="btn waves-effect waves-light" name="action">Consulter
                         </a>
 
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp" style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"  name="action">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.3b-international.com%2Fweb%2F&amp"
+                           style="width: 20%;z-index: 0;background-color: #4080ff" class="btn waves-effect waves-light"
+                           name="action">
                             <i style="font-size: xx-large;align-content: center" class="zmdi zmdi-facebook  "></i>
                         </a>
 
@@ -424,7 +543,6 @@
             <li class="gap"></li>
             <li class="gap"></li>
             <li class="gap"></li>
-
 
 
         </ul>
@@ -447,7 +565,7 @@
                 <div class="col ">
                     <div class="row">
                         <strong>Prix</strong>
-                        <div  class="switch pull-right">
+                        <div class="switch pull-right">
                             <label>
                                 <input id="priceSwitche" type="checkbox">
                                 <span class="lever"></span>
@@ -467,7 +585,7 @@
 
             <br>
 
-            <div  class="cd-filter-block clearfix">
+            <div class="cd-filter-block clearfix">
                 <div class=" input-field col s12 m6">
                     <select id="categoryFilterSelect" class=" filter icons categories">
                         <option disabled selected style="">Catégorie</option>
@@ -487,61 +605,59 @@
                     </select>
                 </div>
 
-                 <div id="pointureBlock" class=" col s12 l3">
-                        <select id="pointureFilterSelect" class="filter chosen-select tailles" data-placeholder="Choose a Country..." tabindex="1">
-                            <option value="" disabled selected>Pointure</option>
-                            <option value="all">Tout</option>
-                            <option value="38">38</option>
-                            <option value="38.5">38/39</option>
-                            <option value="39">39</option>
-                            <option value="39.5">39/40</option>
-                            <option value="40">40</option>
-                            <option value="41">41</option>
-                            <option value="41.5">41/42</option>
-                            <option value="42">42</option>
-                            <option value="43">43</option>
-                            <option value="43.5">43/44</option>
-                            <option value="44">44</option>
-                            <option value="44.5">44/45</option>
-                            <option value="45">45</option>
-                            <option value="46">46</option>
-                            <option value="46.5">46/47</option>
-                            <option value="47">47</option>
-                            <option value="48">48</option>
-                            <option value="48.5">48/49</option>
-                            <option value="49">49</option>
-                            <option value="50.5">50/51</option>
-                            <option value="52">52</option>
-                        </select>
-                    </div>
+                <div id="pointureBlock" class=" col s12 l3">
+                    <select id="pointureFilterSelect" class="filter chosen-select tailles"
+                            data-placeholder="Choose a Country..." tabindex="1">
+                        <option value="" disabled selected>Pointure</option>
+                        <option value="all">Tout</option>
+                        <option value="38">38</option>
+                        <option value="38.5">38/39</option>
+                        <option value="39">39</option>
+                        <option value="39.5">39/40</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="41.5">41/42</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="43.5">43/44</option>
+                        <option value="44">44</option>
+                        <option value="44.5">44/45</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                        <option value="46.5">46/47</option>
+                        <option value="47">47</option>
+                        <option value="48">48</option>
+                        <option value="48.5">48/49</option>
+                        <option value="49">49</option>
+                        <option value="50.5">50/51</option>
+                        <option value="52">52</option>
+                    </select>
+                </div>
 
-                    <div  id="tailleBlock"  class=" col s12 l3">
-                        <select id="tailleFilterSelect" class="filter chosen-select tailles" data-placeholder="" tabindex="1">
-                            <option value="" disabled selected>Taille</option>
-                            <option value="all">Tout</option>
-                            <option value="38">H33-W33</option>
-                        </select>
-                    </div>
+                <div id="tailleBlock" class=" col s12 l3">
+                    <select id="tailleFilterSelect" class="filter chosen-select tailles" data-placeholder=""
+                            tabindex="1">
+                        <option value="" disabled selected>Taille</option>
+                        <option value="all">Tout</option>
+                        <option value="38">H33-W33</option>
+                    </select>
+                </div>
 
-                    <div id="tailleStandardBlock" class="  col s12 l3">
-                        <select id="tailleStandardFilterSelect" class="filter chosen-select tailles" data-placeholder="" tabindex="1">
-                            <option value="" disabled selected>Taille Standard</option>
-                            <option value="all">Tout</option>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
+                <div id="tailleStandardBlock" class="  col s12 l3">
+                    <select id="tailleStandardFilterSelect" class="filter chosen-select tailles" data-placeholder=""
+                            tabindex="1">
+                        <option value="" disabled selected>Taille Standard</option>
+                        <option value="all">Tout</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
 
-                        </select>
-                    </div>
+                    </select>
+                </div>
             </div>
-
-
-
-
-
 
 
         </form>
