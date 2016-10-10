@@ -147,7 +147,7 @@ $(document).ready(function () {
             )
                 .done(function (data) {
                     if (JSON.parse(data) == "100") {
-                        swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
+                        swal("Succès!", "L'utilisateur est Modifié avec Succès", "success");
                         window.location.replace("gestion_utilisateurs_utilisateurs.html");
                     }
                     else if (JSON.parse(data) == "602")
@@ -158,7 +158,7 @@ $(document).ready(function () {
                         swal("Erreur", "L'utilisateur n'existe pas ", "error");
                 })
                 .error(function (data) {
-                    swal("Erreur", "L'Utilisateur n'est pas ajouté", "error");
+                    swal("Erreur", "L'Utilisateur n'est pas Modifié", "error");
                 });
         });
     }

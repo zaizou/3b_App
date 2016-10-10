@@ -329,7 +329,6 @@ $(document).ready(function () {
                     if (JSON.parse(data) == "100") {
                         swal("Succès!", "Le Magasin est ajouté avec Succès", "success");
                         window.location.replace("gestion_magasins_magasins.html");
-
                     }
                     else if (JSON.parse(data) == "602")
                         swal("Erreur", "le Magasin Existe déja ", "error");

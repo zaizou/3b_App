@@ -44,9 +44,9 @@
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-home"></i> Comptabilité</a>
                         <ul>
-                            <li><a href="comptabilite_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Introduire les Recettes Dépenses et Transferts</a></li>
-                            <li><a href="comptabilite_extraction_recettes_depenses.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Recettes/Dépenses</a></li>
-                            <li><a href="comptabilite_extraction_transferts.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Transferts</a></li>
+                            <li><a href="recettes_depenses_journalieres_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Recettes/Dépenses</a></li>
+                            <li><a href="transferts_journaliers_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Transferts</a></li>
+                            <li><a href="comptabilite_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Introduire les Recettes Dépenses et Transferts (Intervalle)</a></li>
                         </ul>
                     </li>
 

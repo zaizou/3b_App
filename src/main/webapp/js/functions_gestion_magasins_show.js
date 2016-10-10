@@ -16,7 +16,7 @@ $(document).ready(function () {
     $("input.compte").prop("readonly", true);
     storeName = $("#creat_input_nom").attr('placeholder');
     state = $("#wilaya_magasin").attr('placeholder');
-    ancResp = $("#resp_magasin").attr("placeholder");
+    ancResp = $("#resp_magasin_id").attr("placeholder");
     latitude = $("#latitudeInput").attr("placeholder");
     longitude = $("#longitudeInput").attr("placeholder");
     address = $("#addressInput").attr("placeholder");
@@ -182,9 +182,11 @@ $(document).ready(function () {
                         swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
                         window.location.href="gestion_magasins_magasins.html";
                     }
-                    else {
-                        swal("Erreur!", "Le Magasin n'est pas Modifié \n code d'erreur : "+JSON.parse(data), "error");
-                    }
+                    else if(JSON.parse(data) == "101")
+                        swal("Erreur", "Interdit d'affecter un responsable à plusieurs magasins ", "error");
+                    else
+                        swal("Erreur!", "Le Magasin n'est pas Modifié  code d'erreur : "+JSON.parse(data), "error");
+
 
                 })
                 .error(function (data) {

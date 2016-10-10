@@ -36,7 +36,7 @@
         <div class="container">
 
             <script>
-                var idMagasin="${magasin.idMagasin}";
+                var idMagasin="${magasin.getIdMagasin()}";
 
 
             </script>

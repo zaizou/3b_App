@@ -220,7 +220,6 @@ public class GestionUtilisateurController {
                                                    @RequestParam(value = "mail", required = false) String mail,
                                                    @RequestParam(value = "addresse", required = false) String addresse,
                                                    @RequestParam("id_utilisateur") String idUtilisateur,
-                                                   @RequestParam("code_structure") String code_structure,
                                                    @RequestParam(value = "fonctionnalites[]") List<Integer> fonctionnalites,
                                                    @RequestParam("actif") int actif
     ) {

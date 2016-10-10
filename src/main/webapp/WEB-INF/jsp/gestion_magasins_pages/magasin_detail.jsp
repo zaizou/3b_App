@@ -113,6 +113,12 @@
                                                 </div>
                                             </div>
 
+                                            <div class="fg-line" style="display: none">
+                                                <input id="resp_magasin_id" placeholder="${magasin.getResponsableMagasin().getId()}"
+                                                       class="form-control compte">
+                                            </div>
+
+
                                             <div class="hidden_edit" id="responsable_sel" style="display: none">
                                             <select class="selectpicker" title="Responsable" id="responsable-select"
                                                     data-live-search="true">

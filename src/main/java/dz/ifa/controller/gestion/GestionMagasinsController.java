@@ -80,7 +80,7 @@ public class GestionMagasinsController {
             System.out.println("Magasin inexistant");
             return "404";
         }
-        System.out.println("Magasin Existe   " + magasins.get(0).getNomMagazin());
+        //System.out.println("Magasin Existe   " + magasins.get(0).getResponsableMagasin().getId());
 
         model.addAttribute("magasin", magasins.get(0));
         return "gestion_magasins_pages/magasin_detail";
@@ -161,7 +161,15 @@ public class GestionMagasinsController {
                 return "105"; /// Wilaya n'existe pas
 
 
-            if (magasinService.getMagasinByIdResponsable(responsable).size() > 0 && ancienResponsable==responsable)
+            System.out.println("Test Existing Magasin with this User Id");
+            System.out.println("ancien :"+ancienResponsable);
+            System.out.println("nouveau :"+responsable);
+            System.out.println("");
+            List<Magasin> lst=magasinService.getMagasinByIdResponsable(responsable);
+            if(lst.size()>0)
+                System.out.println(lst.get(0).getIdMagasin());
+
+            if (lst.size() > 0 && !ancienResponsable.equals(responsable)  )
                 //pas de responsable de plusieurs magasins
                 return "101";
 
