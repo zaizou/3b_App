@@ -24,6 +24,7 @@
                 <th data-column-id="nom" class="text-left" >Nom Magasin</th>
                 <th data-column-id="wilaya" class="text-left" >Wilaya</th>
                 <th data-column-id="responsable" class="text-left" >Responsable</th>
+                <th data-column-id="ordre" class="text-left" >Ordre</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
             </tr>
             </thead>
@@ -37,6 +38,7 @@
                         <td class="text-left" style="">${listMagasins.get(loop.index).getNomMagazin()}</td>
                         <td class="text-left" style="">${listMagasins.get(loop.index).getWilayaMagasin().getIntituleWilaya()}</td>
                         <td class="text-left" style="">${listMagasins.get(loop.index).getResponsableMagasin().getNom()} ${listMagasins.get(loop.index).getResponsableMagasin().getPrenom()}</td>
+                        <td class="text-left" style="">${listMagasins.get(loop.index).intituleOdreMagasin()}</td>
                     </tr>
 
                 </c:forEach>

@@ -48,7 +48,7 @@
 
                         </div>
                         <div class="col-sm-3" dir="rtl">
-                            <a href="gestion_magasins_magasins.html"
+                            <a href="management_gestion_magasins_magasins.html"
                                class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float section-return-btn"><i
                                     class="zmdi zmdi-arrow-left"></i></a>
                         </div>
@@ -80,7 +80,7 @@
                                             </div>
 
                                             <div style="display: none">
-                                                <input  id="idMag" value="${magasin.idMagasin}" />
+                                                <input id="idMag" value="${magasin.idMagasin}"/>
                                             </div>
 
                                         </div>
@@ -88,7 +88,8 @@
                                         <div class="col-sm-6">
                                             <div class="shown_info" id="wila_magasin">
                                                 <div class="fg-line">
-                                                    <input id="wilaya_magasin" placeholder="${magasin.getWilayaMagasin().getIntituleWilaya()}"
+                                                    <input id="wilaya_magasin"
+                                                           placeholder="${magasin.getWilayaMagasin().getIntituleWilaya()}"
                                                            class="form-control compte">
                                                 </div>
                                             </div>
@@ -104,27 +105,72 @@
                                     </div>
                                     <br>
                                     <div class="row">
-                                        <div  class="col-sm-6">
+                                        <div class="col-sm-6">
 
                                             <div class="shown_info" id="responsable">
                                                 <div class="fg-line">
-                                                    <input id="resp_magasin" placeholder="${magasin.getResponsableMagasin().getNom()}   ${magasin.getResponsableMagasin().getPrenom()}"
+                                                    <input id="resp_magasin"
+                                                           placeholder="${magasin.getResponsableMagasin().getNom()}   ${magasin.getResponsableMagasin().getPrenom()}"
                                                            class="form-control compte">
                                                 </div>
                                             </div>
 
                                             <div class="fg-line" style="display: none">
-                                                <input id="resp_magasin_id" placeholder="${magasin.getResponsableMagasin().getId()}"
+                                                <input id="resp_magasin_id"
+                                                       placeholder="${magasin.getResponsableMagasin().getId()}"
                                                        class="form-control compte">
                                             </div>
 
 
                                             <div class="hidden_edit" id="responsable_sel" style="display: none">
-                                            <select class="selectpicker" title="Responsable" id="responsable-select"
-                                                    data-live-search="true">
-                                            </select>
+                                                <select class="selectpicker" title="Responsable" id="responsable-select"
+                                                        data-live-search="true">
+                                                </select>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="row">
+
+
+                                        <br>
+
+                                        <div class="shown_info" id="mag_detail">
+
+                                            <div class="col-sm-4">
+                                                <input id="magasin_type"
+                                                       placeholder="${magasin.getType()}"
+                                                       class="form-control compte">
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <input id="magasin_ordre"
+                                                       placeholder="${magasin.getOrdre()}"
+                                                       class="form-control compte">
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="hidden_edit" id="detail_mag" style="display: none">
+
+                                            <div class="col-sm-4">
+                                                <select class="selectpicker" title="Type du Magasin" id="type-select">
+                                                    <option value="detail">Détail</option>
+                                                    <option value="gros">Gros</option>
+
+                                                </select>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <select class="selectpicker" title="Ordre du Magasin" id="ordre-select">
+                                                    <option value="0">En Haut</option>
+                                                    <option value="1">En Bas</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
                                     </div>
 
 

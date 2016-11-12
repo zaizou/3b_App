@@ -18,6 +18,9 @@ public interface TransfertRepository extends JpaRepository<Transfert,Date> {
 	public List<Transfert> getTransfertByDate(@Param("date") Date date);
 
 
+
+	public List<Transfert> findByOrderByDateTransfertAsc();
+
 	@Query("SELECT c FROM Transfert c WHERE (c.idTransfert) = (:idTrans)")
 	public List<Transfert> getTransfertById(@Param("idTrans") Integer idTrans);
 

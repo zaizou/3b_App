@@ -55,7 +55,7 @@ public class ComptabiliteController {
 
 
     @RequestMapping(
-            value = {"/recettes_depenses_journalieres_extraction"},
+            value = {"/management_recettes_depenses_journalieres_extraction"},
             method = {RequestMethod.GET}
     )
     public String getRecDepJournExtract(Model model, Principal principal)
@@ -73,12 +73,14 @@ public class ComptabiliteController {
 
 
     @RequestMapping(
-            value = {"/transferts_journaliers_extraction"},
+            value = {"/management_transferts_journaliers_extraction_show"},
             method = {RequestMethod.GET}
     )
-    public String getTransfertExtract(Model model, Principal principal)
+    public String getTransfertExtractJournalier(Model model, Principal principal)
     {
+        System.out.println("Requesting transferts_journaliers_extraction_show getting user");
         String name=principal.getName();
+        System.out.println("The user is :"+name);
         List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(name);
         if(utilisateurs==null || utilisateurs.size()==0 || utilisateurs.get(0).getMagasin()==null)
             return "405";
@@ -87,11 +89,20 @@ public class ComptabiliteController {
         return "comptabilite/transferts_journa_extract";
     }
 
+    @RequestMapping(
+            value = {"/comptas_journaliers_extraction_show"},
+            method = {RequestMethod.GET}
+    )
+    public String getComptaJournaExtract(Model model, Principal principal)
+    {
+        String name=principal.getName();
+        List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(name);
+        if(utilisateurs==null || utilisateurs.size()==0 || utilisateurs.get(0).getMagasin()==null)
+            return "405";
 
-
-
-
-
+        model.addAttribute("magasin",utilisateurs.get(0).getMagasin());
+        return "comptabilite/compta_journa_extract";
+    }
 
 
 
@@ -158,7 +169,7 @@ public class ComptabiliteController {
 
 
     @RequestMapping(
-            value = {"/transferts_journaliers_extraction.json"},
+            value = {"/compta_journaliere_extraction.json"},
             method = {RequestMethod.POST}
     )
     @ResponseBody

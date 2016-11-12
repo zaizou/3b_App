@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -107,7 +110,7 @@ fjs.parentNode.insertBefore(js, fjs);
                     <li class="main-menu-elem"><a href="#nos-marques" style="color: #0a0a0a">Marques</a></li>
                     <li class="main-menu-elem"><a href="#contact" style="color: #0a0a0a">Contact</a></li>
                     <li class="main-menu-elem"><a href="" style="color: #0a0a0a">Shop</a></li>
-                    <li class=" main-menu-elem"><a href="/gestion_dashboard.html" style="color: #0a0a0a">Management</a>
+                    <li class=" main-menu-elem"><a href="/management_gestion_dashboard.html" style="color: #0a0a0a">Management</a>
                     </li>
                 </ul>
 
@@ -444,111 +447,44 @@ fjs.parentNode.insertBefore(js, fjs);
 
 
         <div id="magasins" class="row text-center container">
-            <div class="row">
-                <div class="col m4 s6">
-                    <div class="product-type-container" data-type="member-1">
-                        <a>
-                            <div class="product-type-overlay">
-                                <div class="product-type-info">
-                                    <i class="fa fa-search fa-2x gold-text"></i>
-                                    <h3 class="gold-text text-uppercase">Alger</h3>
-                                    <p class="text-uppercase white-text">34 Avenue Colonel Lotfi<br>Bab El-Oued</p>
-                                    <p class="text-uppercase white-text">Tél : +213.561.74.34.12</p>
-                                </div>
+            <c:set var="magasins_count" scope="page" value="${0}"/>
+            <c:set var="opened_rows" scope="page" value="${0}"/>
+
+            <c:forEach begin="1" end="${magasinsHauts.size()}" varStatus="loop">
+            <c:if test="${magasins_count % 3 == 0}">
+            <c:set var="opened_rows" value="${opened_rows + 1}" scope="page"/>
+
+            <c:if test="${magasins_count > 0}">
+        </div>
+        </c:if>
+        <div class="row">
+            </c:if>
+
+            <c:set var="magasins_count" value="${magasins_count + 1}" scope="page"/>
+
+
+            <div class="col m4 s6">
+                <div class="product-type-container" data-type="member-haut-${magasins_count}">
+                    <a>
+                        <div class="product-type-overlay">
+                            <div class="product-type-info">
+                                <i class="fa fa-search fa-2x gold-text"></i>
+                                <h3 class="gold-text text-uppercase">Alger</h3>
+                                <p class="text-uppercase white-text">34 Avenue Colonel Lotfi<br>Bab El-Oued</p>
+                                <p class="text-uppercase white-text">Tél : +213.561.74.34.12</p>
                             </div>
-                        </a>
-                        <img src="./3B-Internationle_files/img/magasins/bab-eloued.png" alt="Product Type 1"
-                             class="img-princip product-type-img product-type-img-responsive">
-                    </div>
-                </div>
-                <div class="col m4  s6">
-                    <div class="product-type-container" data-type="member-2">
-                        <a>
-                            <div class="product-type-overlay">
-                                <div class="product-type-info">
-                                    <i class="fa fa-search fa-2x gold-text"></i>
-                                    <h3 class="gold-text text-uppercase">Alger</h3>
-                                    <p class="text-uppercase white-text">43 Rue Larbi Ben M'hidi<br>Alger Centre</p>
-                                    <p class="text-uppercase white-text">Tél : +213.561.73.40.23</p>
-                                </div>
-                            </div>
-                            <img src="./3B-Internationle_files/img/magasins/alger-centre.png" alt="Product Type 2"
-                                 class="product-type-img product-type-img-responsive">
-                        </a>
-                    </div>
-                </div>
-                <div class="col m4 s6">
-                    <div class="product-type-container" data-type="member-3">
-                        <a>
-                            <div class="product-type-overlay">
-                                <div class="product-type-info">
-                                    <i class="fa fa-search fa-2x gold-text"></i>
-                                    <h3 class="gold-text text-uppercase">Alger</h3>
-                                    <p class="text-uppercase white-text">Bois descard 01 N° 15<br>Dely Brahim</p>
-                                    <p class="text-uppercase white-text">Tél : +213.561.74.33.51</p>
-                                </div>
-                            </div>
-                        </a>
-                        <img src="./3B-Internationle_files/img/magasins/dely-brahim.png" alt="Product Type 2"
-                             class="product-type-img product-type-img-responsive">
-                    </div>
+                        </div>
+                    </a>
+                    <img src="./3B-Internationle_files/img/magasins/bab-eloued.png" alt="Product Type 1"
+                         class="img-princip product-type-img product-type-img-responsive">
                 </div>
             </div>
 
-            <br>
 
-            <div class="row">
-                <div class="col m4 s6">
-                    <div class="product-type-container" data-type="member-4">
-                        <a>
-                            <div class="product-type-overlay">
-                                <div class="product-type-info">
-                                    <i class="fa fa-search fa-2x gold-text"></i>
-                                    <h3 class="gold-text text-uppercase">Annaba</h3>
-                                    <p class="text-uppercase white-text">07 rue Tarek Ibn Ziad</p>
-                                    <p class="text-uppercase white-text">Tél : +213.561.73.86.33</p>
-                                </div>
-                            </div>
-                            <img src="./3B-Internationle_files/img/magasins/annaba.png" alt="Product Type 3"
-                                 class="product-type-img product-type-img-responsive">
-                        </a>
-                    </div>
-                </div>
-                <div class="col m4 s6">
-                    <div class="product-type-container" data-type="member-5">
-                        <a>
-                            <div class="product-type-overlay">
-                                <div class="product-type-info">
-                                    <i class="fa fa-search fa-2x gold-text"></i>
-                                    <h3 class="gold-text text-uppercase">Bejaia</h3>
-                                    <p class="text-uppercase white-text">Cité 162 logements EPLF<br>Naciria</p>
-                                    <p class="text-uppercase white-text">Tél : +213.561.73.91.02</p>
-                                </div>
-                            </div>
-                        </a>
-                        <img src="./3B-Internationle_files/img/magasins/bejaia.png" alt="Product Type 3"
-                             class="product-type-img product-type-img-responsive">
-                    </div>
-                </div>
-                <div class="col m4 s6">
-                    <div class="product-type-container" data-type="member-6">
-                        <a>
-                            <div class="product-type-overlay">
-                                <div class="product-type-info">
-                                    <i class="fa fa-search fa-2x gold-text"></i>
-                                    <h3 class="gold-text text-uppercase">Oran</h3>
-                                    <p class="text-uppercase white-text">75 Rue L'arbie Ben M'hidi (Ex: Rue d'arzew)
-                                        Place
-                                        de la victoire</p>
-                                    <p class="text-uppercase white-text">Tél : +213.561.73.91.94</p>
-                                </div>
-                            </div>
-                        </a>
-                        <img src="./3B-Internationle_files/img/magasins/oran.png" alt="Product Type 4"
-                             class="product-type-img product-type-img-responsive">
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
+
+
+        </div>
         </div>
 
 
@@ -559,8 +495,6 @@ fjs.parentNode.insertBefore(js, fjs);
     <!--Nos Habillements -->
 
     <div id="services2" class="section-cotent">
-
-
         <div class="container">
             <section id="section-nos-habim" class="cd-section">
                 <div class="title-section text-center">
@@ -665,7 +599,7 @@ fjs.parentNode.insertBefore(js, fjs);
             <section id="section-nos-magasins" class="cd-section">
 
                 <!-- Nos Magasis de Distribution magdist  -->
-                <div class="container">
+                <div class="">
                     <div class="row text-center">
                         <div class="container title-section text-center">
                             <p>&nbsp;</p>
@@ -682,6 +616,61 @@ fjs.parentNode.insertBefore(js, fjs);
                         <br>
 
                         <div id="magasins_dist" class="row text-center">
+
+                            <div id="magasins_d" class="row text-center ">
+                                <c:set var="magasins_count" scope="page" value="${0}"/>
+                                <c:set var="opened_rows" scope="page" value="${0}"/>
+
+                                <c:forEach begin="1" end="${magasinsBas.size()  }" varStatus="loop">
+                                <c:if test="${magasins_count % 2 == 0}">
+                                <c:set var="opened_rows" value="${opened_rows + 1}" scope="page"/>
+
+                                <c:if test="${magasins_count > 0}">
+                            </div>
+                            </c:if>
+                            <div class="row">
+                                </c:if>
+
+                                <c:set var="magasins_count" value="${magasins_count + 1}" scope="page"/>
+
+
+                                <c:if test="${magasinsBas.size() <= 2 }">
+                                <div class="col m6 s6">
+
+                                    </c:if>
+
+                                    <c:if test="${magasinsBas.size() > 2}">
+                                    <div class="col m4 s6">
+
+                                        </c:if>
+
+
+                                        <div class="product-type-container" data-type="member-bas-${magasins_count}">
+                                            <a>
+                                                <div class="product-type-overlay">
+                                                    <div class="product-type-info">
+                                                        <i class="fa fa-search fa-2x gold-text"></i>
+                                                        <h3 class="gold-text text-uppercase">Alger</h3>
+                                                        <p class="text-uppercase white-text">34 Avenue Colonel Lotfi<br>Bab
+                                                            El-Oued</p>
+                                                        <p class="text-uppercase white-text">Tél : +213.561.74.34.12</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <img src="./3B-Internationle_files/img/magasins/bab-eloued.png"
+                                                 alt="Product Type 1"
+                                                 class="img-princip product-type-img product-type-img-responsive">
+                                        </div>
+                                    </div>
+
+
+                                    </c:forEach>
+
+
+                                </div>
+                            </div>
+
+
                             <div class="row">
                                 <div class="col m6 s6">
                                     <div class="product-type-container" data-type="member-7">
@@ -702,7 +691,6 @@ fjs.parentNode.insertBefore(js, fjs);
                                         <p>Vente au détail</p>
                                     </div>
                                 </div>
-
                                 <div class="col m6 s6">
                                     <div class="product-type-container" data-type="member-8">
                                         <a href="depots.php?depot=2">
@@ -1181,107 +1169,127 @@ fjs.parentNode.insertBefore(js, fjs);
 
 
 </main>
-<div class="cd-member-bio member-1">
-    <div class="cd-member-bio-pict">
-        <img src="img/member-bio-img-1.jpg" alt="Member Bio image">
-    </div>
-    <!-- cd-member-bio-pict -->
 
-    <div class="cd-bio-content">
-        <br>
-        <br>
-        <div class="title-section text-center" id="mag-bab-lwed" style="margin-bottom: 30px;">
-            <h2>Bab El-Oued, Alger</h2>
-            <span></span>
+
+<c:set var="magasins_count" scope="page" value="${0}"/>
+<c:set var="opened_rows" scope="page" value="${0}"/>
+<c:set var="opened_rows" value="${opened_rows + 1}" scope="page"/>
+
+<c:forEach begin="1" end="${magasinsHauts.size()  }" varStatus="loop">
+    <c:set var="magasins_count" scope="page" value="${magasins_count+1}"/>
+    <div class="cd-member-bio member-haut-${magasins_count}">
+        <div class="cd-member-bio-pict">
+            <img src="img/member-bio-img-1.jpg" alt="Member Bio image">
         </div>
+        <!-- cd-member-bio-pict -->
 
-        <div class="col m4 col s6">
-            <h4 class="widget-title">Comfort Footwear</h4>
+        <div class="cd-bio-content">
             <br>
-            <div class="contactMagasin-info">
-                <span><i class="fa fa-home topHIc"></i>34 Avenue Colonel Lotfi - Bab El-Oued, Alger</span><br><br>
-                <span><i class="fa fa-phone topHIc"></i>+213.561.74.34.12</span>
-            </div>
-
             <br>
-
-
-            <div class="container" id="map-zone" style="height: 300px;background-color: #00bfa5">
-                <div class="" id="mapSelector" style="height: 400px;"></div>
-            </div>
-
-
-            <br>
-
-        </div>
-
-
-        <div class="mag-photos">
-
-            <div class="title-section text-center" style="margin-bottom: 30px;font-size: large">
-                <h2>Photos du Magasin</h2>
+            <div class="title-section text-center" id="mag-bab-lwed" style="margin-bottom: 30px;">
+                <h2>Bab El-Oued, Alger</h2>
                 <span></span>
             </div>
 
-            <div class="container-mag">
-                <div class="row">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(1).jpg">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(2).jpg">
+            <div class="col m4 col s6">
+                <h4 class="widget-title">Comfort Footwear</h4>
+                <br>
+                <div class="contactMagasin-info">
+                    <span><i class="fa fa-home topHIc"></i>34 Avenue Colonel Lotfi - Bab El-Oued, Alger</span><br><br>
+                    <span><i class="fa fa-phone topHIc"></i>+213.561.74.34.12</span>
                 </div>
 
-                <div class="row">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(3).jpg">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(4).jpg">
+                <br>
+
+                <div class="title-section text-center" style="margin-bottom: 30px;">
+                    <h2>Carte</h2>
+                    <span></span>
+                </div>
+                <div class="container" id="map-zone" style="height: 300px">
+                    <iframe width="500" height="300" frameborder="0" style="border:0"
+                            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJDbEvcKyzjxIREYKWUeD50ug&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                            allowfullscreen></iframe>
                 </div>
 
-                <div class="row">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(5).jpg">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(6).jpg">
+
+                <br>
+
+            </div>
+
+
+            <div class="mag-photos">
+
+                <div class="title-section text-center" style="margin-bottom: 30px;font-size: large">
+                    <h2>Photos du Magasin</h2>
+                    <span></span>
                 </div>
 
-                <div class="row">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(7).jpg">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(8).jpg">
+                <div class="container-mag">
+                    <div class="row">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(1).jpg">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(2).jpg">
+                    </div>
+
+                    <div class="row">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(3).jpg">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(4).jpg">
+                    </div>
+
+                    <div class="row">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(5).jpg">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(6).jpg">
+                    </div>
+
+                    <div class="row">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(7).jpg">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(8).jpg">
+                    </div>
+
+                    <div class="row">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(9).jpg">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(10).jpg">
+                    </div>
+
+                    <div class="row">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(11).jpg">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(12).jpg">
+                    </div>
+
+                    <div class="row">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(13).jpg">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(14).jpg">
+                    </div>
+
+                    <div class="row">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(15).jpg">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(16).jpg">
+                    </div>
+
+                    <div class="row">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(17).jpg">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(18).jpg">
+                    </div>
+
+                    <div class="row">
+                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(19).jpg">
+                    </div>
+
                 </div>
 
-                <div class="row">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(9).jpg">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(10).jpg">
-                </div>
-
-                <div class="row">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(11).jpg">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(12).jpg">
-                </div>
-
-                <div class="row">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(13).jpg">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(14).jpg">
-                </div>
-
-                <div class="row">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(15).jpg">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(16).jpg">
-                </div>
-
-                <div class="row">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(17).jpg">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(18).jpg">
-                </div>
-
-                <div class="row">
-                    <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(19).jpg">
-                </div>
 
             </div>
 
 
         </div>
-
-
+        <!-- cd-bio-content -->
     </div>
-    <!-- cd-bio-content -->
-</div>
+
+
+</c:forEach>
+
+
+
+
 <div class="cd-member-bio member-2">
     <div class="cd-member-bio-pict">
         <img src="img/member-bio-img-1.jpg" alt="Member Bio image">
@@ -1300,8 +1308,8 @@ fjs.parentNode.insertBefore(js, fjs);
             <h4 class="widget-title">Comfort Footwear</h4>
             <br>
             <div class="contactMagasin-info">
-                <span><i class="fa fa-home topHIc"></i>34 Avenue Colonel Lotfi - Bab El-Oued, Alger</span><br><br>
-                <span><i class="fa fa-phone topHIc"></i>+213.561.74.34.12</span>
+                <span><i class="fa fa-home topHIc"></i>43 Rue Larbi Ben M'hidi - Alger Centre</span><br><br>
+                <span><i class="fa fa-phone topHIc"></i>+213.561.73.40.23</span>
             </div>
 
 
@@ -1310,8 +1318,17 @@ fjs.parentNode.insertBefore(js, fjs);
         </div>
 
     </div>
-
-    <div class="" id="mapSelector" style="height: 400px;background-color: #00a5bb"></div>
+    <div class="title-section text-center" style="margin-bottom: 30px;">
+        <h2>Carte</h2>
+        <span></span>
+    </div>
+    <div class="container" style="height: 300px">
+        <iframe width="500" height="300" frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?q=place_id:Ei00MyBSdWUgTGFyYmkgQmVuIE0naGlkaSwgQWxnZXIgQ3RyZSwgQWxnw6lyaWU&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                allowfullscreen></iframe>
+    </div>
+    <br>
+    <br>
 
     <div class="mag-photos">
 
@@ -1388,7 +1405,7 @@ fjs.parentNode.insertBefore(js, fjs);
     <div class="cd-bio-content">
         <br>
         <br>
-        <div class="title-section text-center" id="Annaba" style="margin-bottom: 30px;">
+        <div class="title-section text-center" id="alger2" style="margin-bottom: 30px;">
             <h2>Dely Brahim, Alger</h2>
             <span></span>
         </div>
@@ -1396,12 +1413,22 @@ fjs.parentNode.insertBefore(js, fjs);
             <h4 class="widget-title">Comfort Footwear</h4>
             <br>
             <div class="contactMagasin-info">
-                <span><i class="fa fa-home topHIc"></i>34 Avenue Colonel Lotfi - Bab El-Oued, Alger</span><br><br>
-                <span><i class="fa fa-phone topHIc"></i>+213.561.74.34.12</span>
+                <span><i class="fa fa-home topHIc"></i>Bois descard 01 N° 15 - Dely Brahim, Alger</span><br><br>
+                <span><i class="fa fa-phone topHIc"></i>+213.561.74.33.51</span>
             </div>
 
 
-            <div class="" id="mapSelector" style="height: 400px;"></div>
+            <div class="title-section text-center" style="margin-bottom: 30px;">
+                <h2>Carte</h2>
+                <span></span>
+            </div>
+            <div class="container" style="height: 300px">
+                <iframe width="500" height="300" frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?q=Bois+descard+01+N°+15+-+Dely+Brahim,+Alger&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                        allowfullscreen></iframe>
+            </div>
+            <br>
+            <br>
 
         </div>
 
@@ -1489,12 +1516,22 @@ fjs.parentNode.insertBefore(js, fjs);
             <h4 class="widget-title">Comfort Footwear</h4>
             <br>
             <div class="contactMagasin-info">
-                <span><i class="fa fa-home topHIc"></i>34 Avenue Colonel Lotfi - Bab El-Oued, Alger</span><br><br>
-                <span><i class="fa fa-phone topHIc"></i>+213.561.74.34.12</span>
+                <span><i class="fa fa-home topHIc"></i>07 rue Tarek Ibn Ziad - Wilaya de Annaba</span><br><br>
+                <span><i class="fa fa-phone topHIc"></i>+213.561.73.86.33</span>
             </div>
 
 
-            <div class="" id="mapSelector" style="height: 400px;"></div>
+            <div class="title-section text-center" style="margin-bottom: 30px;">
+                <h2>Carte</h2>
+                <span></span>
+            </div>
+            <div class="container" style="height: 300px">
+                <iframe width="500" height="300" frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJGcOsJLwH8BIR2AV7UCScstg&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                        allowfullscreen></iframe>
+            </div>
+            <br>
+            <br>
 
         </div>
 
@@ -1573,7 +1610,7 @@ fjs.parentNode.insertBefore(js, fjs);
     <div class="cd-bio-content">
         <br>
         <br>
-        <div class="title-section text-center" id="Annaba" style="margin-bottom: 30px;">
+        <div class="title-section text-center" id="bejaia" style="margin-bottom: 30px;">
             <h2>Naciria, Bejaia</h2>
             <span></span>
         </div>
@@ -1582,12 +1619,22 @@ fjs.parentNode.insertBefore(js, fjs);
             <h4 class="widget-title">Comfort Footwear</h4>
             <br>
             <div class="contactMagasin-info">
-                <span><i class="fa fa-home topHIc"></i>34 Avenue Colonel Lotfi - Bab El-Oued, Alger</span><br><br>
-                <span><i class="fa fa-phone topHIc"></i>+213.561.74.34.12</span>
+                <span><i class="fa fa-home topHIc"></i>Cité 162 logements EPLF - Naciria, Bejaia</span><br><br>
+                <span><i class="fa fa-phone topHIc"></i>+213.561.73.91.02</span>
             </div>
 
 
-            <div class="" id="mapSelector" style="height: 400px;"></div>
+            <div class="title-section text-center" style="margin-bottom: 30px;">
+                <h2>Carte</h2>
+                <span></span>
+            </div>
+            <div class="container" style="height: 300px">
+                <iframe width="500" height="300" frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ-Qmv9K3M8hIRYp876Bf3b-U&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                        allowfullscreen></iframe>
+            </div>
+            <br>
+            <br>
 
         </div>
 
@@ -1666,7 +1713,7 @@ fjs.parentNode.insertBefore(js, fjs);
     <div class="cd-bio-content">
         <br>
         <br>
-        <div class="title-section text-center" id="Annaba" style="margin-bottom: 30px;">
+        <div class="title-section text-center" id="oran" style="margin-bottom: 30px;">
             <h2>Place des victoires, Oran</h2>
             <span></span>
         </div>
@@ -1675,12 +1722,23 @@ fjs.parentNode.insertBefore(js, fjs);
             <h4 class="widget-title">Comfort Footwear</h4>
             <br>
             <div class="contactMagasin-info">
-                <span><i class="fa fa-home topHIc"></i>34 Avenue Colonel Lotfi - Bab El-Oued, Alger</span><br><br>
-                <span><i class="fa fa-phone topHIc"></i>+213.561.74.34.12</span>
+                <span><i class="fa fa-home topHIc"></i>75 Rue L'arbie Ben M'hidi (Ex: Rue d'arzew) Place des victoires, Oran</span><br><br>
+                <span><i class="fa fa-phone topHIc"></i>+213.561.73.91.94</span>
             </div>
 
 
-            <div class="" id="mapSelector" style="height: 400px;"></div>
+            <div class="title-section text-center" style="margin-bottom: 30px;">
+                <h2>Carte</h2>
+                <span></span>
+            </div>
+            <div class="container" style="height: 300px">
+                <iframe width="500" height="300" frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJFcVB21CIfg0RNMzu_IE5WZ4&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                        allowfullscreen></iframe>
+            </div>
+            <br>
+            <br>
+
 
         </div>
 

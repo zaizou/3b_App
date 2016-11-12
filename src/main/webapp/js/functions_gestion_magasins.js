@@ -4,6 +4,11 @@ var compteSelected = false;
 var selectedCompte = -1;
 var compteCreationMode = false;
 var compteShowingMode = false;
+var placeId="";
+
+
+
+var geocoder = new google.maps.Geocoder;
 
 
 var data_section = {
@@ -13,7 +18,7 @@ var data_section = {
 
 
 function prepareGMAPS_view() {
-    $('#mapSelector').locationpicker({
+    var map=$('#mapSelector').locationpicker({
         location: {latitude: 36.718863059742844, longitude: 3.183347702026367},
         radius:0,
         enableAutocomplete: true,
@@ -23,14 +28,171 @@ function prepareGMAPS_view() {
             locationNameInput: $('#addressInput')
         }
     });
+
+    var map=$('#mapSelector').locationpicker("map");
+
+
+    var marker=map.marker;
+    google.maps.event.addListener(marker, 'dragend', function () {
+        console.info("my marker is working"+marker.getPosition().toString());
+        getLocationId(marker.getPosition().lat(),marker.getPosition().lng());
+        //autocomplete.setPosition(marker.getPosition());
+    });
+
+    //initMap();
+
 }
+
+
+function getLocationId(latitude,longitude){
+    var latlng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
+
+    geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+                console.log("place id is :"+results[1].place_id);
+                $("#placeIdInput").val(results[1].place_id);
+                placeId=results[1].place_id;
+            } else {
+                window.alert('No results found');
+            }
+        } else {
+            window.alert('Geocoder failed due to: ' + status);
+        }
+    });
+}
+
+
+
+
+
+function initMap(){
+    var map = new google.maps.Map(document.getElementById('mapSelector'), {
+        center: {lat: -33.8688, lng: 151.2195},
+        zoom: 13
+    });
+
+
+    var input = document.getElementById('addressInput');
+
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    autocomplete.bindTo('bounds', map);
+    var marker = new google.maps.Marker({
+        draggable: true,
+        position: {lat: -33.8688, lng: 151.2195},
+        animation: google.maps.Animation.DROP,
+        map: map
+    });
+    marker.setVisible(true);
+
+    autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+        console.log(place.geometry.location.toString());
+        if (!place.geometry) {
+            return;
+        }
+
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+        }
+
+        // Set the position of the marker using the place ID and location.
+
+        marker=new google.maps.Marker({
+            draggable: true,
+            position: place.geometry.location,
+            animation: google.maps.Animation.DROP,
+            map: map
+        });
+        google.maps.event.addListener(marker, 'dragend', function () {
+            map.setCenter(marker.getPosition());
+            console.info(marker.getPosition().toString());
+            //autocomplete.setPosition(marker.getPosition());
+        });
+
+
+        marker.setVisible(true);
+
+
+    });
+
+    google.maps.event.addListener(marker, 'dragend', function () {
+        map.setCenter(marker.getPosition());
+        console.info(marker.getPosition().toString());
+        //autocomplete.setPosition(marker.getPosition());
+    });
+
+
+
+
+
+
+}
+
+
+
+
+function geocodePosition(pos) {
+    geocoder.geocode({
+        latLng: pos
+    }, function(responses) {
+        if (responses && responses.length > 0) {
+            marker.formatted_address = responses[0].formatted_address;
+        } else {
+            marker.formatted_address = 'Cannot determine address at this location.';
+        }
+        infowindow.setContent(marker.formatted_address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
+        infowindow.open(map, marker);
+    });
+}
+/*
+function codeAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode({
+        'address': address
+    }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            if (marker) {
+                marker.setMap(null);
+                if (infowindow) infowindow.close();
+            }
+            marker = new google.maps.Marker({
+                map: map,
+                draggable: true,
+                position: results[0].geometry.location
+            });
+            google.maps.event.addListener(marker, 'dragend', function() {
+                geocodePosition(marker.getPosition());
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                if (marker.formatted_address) {
+                    infowindow.setContent(marker.formatted_address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
+                } else {
+                    infowindow.setContent(address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
+                }
+                infowindow.open(map, marker);
+            });
+            google.maps.event.trigger(marker, 'click');
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
+
+*/
+
 
 //Initialisation du tableau contenant les sections
 $(document).ready(function () {
 
 
     //Initialisation
-    $.getJSON('gestion_utilisateurs_utilisateurs_list.json', {
+    $.getJSON('gestion_utilisateurs_utilisateurs_libres_list.json', {
         ajax: 'true'
     }, function (result) {
         var htln = "";
@@ -294,6 +456,8 @@ $(document).ready(function () {
     function afficherCreateChapitreMessage() {
 
 
+        var type_mag=$("#type-select").val();
+        var ordre_mag=$("#ordre-select").val();
         var in_nom = $("#creat_input_nom").val();
         var wilaya = $("#wilaya-select").val();
         var responsable = $("#responsable-select").val();
@@ -322,6 +486,8 @@ $(document).ready(function () {
                         latitude: lati,
                         longitude: longi,
                         addresse: address,
+                        type_magasin:type_mag,
+                        ordre_magasin:ordre_mag
                     }
                 }
             )

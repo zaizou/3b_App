@@ -466,19 +466,19 @@ $(document).ready(function () {
                     type: "POST",
                     dataType    : 'json',
                     contentType :'application/json',
-                    url: "comptabilite_extraction_send.json",
+                    url: "compta_journaliere_extraction.json",
                     data: JSON.stringify(rowsComptabilite)
 
                 }
                 )
                 .done(function (data) {
-                    if (JSON.parse(data) == "100") {
-                        swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
-                        //    window.location.replace("gestion_utilisateurs_utilisateurs.html");
-                    }
-                    else{
+                    if (JSON.parse(data) == "100")
+                        swal("Succès!", "L'élément a été ajouté avec succès", "success");
+                    else if(JSON.parse(data) == "201")
+                        swal("Erreur!","Date Déja Utilisée" , "error");
+                    else
                         swal("Erreur!","Données non insérée" , "error");
-                    }
+
 
                 })
                 .error(function (data) {

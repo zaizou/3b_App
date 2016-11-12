@@ -26,7 +26,7 @@ public class GestionUtilisateurController {
 
 
     @RequestMapping(
-            value = {"/gestion_utilisateurs_fonctionnalites"},
+            value = {"/management_gestion_utilisateurs_fonctionnalites"},
             method = {RequestMethod.GET}
     )
     public String getFonctionnalites(Model model) {
@@ -91,7 +91,26 @@ public class GestionUtilisateurController {
 
 
     @RequestMapping(
-            value = {"/gestion_utilisateurs_utilisateurs"},
+            value = {"/gestion_utilisateurs_utilisateurs_libres_list.json"},
+            method = {RequestMethod.GET}
+    )
+    public List<Utilisateur> getUtilisateursLibresList() {
+        List<Utilisateur> listUsers = gestionUtilisateursService.getAllUtilisateurs();
+        if(listUsers==null)
+            listUsers=new ArrayList<Utilisateur>();
+            int i=0;
+            while (i<listUsers.size())
+                if(listUsers.get(i).getMagasin()!=null)
+                    listUsers.remove(i);
+                else
+                    i++;
+
+        return listUsers;
+    }
+
+
+    @RequestMapping(
+            value = {"/management_gestion_utilisateurs_utilisateurs"},
             method = {RequestMethod.GET}
     )
     public String getUtilisateurs(Model model) {

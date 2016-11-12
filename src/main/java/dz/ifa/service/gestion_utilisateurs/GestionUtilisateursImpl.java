@@ -34,6 +34,8 @@ public class GestionUtilisateursImpl implements GestionUtilisateursService {
         return this.utilisateurRepository.findAll();
     }
 
+
+
     public Utilisateur creerUtilisateur(Utilisateur utilisateur) {
         return utilisateurRepository.save(utilisateur);
     }

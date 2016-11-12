@@ -11,6 +11,8 @@ var latitude;
 var address = "";
 var idMag;
 var ancResp="";
+var typeM="";
+var ordreM="";
 
 $(document).ready(function () {
     $("input.compte").prop("readonly", true);
@@ -52,6 +54,14 @@ $(document).ready(function () {
     $("#wilaya-select").on('change', function () {
         state = $(this).val();
     });
+
+    $("#ordre-select").on('change', function () {
+        ordreM = $(this).val();
+    });
+    $("#type-select").on('change', function () {
+        typeM = $(this).val();
+    });
+
     $("#responsable-select").on('change', function () {
         manager = $(this).val();
     });
@@ -70,7 +80,7 @@ $(document).ready(function () {
 
     function prepareSelectFromJSON() {
         //Initialisation
-        $.getJSON('gestion_utilisateurs_utilisateurs_list.json', {
+        $.getJSON('gestion_utilisateurs_utilisateurs_libres_list.json', {
             ajax: 'true'
         }, function (result) {
             var htln = "";
@@ -173,14 +183,16 @@ $(document).ready(function () {
                         wilayaMagasin: state,
                         latitudeMag: latitude,
                         longitudeMag: longitude,
-                        adresseMag: address
+                        adresseMag: address,
+                        type_magasin:typeM,
+                        ordre_magasin:ordreM
                     }
                 }
                 )
                 .done(function (data) {
                     if (JSON.parse(data) == "100") {
                         swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
-                        window.location.href="gestion_magasins_magasins.html";
+                        window.location.href="management_gestion_magasins_magasins.html";
                     }
                     else if(JSON.parse(data) == "101")
                         swal("Erreur", "Interdit d'affecter un responsable à plusieurs magasins ", "error");

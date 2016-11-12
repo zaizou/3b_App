@@ -12,6 +12,7 @@
 
 	<http >
 		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/index.jsp" access="permitAll" />
 		<intercept-url pattern="/css/**" access="permitAll"/>
 		<intercept-url pattern="/fonts/**" access="permitAll"/>
 		<intercept-url pattern="/img/**" access="permitAll"/>
@@ -21,7 +22,11 @@
 		<intercept-url pattern="/logout.html" access="permitAll"/>
 		<intercept-url pattern="/403.html" access="permitAll"/>
 		<intercept-url pattern="/private*" access="permitAll" />
-		<intercept-url pattern="/**" access="hasAuthority('ROLE_USER')" />
+
+		<intercept-url pattern="/management_*.html" access="hasAuthority('ROLE_USER')" />
+
+
+
 
 
 

@@ -36,7 +36,7 @@ public class GestionMagasinsController {
 
 
     @RequestMapping(
-            value = {"/gestion_dashboard"},
+            value = {"/management_gestion_dashboard"},
             method = {RequestMethod.GET}
     )
     public String getDashboard(Model model) {
@@ -49,7 +49,7 @@ public class GestionMagasinsController {
 
 
     @RequestMapping(
-            value = {"/gestion_magasins_magasins"},
+            value = {"/management_gestion_magasins_magasins"},
             method = {RequestMethod.GET}
     )
     public String getMagasins(Model model) {
@@ -97,15 +97,17 @@ public class GestionMagasinsController {
                               @RequestParam("responsable") String responsable,
                               @RequestParam(value = "latitude", required = false) Double latitude,
                               @RequestParam(value = "longitude", required = false) Double longitude,
-                              @RequestParam(value = "addresse", required = false) String addresse
+                              @RequestParam(value = "addresse", required = false) String addresse,
+                              @RequestParam(value = "type_magasin", required = false) String type,
+                              @RequestParam(value = "ordre_magasin", required = false) Integer ordre
     ) {
 
 
         try {
 
             int matriculeW = Integer.parseInt(wilaya);
-            List<Wilaya> wilayas=wilayaRepository.getWilayaByMatricule(matriculeW);
-            if(wilayas.size()==0 || wilayas.get(0)==null)
+            List<Wilaya> wilayas = wilayaRepository.getWilayaByMatricule(matriculeW);
+            if (wilayas.size() == 0 || wilayas.get(0) == null)
                 return "105"; /// Wilaya n'existe pas
 
 
@@ -117,11 +119,10 @@ public class GestionMagasinsController {
             if (utilisateurs == null || utilisateurs.size() == 0)
                 return "102";
 
-            if (longitude == null || latitude == null || addresse == null)
-                magasin = new Magasin(nom, utilisateurs.get(0));
-
             magasin = new Magasin(nom, addresse, latitude, longitude, utilisateurs.get(0));
             magasin.setWilayaMagasin(wilayas.get(0));
+            magasin.setType(type);
+            magasin.setOrdre(ordre);
             if (magasinService.creerMagasin(magasin) != null)
                 return "100";
             else return "103";
@@ -132,9 +133,6 @@ public class GestionMagasinsController {
         }
 
     }
-
-
-
 
 
     @RequestMapping(
@@ -149,27 +147,29 @@ public class GestionMagasinsController {
                               @RequestParam("wilayaMagasin") String wilaya,
                               @RequestParam(value = "latitudeMag", required = false) Double latitude,
                               @RequestParam(value = "longitudeMag", required = false) Double longitude,
-                              @RequestParam(value = "adresseMag", required = false) String addresse
+                              @RequestParam(value = "adresseMag", required = false) String addresse,
+                              @RequestParam(value = "type_magasin", required = false) String type,
+                              @RequestParam(value = "ordre_magasin", required = false) Integer ordre
     ) {
 
 
         try {
 
             int matriculeW = Integer.parseInt(wilaya);
-            List<Wilaya> wilayas=wilayaRepository.getWilayaByMatricule(matriculeW);
-            if(wilayas.size()==0 || wilayas.get(0)==null)
+            List<Wilaya> wilayas = wilayaRepository.getWilayaByMatricule(matriculeW);
+            if (wilayas.size() == 0 || wilayas.get(0) == null)
                 return "105"; /// Wilaya n'existe pas
 
 
             System.out.println("Test Existing Magasin with this User Id");
-            System.out.println("ancien :"+ancienResponsable);
-            System.out.println("nouveau :"+responsable);
+            System.out.println("ancien :" + ancienResponsable);
+            System.out.println("nouveau :" + responsable);
             System.out.println("");
-            List<Magasin> lst=magasinService.getMagasinByIdResponsable(responsable);
-            if(lst.size()>0)
+            List<Magasin> lst = magasinService.getMagasinByIdResponsable(responsable);
+            if (lst.size() > 0)
                 System.out.println(lst.get(0).getIdMagasin());
 
-            if (lst.size() > 0 && !ancienResponsable.equals(responsable)  )
+            if (lst.size() > 0 && !ancienResponsable.equals(responsable))
                 //pas de responsable de plusieurs magasins
                 return "101";
 
@@ -179,12 +179,11 @@ public class GestionMagasinsController {
             if (utilisateurs == null || utilisateurs.size() == 0)
                 return "102";
 
-            if (longitude == null || latitude == null || addresse == null)
-                magasin = new Magasin(nomMagasin, utilisateurs.get(0));
-
             magasin = new Magasin(nomMagasin, addresse, latitude, longitude, utilisateurs.get(0));
             magasin.setWilayaMagasin(wilayas.get(0));
             magasin.setIdMagasin(idMagasin);
+            magasin.setOrdre(ordre);
+            magasin.setType(type);
             if (magasinService.creerMagasin(magasin) != null)
                 return "100";
             else return "103";
@@ -197,47 +196,30 @@ public class GestionMagasinsController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     @RequestMapping(
             value = {"/gestion_magasin_magasin_create_remove"},
             method = {RequestMethod.POST}
     )
     @ResponseBody
-    public String postRemoveMagasin(@RequestParam("nom_magasin") Integer nom_magasin ) {
+    public String postRemoveMagasin(@RequestParam("nom_magasin") Integer nom_magasin) {
 
-        List<Magasin> magasins=magasinRepository.getMagasinById(nom_magasin);
-        if(magasins.size()==0 || magasins.get(0)==null)
+        List<Magasin> magasins = magasinRepository.getMagasinById(nom_magasin);
+        if (magasins.size() == 0 || magasins.get(0) == null)
             return "102";
-        Magasin magasin=magasins.get(0);
+        Magasin magasin = magasins.get(0);
         System.out.println("------------------------");
         System.out.println("------------------------");
         System.out.println("------------------------");
-        System.out.println("Suppression du Magasin "+magasin.getNomMagazin());
+        System.out.println("Suppression du Magasin " + magasin.getNomMagazin());
 
-        Integer result= magasinService.supprimerMagasin(magasin);
-        if(result !=null){
-            System.out.println("Utilisateur Removed "+result);
+        Integer result = magasinService.supprimerMagasin(magasin);
+        if (result != null) {
+            System.out.println("Utilisateur Removed " + result);
             return "100";
-        }
-        else
+        } else
             return "101";
 
     }
-
-
-
-
 
 
 }

@@ -133,7 +133,7 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
-<script type="text/javascript" src="js/functions_transferts_journaliers.js"></script>
+<script type="text/javascript" src="js/functions_comptas_journaliere.js"></script>
 
 
 </body>

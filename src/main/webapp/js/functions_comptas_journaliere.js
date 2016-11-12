@@ -25,13 +25,13 @@ Array.prototype.getElementByProperty = function (name, value) {
 
 
 
-var date_transfert;
-var jour_transfert;
-var montant_transfert;
-var comment_transfert;
-var transferant_transfert;
+var date_compta;
+var jour_compta;
+var recettes_compta;
+var depenses_compta;
+var comment_compta;
 
-var rowsTransfert = new Array();
+var rowsComptabilite = new Array();
 
 //Initialisation du tableau contenant les sections
 $(document).ready(function () {
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     $("#date_transfert").on('dp.change', function (e) {
 
-        date_transfert = moment(e.date).format("MM/DD/YYYY");
+        date_compta = moment(e.date).format("MM/DD/YYYY");
         moment.locale('fr',{
             months : "janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre".split("_"),
             monthsShort : "janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.".split("_"),
@@ -99,27 +99,29 @@ $(document).ready(function () {
             }}
 
         );
-        jour_transfert=moment(date_transfert).format('dddd');
-        date_transfert = moment(e.date).format("DD/MM/YYYY");
-        $("#creat_input_jour").val(jour_transfert);
+        jour_compta=moment(date_compta).format('dddd');
+        date_compta = moment(e.date).format("DD/MM/YYYY");
+        $("#creat_input_jour").val(jour_compta);
     });
 
 
     $("#creat_input_jour").on('change', function () {
-        jour_transfert = $(this).val();
+        jour_compta = $(this).val();
     });
 
-    $("#creat_input_montant").on('change', function () {
-        montant_transfert= $(this).val();
+    $("#creat_input_recette").on('change', function () {
+        recettes_compta= $(this).val();
+    });
+
+    $("#creat_input_depense").on('change', function () {
+        depenses_compta= $(this).val();
     });
 
 
     $("#creat_input_comment").on('change', function () {
-        comment_transfert= $(this).val();
+        comment_compta= $(this).val();
     });
-    $("#creat_input_transferant").on('change', function () {
-        transferant_transfert= $(this).val();
-    });
+
 
     $("#sendBtn").on("click", function () {
         sendTransfertsConfirmation();
@@ -144,45 +146,43 @@ $(document).ready(function () {
             confirmButtonClass: "btn  btn-success waves-effect",
         }, function (confirm) {
             if(confirm){
-                rowsTransfert[0]={
-                    "idTransfert": idMagasin,
-                    "dateTransfert": date_transfert,
-                    "jourTransfert": jour_transfert,
-                    "montantTransfert": montant_transfert,
-                    "transferant": transferant_transfert,
-                    "observationTransfert": comment_transfert
+                rowsComptabilite [0] = {
+                    "idCompta": -1,
+                    "dateCompta":date_compta,
+                    "jourCompta":jour_compta,
+                    "montantCompta": recettes_compta,
+                    "depense":depenses_compta,
+                    "observationCompta": comment_compta
                 };
 
-                rowsTransfert[1] = {
-                    "idTransfert": idMagasin,
-                    "dateTransfert": "01/01/2000",
-                    "jourTransfert": "",
-                    "montantTransfert": 0,
-                    "transferant": "",
-                    "observationTransfert": ""
+                rowsComptabilite[1] = {
+                    "idCompta": idMagasin,
+                    "dateCompta": "01/01/2000",
+                    "jourCompta": "",
+                    "montantCompta": 0,
+                    "depense": 0,
+                    "observationCompta": ""
 
                 };
-                console.log("id du magasin is : " + idMagasin);
-                console.table(rowsTransfert);
 
             $.ajax(
                 {
                     type: "POST",
                     dataType: 'json',
                     contentType: 'application/json',
-                    url:"transferts_journaliers_extraction.json",
-                    data: JSON.stringify(rowsTransfert)
+                    url:"compta_journaliere_extraction.json",
+                    data: JSON.stringify(rowsComptabilite)
                 }
                 )
                 .done(function (data) {
                     if (JSON.parse(data) == "100") {
-                        swal("Succès!", "Transfert ajouté avec Succès", "success");
+                        swal("Succès!", "Données insérées avec Succès", "success");
                         //    window.location.replace("gestion_utilisateurs_utilisateurs.html");
                     }
                     else if (JSON.parse(data) == "200")
                         swal("Erreur!", "Vous avez envoyé une table de transferts vides", "error");
                     else if (JSON.parse(data) == "202")
-                        swal("Erreur!", "Le Le magasin n'existe pas ", "error");
+                        swal("Erreur!", "Le  magasin n'existe pas ", "error");
                     else if (JSON.parse(data) == "201")
                         swal("Erreur!", "Date Déja Utilisée  ", "error");
 

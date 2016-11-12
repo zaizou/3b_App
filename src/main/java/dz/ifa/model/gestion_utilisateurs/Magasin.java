@@ -28,6 +28,17 @@ public class Magasin {
     private Double latitude;
     @Column
     private Double longitude;
+    @Column
+    private String type;  //Détail en gros
+    @Column
+    private Integer ordre; //0 //1
+    @Column
+    private String telephone;
+    @Column
+    private String email;
+
+
+
 
     @OneToOne
     @JsonManagedReference
@@ -71,6 +82,10 @@ public class Magasin {
         this.latitude = latitude;
         this.longitude = longitude;
         this.responsableMagasin = responsableMagasin;
+    }
+
+    public String intituleOdreMagasin(){
+        return  (this.ordre==0) ? "Haut" : "Bas";
     }
 
     public Double getLatitude() {
@@ -118,6 +133,21 @@ public class Magasin {
     }
 
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Integer getOrdre() {
+        return ordre;
+    }
+
+    public void setOrdre(Integer ordre) {
+        this.ordre = ordre;
+    }
 
     public Utilisateur getResponsableMagasin() {
         return responsableMagasin;

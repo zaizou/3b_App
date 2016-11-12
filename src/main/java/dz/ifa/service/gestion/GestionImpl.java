@@ -24,7 +24,7 @@ public class GestionImpl implements GestionService {
 
     @Override
     public List<Compta> getAllCompta() {
-        return comptaRepository.findAll();
+        return comptaRepository.findByOrderByDateComptaAsc();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class GestionImpl implements GestionService {
 
     @Override
     public List<Transfert> getAllTransfert() {
-        return transfertRepository.findAll();
+        return transfertRepository.findByOrderByDateTransfertAsc();
     }
 
     @Override

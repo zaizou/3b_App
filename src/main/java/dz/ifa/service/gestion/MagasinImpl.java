@@ -44,6 +44,21 @@ public class MagasinImpl implements MagasinService {
         return magasinRepository.getMagasinById(idMagasin);
     }
 
+    public List<Magasin> getMagasinByType(String type) {
+        return magasinRepository.getMagasinByType(type);
+    }
+    public List<Magasin> getMagasinByOrdre(Integer ordre) {
+        return magasinRepository.getMagasinByOrdre(ordre);
+    }
+
+
+
+
+
+
+
+
+
     public List<Magasin> getMagasinByIdResponsable(String idResponsable) {
         return magasinRepository.getMagasinByIdResponsable(idResponsable);
     }

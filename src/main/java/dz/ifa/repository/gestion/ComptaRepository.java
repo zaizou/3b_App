@@ -18,6 +18,8 @@ public interface ComptaRepository extends JpaRepository<Compta,Integer> {
 	public List<Compta> getComptaByDate(@Param("date") Date date);
 
 
+	public List<Compta> findByOrderByDateComptaAsc();
+
 	@Query("SELECT c FROM Compta c WHERE (c.idCompta) = (:idComp)")
 	public List<Compta> getComptaById(@Param("idComp") Integer idComp);
 

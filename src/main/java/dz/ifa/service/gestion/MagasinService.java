@@ -14,6 +14,11 @@ public interface MagasinService {
 
     public List<Magasin> getAllMagasins();
     public Magasin creerMagasin(Magasin magasin);
+
+    public List<Magasin> getMagasinByType(String type);
+    public List<Magasin> getMagasinByOrdre(Integer ordre);
+
+
     public Integer supprimerMagasin(Magasin magasin);
     public List<Magasin> getMagasinByNom(String nom);
     public List<Magasin> getMagasinById(Integer idMagasin);

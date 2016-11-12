@@ -30,6 +30,7 @@
 
     <div class="card-contenu ">
         <div class="panel-group p-l-20" role="tablist" aria-multiselectable="true">
+
             <div class="panel panel-collapse">
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
@@ -66,11 +67,33 @@
                             </div>
                         </div>
 
+                        <br>
+
+
+
+                        <div class="row">
+                            <div class="col-sm-4" >
+                                <select  class="selectpicker" title="Type du Magasin" id="type-select" >
+                                    <option value="detail">Détail</option>
+                                    <option value="gros">Gros</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-sm-4" >
+                                <select  class="selectpicker" title="Ordre du Magasin" id="ordre-select" >
+                                    <option value="0">En Haut</option>
+                                    <option value="1">En Bas</option>
+                                </select>
+                            </div>
+                        </div>
+
 
 
                     </div>
                 </div>
             </div>
+
 
 
             <div class="panel panel-collapse">
@@ -84,6 +107,25 @@
                 </div>
                 <div id="collapseThree" class="collapse in" role="tabpanel" aria-labelledby="headingThree">
                     <div class="panel-body">
+
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="fg-line">
+                                    <input id="TelInput" placeholder="Téléphone"
+                                           class="form-control compte">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="fg-line">
+                                    <input id="MailInput" placeholder="Email"
+                                           class="form-control compte">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
 
                         <div class="row">
                             <div class="col-sm-4">
@@ -103,10 +145,16 @@
                         <br>
 
                         <div class="row">
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <div class="fg-line">
-                                    <input id="addressInput" placeholder="Addresse"
-                                           class="form-control compte">
+                                    <input id="addressInput" placeholder="Addresse" type="text"
+                                           class="controls form-control compte">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="fg-line">
+                                    <input id="placeIdInput" placeholder="Place Id" type="text"
+                                           class="controls form-control compte">
                                 </div>
                             </div>
 
@@ -126,6 +174,42 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="panel panel-collapse">
+                <div class="panel-heading" role="tab" id="headingFour">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"
+                           aria-expanded="false" aria-controls="collapseFour">
+                            Média
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="collapse in" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="panel-body">
+
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="fg-line">
+                                    <input id="youtubeIdInput" placeholder="Id de la vidéo youtube"
+                                           class="form-control compte">
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <br>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
 
 
 

@@ -22,30 +22,33 @@
 
                 <ul class="main-menu">
 
-                    <li > <a href="gestion_dashboard.html"><i class="zmdi zmdi-home"></i> Tableau de Bord</a></li>
+                    <li > <a href="management_gestion_dashboard.html"><i class="zmdi zmdi-home"></i> Tableau de Bord</a></li>
 
 
                     <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
 
+                    </sec:authorize>
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-home"></i> Gestion des Utilisateurs</a>
                         <ul>
-                            <li><a href="gestion_utilisateurs_utilisateurs.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Utilisateurs</a></li>
-                            <li><a href="gestion_utilisateurs_fonctionnalites.html"><i class="zmdi zmdi-lamp zmdi-hc-fw"></i> Fonctionnalites</a></li>
+                            <li><a href="management_gestion_utilisateurs_utilisateurs.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Utilisateurs</a></li>
+                            <li><a href="management_gestion_utilisateurs_fonctionnalites.html"><i class="zmdi zmdi-lamp zmdi-hc-fw"></i> Fonctionnalites</a></li>
                         </ul>
                     </li>
 
-                    </sec:authorize>
 
 
-                    <li ><a href="gestion_magasins_magasins.html"><i class="zmdi zmdi-home"></i>Gestion des Magasins</a></li>
+
+
+
+                    <li ><a href="management_gestion_magasins_magasins.html"><i class="zmdi zmdi-home"></i>Gestion des Magasins</a></li>
 
 
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-home"></i> Comptabilité</a>
                         <ul>
-                            <li><a href="recettes_depenses_journalieres_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Recettes/Dépenses</a></li>
-                            <li><a href="transferts_journaliers_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Transferts</a></li>
+                            <li><a href="management_recettes_depenses_journalieres_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Recettes/Dépenses</a></li>
+                            <li><a href="management_transferts_journaliers_extraction_show.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Transferts</a></li>
                             <li><a href="comptabilite_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Introduire les Recettes Dépenses et Transferts (Intervalle)</a></li>
                         </ul>
                     </li>

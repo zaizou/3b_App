@@ -47,10 +47,15 @@
 			<param-value>/WEB-INF/config/servlet-config.xml</param-value>
 		</init-param>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>budgComptServlet</servlet-name>
-		<url-pattern>*.html</url-pattern>
-	</servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>budgComptServlet</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
+
+
 	<servlet-mapping>
 		<servlet-name>budgComptServlet</servlet-name>
 		<url-pattern>*.json</url-pattern>
