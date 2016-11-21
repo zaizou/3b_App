@@ -4,8 +4,8 @@ var compteSelected = false;
 var selectedCompte = -1;
 var compteCreationMode = false;
 var compteShowingMode = false;
-var placeId="";
-
+var nomMagasin="";
+var placeId = "";
 
 
 var geocoder = new google.maps.Geocoder;
@@ -18,9 +18,9 @@ var data_section = {
 
 
 function prepareGMAPS_view() {
-    var map=$('#mapSelector').locationpicker({
+    var map = $('#mapSelector').locationpicker({
         location: {latitude: 36.718863059742844, longitude: 3.183347702026367},
-        radius:0,
+        radius: 0,
         enableAutocomplete: true,
         inputBinding: {
             latitudeInput: $('#latitudeInput'),
@@ -29,30 +29,39 @@ function prepareGMAPS_view() {
         }
     });
 
-    var map=$('#mapSelector').locationpicker("map");
+    var map = $('#mapSelector').locationpicker("map");
 
 
-    var marker=map.marker;
+    var marker = map.marker;
     google.maps.event.addListener(marker, 'dragend', function () {
-        console.info("my marker is working"+marker.getPosition().toString());
-        getLocationId(marker.getPosition().lat(),marker.getPosition().lng());
+        console.info("my marker is working" + marker.getPosition().toString());
+        getLocationId(marker.getPosition().lat(), marker.getPosition().lng());
         //autocomplete.setPosition(marker.getPosition());
     });
+
+    getLocationId(36.718863059742844,3.183347702026367);
+
+
+
 
     //initMap();
 
 }
 
 
-function getLocationId(latitude,longitude){
+//var imgUpload=$("div#imgUpload").dropzone({ url: "/file/post" });
+//var myDropzone = $("#imgFor").dropzone({ url: "/file-upload" });
+
+
+function getLocationId(latitude, longitude) {
     var latlng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
 
-    geocoder.geocode({'location': latlng}, function(results, status) {
+    geocoder.geocode({'location': latlng}, function (results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
             if (results[1]) {
-                console.log("place id is :"+results[1].place_id);
+                console.log("place id is :" + results[1].place_id);
                 $("#placeIdInput").val(results[1].place_id);
-                placeId=results[1].place_id;
+                placeId = results[1].place_id;
             } else {
                 window.alert('No results found');
             }
@@ -63,10 +72,7 @@ function getLocationId(latitude,longitude){
 }
 
 
-
-
-
-function initMap(){
+function initMap() {
     var map = new google.maps.Map(document.getElementById('mapSelector'), {
         center: {lat: -33.8688, lng: 151.2195},
         zoom: 13
@@ -86,7 +92,7 @@ function initMap(){
     });
     marker.setVisible(true);
 
-    autocomplete.addListener('place_changed', function() {
+    autocomplete.addListener('place_changed', function () {
         var place = autocomplete.getPlace();
         console.log(place.geometry.location.toString());
         if (!place.geometry) {
@@ -102,7 +108,7 @@ function initMap(){
 
         // Set the position of the marker using the place ID and location.
 
-        marker=new google.maps.Marker({
+        marker = new google.maps.Marker({
             draggable: true,
             position: place.geometry.location,
             animation: google.maps.Animation.DROP,
@@ -127,19 +133,13 @@ function initMap(){
     });
 
 
-
-
-
-
 }
-
-
 
 
 function geocodePosition(pos) {
     geocoder.geocode({
         latLng: pos
-    }, function(responses) {
+    }, function (responses) {
         if (responses && responses.length > 0) {
             marker.formatted_address = responses[0].formatted_address;
         } else {
@@ -149,74 +149,86 @@ function geocodePosition(pos) {
         infowindow.open(map, marker);
     });
 }
-/*
-function codeAddress() {
-    var address = document.getElementById('address').value;
-    geocoder.geocode({
-        'address': address
-    }, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            map.setCenter(results[0].geometry.location);
-            if (marker) {
-                marker.setMap(null);
-                if (infowindow) infowindow.close();
-            }
-            marker = new google.maps.Marker({
-                map: map,
-                draggable: true,
-                position: results[0].geometry.location
-            });
-            google.maps.event.addListener(marker, 'dragend', function() {
-                geocodePosition(marker.getPosition());
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-                if (marker.formatted_address) {
-                    infowindow.setContent(marker.formatted_address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
-                } else {
-                    infowindow.setContent(address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
-                }
-                infowindow.open(map, marker);
-            });
-            google.maps.event.trigger(marker, 'click');
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
-}
 
-*/
+
 
 
 //Initialisation du tableau contenant les sections
 $(document).ready(function () {
 
+    init_users_list();
 
-    //Initialisation
-    $.getJSON('gestion_utilisateurs_utilisateurs_libres_list.json', {
-        ajax: 'true'
-    }, function (result) {
-        var htln = "";
-        for (var i = 0; i < result.utilisateurList.length; i++) {
-            htln += '<option value=';
-            htln += "" + result.utilisateurList[i].id;
-            htln += '>';
-            htln += "" + result.utilisateurList[i].nom+" "+result.utilisateurList[i].prenom;
-            htln += '</option>';
-        }
-        $("#responsable-select")
-            .html(htln)
-            .selectpicker('refresh');
-
-    }).done(function () {
-        console.log("apres success");
+    $("#creat_input_nom").on("change",function () {
+        nomMagasin=$(this).val();
     })
-        .fail(function () {
-            console.log("error dans la requete d'ajout de responsables");
-        })
-        .always(function () {
-            console.log("complete toujours succes ou erreur");
-        });
 
+    var myDropzone = new Dropzone("div#my-awesome-dropzone", {
+        url: "/uploadfile.html",
+        init: function () {
+            var _this = this;
+
+
+            this.on("sending", function (file, xhr, data) {
+                console.log("hello i am sending files");
+            });
+
+            this.on("addedfile", function () {
+                if (this.files[1] != null) {
+                    this.removeFile(this.files[0]);
+                }
+            });
+
+            this.on("processing", function(file) {
+                this.options.url = "/uploadfile.html?name="+nomMagasin;
+            });
+
+            this.on("removedfile", function (file) {
+                //html manipulation to disable and select certain page stuff
+            });
+
+            this.on("success", function (file) {
+                //html manipulation to disable and select certain page stuff                    });
+            });
+
+
+        }
+
+        ,
+        uploadMultiple: false,
+        clickable: true,
+        addRemoveLinks: true,
+
+    });
+
+ 
+    //Initialisation
+    function init_users_list(){
+        $.getJSON('gestion_utilisateurs_utilisateurs_libres_list.json', {
+            ajax: 'true'
+        }, function (result) {
+            var htln = "";
+            for (var i = 0; i < result.utilisateurList.length; i++) {
+                htln += '<option value=';
+                htln += "" + result.utilisateurList[i].id;
+                htln += '>';
+                htln += "" + result.utilisateurList[i].nom + " " + result.utilisateurList[i].prenom;
+                htln += '</option>';
+            }
+            $("#responsable-select")
+                .html(htln)
+                .selectpicker('refresh');
+
+        }).done(function () {
+                console.log("apres success");
+            })
+            .fail(function () {
+                console.log("error dans la requete d'ajout de responsables");
+            })
+            .always(function () {
+                console.log("complete toujours succes ou erreur");
+            });
+
+    }
 
 
     //Initialisation
@@ -224,18 +236,18 @@ $(document).ready(function () {
         ajax: 'true'
     }, function (result) {
         var htln = "";
-        var matricule="";
+        var matricule = "";
         for (var i = 0; i < result.wilayaList.length; i++) {
-            if(result.wilayaList[i].matriculeWilaya < 10)
-                matricule="0"+result.wilayaList[i].matriculeWilaya;
+            if (result.wilayaList[i].matriculeWilaya < 10)
+                matricule = "0" + result.wilayaList[i].matriculeWilaya;
             else
-                matricule=""+result.wilayaList[i].matriculeWilaya;
+                matricule = "" + result.wilayaList[i].matriculeWilaya;
             htln += '<option value=';
             htln += "" + result.wilayaList[i].matriculeWilaya;
             htln += '>';
-            htln += "" + matricule+" - "+result.wilayaList[i].intituleWilaya;
+            htln += "" + matricule + " - " + result.wilayaList[i].intituleWilaya;
             htln += '</option>';
-            matricule="";
+            matricule = "";
         }
         $("#wilaya-select")
             .html(htln)
@@ -250,7 +262,6 @@ $(document).ready(function () {
         .always(function () {
             console.log("complete toujours succes ou erreur");
         });
-
 
 
     var grid = $("#data-table-command").bootgrid({
@@ -273,7 +284,6 @@ $(document).ready(function () {
     }).on("loaded.rs.jquery.bootgrid", function () {
 
 
-
         grid.find('button.compte-suppr.extern').on("click", function (e) {
             var rows = Array();
             rows[0] = $(this).data("row-id");
@@ -289,7 +299,7 @@ $(document).ready(function () {
 
             var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
             //window.location.replace("gestion_utilisateurs_get_utilisateur.html?id_utilisateur="+idUtilisateur);
-            window.location.href="gestion_magasins_get_magasin.html?id_magasin="+idUtilisateur;
+            window.location.href = "gestion_magasins_get_magasin.html?id_magasin=" + idUtilisateur;
 
         });
     });
@@ -443,7 +453,7 @@ $(document).ready(function () {
 
                     }
                 }
-            )
+                )
                 .done(function (data) {
                     swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
                 })
@@ -456,14 +466,22 @@ $(document).ready(function () {
     function afficherCreateChapitreMessage() {
 
 
-        var type_mag=$("#type-select").val();
-        var ordre_mag=$("#ordre-select").val();
+        var type_mag = $("#type-select").val();
+        var ordre_mag = $("#ordre-select").val();
         var in_nom = $("#creat_input_nom").val();
         var wilaya = $("#wilaya-select").val();
         var responsable = $("#responsable-select").val();
         var lati = $("#latitudeInput").val();
-        var longi= $("#longitudeInput").val();
+        var longi = $("#longitudeInput").val();
         var address = $("#addressInput").val();
+        var mail=$("#mailInput").val();
+        var tel=$("#telInput").val();
+        var placeId=$("#placeIdInput").val();
+        var youtubeId=$("#youtubeIdInput").val();
+        var doss=$("#doss_stock").val();
+
+
+
 
 
         swal({
@@ -482,19 +500,24 @@ $(document).ready(function () {
                     data: {
                         nom: in_nom,
                         wilaya: wilaya,
-                        responsable:responsable,
+                        responsable: responsable,
                         latitude: lati,
                         longitude: longi,
                         addresse: address,
-                        type_magasin:type_mag,
-                        ordre_magasin:ordre_mag
+                        type_magasin: type_mag,
+                        ordre_magasin: ordre_mag,
+                        email:mail,
+                        telphone:tel,
+                        placeid:placeId,
+                        videoId:youtubeId,
+                        dossierStockage:doss
                     }
                 }
-            )
+                )
                 .done(function (data) {
                     if (JSON.parse(data) == "100") {
                         swal("Succès!", "Le Magasin est ajouté avec Succès", "success");
-                        window.location.replace("gestion_magasins_magasins.html");
+                        window.location.replace("management_gestion_magasins_magasins.html");
                     }
                     else if (JSON.parse(data) == "602")
                         swal("Erreur", "le Magasin Existe déja ", "error");
@@ -504,6 +527,8 @@ $(document).ready(function () {
                         swal("Erreur", "Erreur dans le Format du Matricule ", "error");
                     else if (JSON.parse(data) == "105")
                         swal("Erreur", "La Wilaya Sélectionnée n'existe pas Veuillez contacter votre administrateur !", "error");
+                    else if (JSON.parse(data) == "106")
+                        swal("Erreur", "Vous devez introduire le nom du dossier de stockage des  !", "error");
 
 
                 })
@@ -541,15 +566,16 @@ $(document).ready(function () {
                             data: {nom_magasin: idUtilisateur},
                         }
                     ).done(function (data) {
-                        if (JSON.parse(data) == "100") {
+                            if (JSON.parse(data) == "100") {
 
-                            $('#data-table-command').bootgrid("remove", selectedRow);
-                            swal("Succès!", "Le Magasin est supprimé avec Succès", "success");
-                        }
+                                $('#data-table-command').bootgrid("remove", selectedRow);
+                                init_users_list();
+                                swal("Succès!", "Le Magasin est supprimé avec Succès", "success");
+                            }
 
-                        else
-                            swal("Erreur", "Magasin non  Supprimé \n code d'erreur : "+JSON.parse(data), "error");
-                    })
+                            else
+                                swal("Erreur", "Magasin non  Supprimé \n code d'erreur : " + JSON.parse(data), "error");
+                        })
                         .error(function (data) {
                             swal("Erreur", "Magasin non  Supprimé", "error");
                         });

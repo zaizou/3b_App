@@ -12,6 +12,8 @@
     <link href="css/malihu-scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
     <link href="css/sweetalert2.css" rel="stylesheet">
     <link href="css/jquery.bootgrid.min.css" rel="stylesheet">
+    <link href="css/dropzone/dropzone.min.css" rel="stylesheet">
+    <link href="css/dropzone/basic.min.css" rel="stylesheet">
     <link href="css/app.min.1.css" rel="stylesheet">
     <link href="css/app.min.2.css" rel="stylesheet">
     <title></title>
@@ -59,6 +61,7 @@
 <script type="text/javascript" src="js/jquerymy-1.2.4.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUtsGVCuVLk9MrJvg0hV0PXcR7h-zLZ8I&libraries=places" ></script>
 <script type="text/javascript" src="js/locationpicker.jquery.min.js"></script>
+<script type="text/javascript" src="js/dropzone/dropzone.min.js"></script>
 
 
 <!--

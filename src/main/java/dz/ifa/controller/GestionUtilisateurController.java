@@ -2,6 +2,7 @@ package dz.ifa.controller;
 
 import dz.ifa.model.gestion_utilisateurs.Fonctionnalite;
 import dz.ifa.model.gestion_utilisateurs.Utilisateur;
+import dz.ifa.repository.user_management.UtilisateurRepository;
 import dz.ifa.service.gestion_utilisateurs.GestionUtilisateursService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,7 +23,8 @@ public class GestionUtilisateurController {
 
     @Autowired
     private GestionUtilisateursService gestionUtilisateursService;
-
+    @Autowired
+    UtilisateurRepository utilisateurRepository;
 
 
     @RequestMapping(
@@ -73,18 +75,14 @@ public class GestionUtilisateurController {
     }
 
 
-
-
-
-
     @RequestMapping(
             value = {"/gestion_utilisateurs_utilisateurs_list.json"},
             method = {RequestMethod.GET}
     )
     public List<Utilisateur> getUtilisateursList() {
         List<Utilisateur> listUsers = gestionUtilisateursService.getAllUtilisateurs();
-        if(listUsers==null)
-            listUsers=new ArrayList<Utilisateur>();
+        if (listUsers == null)
+            listUsers = new ArrayList<Utilisateur>();
 
         return listUsers;
     }
@@ -95,15 +93,19 @@ public class GestionUtilisateurController {
             method = {RequestMethod.GET}
     )
     public List<Utilisateur> getUtilisateursLibresList() {
-        List<Utilisateur> listUsers = gestionUtilisateursService.getAllUtilisateurs();
-        if(listUsers==null)
-            listUsers=new ArrayList<Utilisateur>();
-            int i=0;
-            while (i<listUsers.size())
-                if(listUsers.get(i).getMagasin()!=null)
-                    listUsers.remove(i);
-                else
-                    i++;
+        List<Utilisateur> listUsers = utilisateurRepository.findAll();
+        if (listUsers == null)
+            listUsers = new ArrayList<Utilisateur>();
+        int i = 0;
+        while (i < listUsers.size())
+            if (listUsers.get(i).getMagasin() != null){
+                System.out.println("Le Magasin de l'util :" + listUsers.get(i).getId() + "  est  :" + listUsers.get(i).getMagasin().getNomMagazin());
+                listUsers.remove(i);
+            }
+
+            else
+                i++;
+
 
         return listUsers;
     }
@@ -122,32 +124,30 @@ public class GestionUtilisateurController {
     }
 
 
-
     @RequestMapping(
             value = {"/gestion_utilisateurs_utilisateur_remove"},
             method = {RequestMethod.POST}
     )
     @ResponseBody
-    public String postRemoveUtilisateur(@RequestParam("id_utilisateur") String id_utilisateur ) {
+    public String postRemoveUtilisateur(@RequestParam("id_utilisateur") String id_utilisateur) {
 
         System.out.println("Utilisateur Remove : ");
         System.out.println("id_utilisateur :" + id_utilisateur);
 
-        List<Utilisateur>  utilisateurs= gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
-        if(utilisateurs.size()==0)
+        List<Utilisateur> utilisateurs = gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
+        if (utilisateurs.size() == 0)
             return "102";
-        Utilisateur utilisateur=utilisateurs.get(0);
+        Utilisateur utilisateur = utilisateurs.get(0);
         System.out.println("------------------------");
         System.out.println("------------------------");
         System.out.println("------------------------");
-        System.out.println("Suppression de l'utilisateur "+utilisateur.getId());
+        System.out.println("Suppression de l'utilisateur " + utilisateur.getId());
 
-        String result=gestionUtilisateursService.supprimerUtilisateur(utilisateur);
-        if(result !=null){
-            System.out.println("Utilisateur Removed "+result);
+        String result = gestionUtilisateursService.supprimerUtilisateur(utilisateur);
+        if (result != null) {
+            System.out.println("Utilisateur Removed " + result);
             return "100";
-        }
-        else
+        } else
             return "101";
 
     }
@@ -155,17 +155,16 @@ public class GestionUtilisateurController {
     @RequestMapping(value = "/gestion_utilisateurs_get_utilisateur.html", method = RequestMethod.GET)
 
     public String getUtilisateur(@RequestParam("id_utilisateur") String id_utilisateur, Model model) {
-        List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
-        if(utilisateurs.size()==0){
+        List<Utilisateur> utilisateurs = gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
+        if (utilisateurs.size() == 0) {
             System.out.println("compte inexistant");
             return "404";
         }
-        System.out.println("Compte Existe   "+utilisateurs.get(0).getId());
+        System.out.println("Compte Existe   " + utilisateurs.get(0).getId());
 
         model.addAttribute("utilisateur", utilisateurs.get(0));
         return "gestion_utilisateurs_pages/utilisateur_detaill";
     }
-
 
 
     @RequestMapping(
@@ -174,15 +173,15 @@ public class GestionUtilisateurController {
     )
     @ResponseBody
     public String postCreateUtilisateur(@RequestParam("nom") String nom,
-                                                   @RequestParam("prenom") String prenom,
-                                                   @RequestParam("passwd") String passw,
-                                                   @RequestParam("reppassw") String reppasswd,
-                                                   @RequestParam(value = "mail", required = false) String mail,
-                                                   @RequestParam(value = "addresse", required = false) String addresse,
-                                                   @RequestParam("id_utilisateur") String idUtilisateur,
-                                                   @RequestParam("code_structure") String code_structure,
-                                                   @RequestParam(value = "fonctionnalites[]") List<Integer> fonctionnalites,
-                                                   @RequestParam("actif") int actif
+                                        @RequestParam("prenom") String prenom,
+                                        @RequestParam("passwd") String passw,
+                                        @RequestParam("reppassw") String reppasswd,
+                                        @RequestParam(value = "mail", required = false) String mail,
+                                        @RequestParam(value = "addresse", required = false) String addresse,
+                                        @RequestParam("id_utilisateur") String idUtilisateur,
+                                        @RequestParam("code_structure") String code_structure,
+                                        @RequestParam(value = "fonctionnalites[]") List<Integer> fonctionnalites,
+                                        @RequestParam("actif") int actif
     ) {
 
         System.out.println("Mapping Rubrique Creation ");
@@ -195,36 +194,35 @@ public class GestionUtilisateurController {
         System.out.println("id_user:" + idUtilisateur);
         System.out.println("code_structure:" + idUtilisateur);
 
-        if(gestionUtilisateursService.getUtilisateurByIdUtilisateur(idUtilisateur).size()>0)
+        if (gestionUtilisateursService.getUtilisateurByIdUtilisateur(idUtilisateur).size() > 0)
             return "602";
-        if(!passw.equals(reppasswd))
+        if (!passw.equals(reppasswd))
             return "603";
-        Utilisateur utilisateur=new Utilisateur();
+        Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(nom);
         utilisateur.setPrenom(prenom);
         utilisateur.setPasswd(BCryptHash(passw));
-        if(mail!=null)
+        if (mail != null)
             utilisateur.seteMail(mail);
-        if(addresse!=null)
-        utilisateur.setAdresse(addresse);
+        if (addresse != null)
+            utilisateur.setAdresse(addresse);
         utilisateur.setActif(actif);
         utilisateur.setId(idUtilisateur);
 
 
         utilisateur.prepareList();
         for (int i = 0; i < fonctionnalites.size(); i++) {
-            Fonctionnalite fonctionnalite=gestionUtilisateursService.getFonctionnaliteById(fonctionnalites.get(i)).get(0);
+            Fonctionnalite fonctionnalite = gestionUtilisateursService.getFonctionnaliteById(fonctionnalites.get(i)).get(0);
             utilisateur.getFoncts().add(fonctionnalite);
             System.out.println("les FCN sont : " + fonctionnalites.get(i));
         }
 
-        if(gestionUtilisateursService.creerUtilisateur(utilisateur)!=null)
+        if (gestionUtilisateursService.creerUtilisateur(utilisateur) != null)
             return "100";
         else
             return "101";
 
     }
-
 
 
     @RequestMapping(
@@ -233,14 +231,14 @@ public class GestionUtilisateurController {
     )
     @ResponseBody
     public String postEditUtilisateur(@RequestParam("nom") String nom,
-                                                   @RequestParam("prenom") String prenom,
-                                                   @RequestParam("passwd") String passw,
-                                                   @RequestParam("reppassw") String reppasswd,
-                                                   @RequestParam(value = "mail", required = false) String mail,
-                                                   @RequestParam(value = "addresse", required = false) String addresse,
-                                                   @RequestParam("id_utilisateur") String idUtilisateur,
-                                                   @RequestParam(value = "fonctionnalites[]") List<Integer> fonctionnalites,
-                                                   @RequestParam("actif") int actif
+                                      @RequestParam("prenom") String prenom,
+                                      @RequestParam("passwd") String passw,
+                                      @RequestParam("reppassw") String reppasswd,
+                                      @RequestParam(value = "mail", required = false) String mail,
+                                      @RequestParam(value = "addresse", required = false) String addresse,
+                                      @RequestParam("id_utilisateur") String idUtilisateur,
+                                      @RequestParam(value = "fonctionnalites[]") List<Integer> fonctionnalites,
+                                      @RequestParam("actif") int actif
     ) {
 
         System.out.println("Mapping Rubrique Creation ");
@@ -254,41 +252,40 @@ public class GestionUtilisateurController {
         System.out.println("code_structure:" + idUtilisateur);
 
 
-        List<Utilisateur>utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(idUtilisateur);
-        if(utilisateurs.size()==0){
+        List<Utilisateur> utilisateurs = gestionUtilisateursService.getUtilisateurByIdUtilisateur(idUtilisateur);
+        if (utilisateurs.size() == 0) {
             System.out.println("Erreur user n'exite pas");
             return "104";
         }
 
-        if(!passw.equals(reppasswd))
+        if (!passw.equals(reppasswd))
             return "603";
-        Utilisateur utilisateur=utilisateurs.get(0);
+        Utilisateur utilisateur = utilisateurs.get(0);
         utilisateur.setNom(nom);
         utilisateur.setPrenom(prenom);
         utilisateur.setPasswd(BCryptHash(passw));
-        if(mail!=null)
+        if (mail != null)
             utilisateur.seteMail(mail);
-        if(addresse!=null)
+        if (addresse != null)
             utilisateur.setAdresse(addresse);
         utilisateur.setId(idUtilisateur);
         utilisateur.setActif(actif);
         utilisateur.prepareList();
         for (int i = 0; i < fonctionnalites.size(); i++) {
-            Fonctionnalite fonctionnalite=gestionUtilisateursService.getFonctionnaliteById(fonctionnalites.get(i)).get(0);
+            Fonctionnalite fonctionnalite = gestionUtilisateursService.getFonctionnaliteById(fonctionnalites.get(i)).get(0);
             utilisateur.getFoncts().add(fonctionnalite);
             System.out.println("les FCN sont : " + fonctionnalites.get(i));
         }
 
-        if(gestionUtilisateursService.creerUtilisateur(utilisateur)!=null)
+        if (gestionUtilisateursService.creerUtilisateur(utilisateur) != null)
             return "100";
-        else{
+        else {
             System.out.println("service creation retourne null");
             return "101";
         }
 
 
     }
-
 
 
     public String BCryptHash(String sequence) {

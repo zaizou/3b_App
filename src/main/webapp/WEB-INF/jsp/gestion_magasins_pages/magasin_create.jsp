@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="card section-create" style="display:none" >
+<div class="card section-create" style="display:none">
     <!--L'entete de la page' -->
 
     <div class="card-header">
@@ -43,45 +43,52 @@
                 <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
 
-                        <div class="row" >
-                            <div class="col-sm-4" >
-                                <div class="fg-line"  >
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="fg-line">
                                     <input id="creat_input_nom" placeholder="Nom du Magasin"
                                            class="form-control compte">
                                 </div>
                             </div>
 
-                            <div class="col-sm-6" >
-                                <select  class="selectpicker" title="Wilaya" id="wilaya-select"
-                                         data-live-search="true" >
+                            <div class="col-sm-6">
+                                <select class="selectpicker" title="Wilaya" id="wilaya-select"
+                                        data-live-search="true">
                                 </select>
                             </div>
 
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-sm-6" >
-                                <select  class="selectpicker" title="Responsable" id="responsable-select"
-                                         data-live-search="true" >
+                            <div class="col-sm-6">
+                                <select class="selectpicker" title="Responsable" id="responsable-select"
+                                        data-live-search="true">
                                 </select>
                             </div>
+                            <div class="col-sm-6">
+                                <div class="fg-line">
+                                    <input id="doss_stock" placeholder="Nom du Dossier de Stockage"
+                                           class="form-control compte">
+                                </div>
+                            </div>
+
+
                         </div>
 
                         <br>
 
 
-
                         <div class="row">
-                            <div class="col-sm-4" >
-                                <select  class="selectpicker" title="Type du Magasin" id="type-select" >
+                            <div class="col-sm-4">
+                                <select class="selectpicker" title="Type du Magasin" id="type-select">
                                     <option value="detail">Détail</option>
                                     <option value="gros">Gros</option>
 
                                 </select>
                             </div>
 
-                            <div class="col-sm-4" >
-                                <select  class="selectpicker" title="Ordre du Magasin" id="ordre-select" >
+                            <div class="col-sm-4">
+                                <select class="selectpicker" title="Ordre du Magasin" id="ordre-select">
                                     <option value="0">En Haut</option>
                                     <option value="1">En Bas</option>
                                 </select>
@@ -89,11 +96,9 @@
                         </div>
 
 
-
                     </div>
                 </div>
             </div>
-
 
 
             <div class="panel panel-collapse">
@@ -112,14 +117,14 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="fg-line">
-                                    <input id="TelInput" placeholder="Téléphone"
+                                    <input id="telInput" placeholder="Téléphone"
                                            class="form-control compte">
                                 </div>
                             </div>
 
                             <div class="col-sm-4">
                                 <div class="fg-line">
-                                    <input id="MailInput" placeholder="Email"
+                                    <input id="mailInput" placeholder="Email"
                                            class="form-control compte">
                                 </div>
                             </div>
@@ -154,7 +159,7 @@
                             <div class="col-sm-6">
                                 <div class="fg-line">
                                     <input id="placeIdInput" placeholder="Place Id" type="text"
-                                           class="controls form-control compte">
+                                           class="controls form-control compte" readonly>
                                 </div>
                             </div>
 
@@ -190,28 +195,40 @@
 
 
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-8">
                                 <div class="fg-line">
                                     <input id="youtubeIdInput" placeholder="Id de la vidéo youtube"
                                            class="form-control compte">
                                 </div>
                             </div>
-
-
                         </div>
-
                         <br>
-
-
-
-
                     </div>
                 </div>
             </div>
 
+            <div class="panel panel-collapse">
+                <div class="panel-heading" role="tab" id="headingFive">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"
+                           aria-expanded="false" aria-controls="collapseFive">
+                            Images du Magasin
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFive" class="collapse in" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="panel-body">
+                        <div class="col-sm-12">
 
 
+                            <div class="dropzone needsclick dz-clickable" id="my-awesome-dropzone"></div>
 
+
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
 
 
         </div>

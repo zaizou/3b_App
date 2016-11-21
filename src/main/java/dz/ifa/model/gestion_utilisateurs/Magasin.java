@@ -36,7 +36,17 @@ public class Magasin {
     private String telephone;
     @Column
     private String email;
+    @Column
+    private String placeId;
+    @Column
+    private String videoId;
+    @Column
+    private String nomDossierStockage;
 
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JsonManagedReference
+    private List<ImageMagasin> imagesMagasin;
 
 
 
@@ -44,10 +54,10 @@ public class Magasin {
     @JsonManagedReference
     private Utilisateur responsableMagasin;
 
-    @OneToMany(mappedBy = "magasin",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "magasin",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JsonBackReference
     private List<Compta> comptabiliteMagasin;
-    @OneToMany(mappedBy = "magasin",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "magasin",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JsonBackReference
     private List<Transfert> transfertsMagasin;
 
@@ -82,6 +92,38 @@ public class Magasin {
         this.latitude = latitude;
         this.longitude = longitude;
         this.responsableMagasin = responsableMagasin;
+    }
+
+    public List<ImageMagasin> getImagesMagasin() {
+        return imagesMagasin;
+    }
+
+    public String getNomDossierStockage() {
+        return nomDossierStockage;
+    }
+
+    public void setNomDossierStockage(String nomDossierStockage) {
+        this.nomDossierStockage = nomDossierStockage;
+    }
+
+    public void setImagesMagasin(List<ImageMagasin> imagesMagasin) {
+        this.imagesMagasin = imagesMagasin;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public String intituleOdreMagasin(){
@@ -175,5 +217,21 @@ public class Magasin {
 
     public void setTransfertsMagasin(List<Transfert> transfertsMagasin) {
         this.transfertsMagasin = transfertsMagasin;
+    }
+
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
+    }
+
+    public String getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
     }
 }

@@ -13,6 +13,17 @@ var idMag;
 var ancResp="";
 var typeM="";
 var ordreM="";
+var imagesList;
+var mail=$("#mailInput").attr("placeholder");
+var telephone=$("#telInput").attr("placeholder");
+var videoId=$("#youtubeIdInput").attr("placeholder");
+var placeId=$("#placeIdInput").attr("placeholder");
+
+
+var geocoder = new google.maps.Geocoder;
+
+
+
 
 $(document).ready(function () {
     $("input.compte").prop("readonly", true);
@@ -31,7 +42,7 @@ $(document).ready(function () {
         prepareSelectFromJSON();
         $(this).css('display', 'none');
         $("button.compte-mod-save").css('display', '');
-        prepareMap();
+        initMap();
 
 
     });
@@ -39,13 +50,112 @@ $(document).ready(function () {
 
     $('button.compte-mod-save').on('click', function () {
         afficherModifierMagasinMessage();
+    });
 
+
+    function getImagesList(){
+        $.getJSON('management_get_images.json?nomMagasin='+storeName, {
+            ajax: 'true'
+        }, function (result) {
+
+
+            console.table(result);
+            for(i=0;i<result.length;i++){
+                console.log(result.imageMagasinList[i]);
+            }
+
+            imagesList=result.imageMagasinList;
+
+        }).done(function () {
+                console.log("apres success");
+            })
+            .fail(function () {
+                console.log("error dans la requete d'ajout de responsables");
+            })
+            .always(function () {
+                console.log("complete toujours succes ou erreur");
+            });
+
+    }
+
+/*
+    init: function () {
+        var mockFile = { name: "myimage.jpg", size: 12345, type: 'image/jpeg' };
+        this.options.addedfile.call(this, mockFile);
+        this.options.thumbnail.call(this, mockFile, "http://someserver.com/myimage.jpg");
+        mockFile.previewElement.classList.add('dz-success');
+        mockFile.previewElement.classList.add('dz-complete');
+    }
+*/
+
+
+
+    var myDropzone = new Dropzone("div#my-awesome-dropzone", {
+        url: "/uploadfile.html",
+        init: function () {
+            var _this = this;
+
+            var mockFile;
+            for(i=0;i<images.length;i++){
+                mockFile = { name: images[i].id};
+                this.options.addedfile.call(this, mockFile);
+                console.log("the path is :"+images[i].path);
+                this.options.thumbnail.call(this, mockFile, images[i].path );
+                mockFile.previewElement.classList.add('dz-success');
+                mockFile.previewElement.classList.add('dz-complete');
+            }
+
+
+            this.on("addedfile", function () {
+                if (this.files[1] != null) {
+                    this.removeFile(this.files[0]);
+                }
+            });
+
+
+            this.on("sending", function (file, xhr, data) {
+                console.log("hello i am sending files");
+            });
+
+            this.on("processing", function(file) {
+                this.options.url = "/uploadfile.html?name="+storeName;
+            });
+
+            this.on("removedfile", function (file) {
+                //html manipulation to disable and select certain page stuff
+            });
+
+            this.on("success", function (file) {
+                //html manipulation to disable and select certain page stuff                    });
+            });
+        }
+
+        ,
+        uploadMultiple: false,
+        clickable: true,
+        addRemoveLinks: true,
 
     });
 
 
 
 
+    $("#mailInput").on('change',function () {
+        mail=$(this).val();
+    });
+
+    $("#telInput").on('change',function () {
+        telephone=$(this).val();
+    });
+
+
+    $("#youtubeIdInput").on('change',function () {
+        videoId=$(this).val();
+    });
+
+    $("#placeIdInput").on('change',function () {
+
+    });
 
 
     $("#creat_input_nom").on('change', function () {
@@ -142,23 +252,93 @@ $(document).ready(function () {
     }
 
 
-    function prepareMap() {
-        $('#mapSelector').locationpicker({
-            location: {latitude: 36.718863059742844, longitude: 3.183347702026367},
-            radius: 0,
-            enableAutocomplete: true,
-            inputBinding: {
-                latitudeInput: $('#latitudeInput'),
-                longitudeInput: $('#longitudeInput'),
-                locationNameInput: $('#addressInput')
+    function getLocationId(latitude, longitude) {
+        var latlng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
+
+        geocoder.geocode({'location': latlng}, function (results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                if (results[1]) {
+                    console.log("place id is :" + results[1].place_id);
+                    $("#placeIdInput").val(results[1].place_id);
+                    placeId = results[1].place_id;
+                } else {
+                    window.alert('No results found');
+                }
+            } else {
+                window.alert('Geocoder failed due to: ' + status);
             }
+        });
+    }
+
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('mapSelector'), {
+            center: {lat: -33.8688, lng: 151.2195},
+            zoom: 13
+        });
+
+
+        var input = document.getElementById('addressInput');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        autocomplete.bindTo('bounds', map);
+        var marker = new google.maps.Marker({
+            draggable: true,
+            position: {lat: -33.8688, lng: 151.2195},
+            animation: google.maps.Animation.DROP,
+            map: map
+        });
+        marker.setVisible(true);
+
+        autocomplete.addListener('place_changed', function () {
+            var place = autocomplete.getPlace();
+            console.log(place.geometry.location.toString());
+            if (!place.geometry) {
+                return;
+            }
+
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
+
+            // Set the position of the marker using the place ID and location.
+
+            marker = new google.maps.Marker({
+                draggable: true,
+                position: place.geometry.location,
+                animation: google.maps.Animation.DROP,
+                map: map
+            });
+            google.maps.event.addListener(marker, 'dragend', function () {
+                map.setCenter(marker.getPosition());
+                console.info(marker.getPosition().toString());
+                //autocomplete.setPosition(marker.getPosition());
+            });
+
+
+            marker.setVisible(true);
+
+
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function () {
+            map.setCenter(marker.getPosition());
+            console.info(marker.getPosition().toString());
+            //autocomplete.setPosition(marker.getPosition());
         });
 
 
     }
 
 
+
     function afficherModifierMagasinMessage() {
+
+        var dossier_stock=$("#dossier_stock").val();
         if(manager=="")
             manager=ancResp;
 
@@ -185,7 +365,13 @@ $(document).ready(function () {
                         longitudeMag: longitude,
                         adresseMag: address,
                         type_magasin:typeM,
-                        ordre_magasin:ordreM
+                        ordre_magasin:ordreM,
+                        dossier_stockage:dossier_stock,
+                        tel:telephone,
+                        email:mail,
+                        vidId:videoId,
+                        placId:placeId
+
                     }
                 }
                 )

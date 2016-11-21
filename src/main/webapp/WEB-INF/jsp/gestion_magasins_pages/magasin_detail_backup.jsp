@@ -10,8 +10,6 @@
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/malihu-scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
     <link href="css/sweetalert2.css" rel="stylesheet">
-    <link href="css/dropzone/dropzone.min.css" rel="stylesheet">
-    <link href="css/dropzone/basic.min.css" rel="stylesheet">
     <link href="css/jquery.bootgrid.min.css" rel="stylesheet">
     <link href="css/app.min.1.css" rel="stylesheet">
     <link href="css/app.min.2.css" rel="stylesheet">
@@ -31,23 +29,6 @@
         <div class="container">
 
             <c:if test="${magasin!=null}">
-
-            <script>
-                var images = new Array();
-
-                <c:if test="${magasin.imagesMagasin.size()>0}">
-                <c:forEach begin="0" end="${magasin.imagesMagasin.size()-1}" varStatus="loop">
-                images[${loop.index}] = new Object();
-                images[${loop.index}].path = '${magasin.imagesMagasin.get(loop.index).path}';
-                images[${loop.index}].id = '${magasin.imagesMagasin.get(loop.index).id}';
-                images[${loop.index}].originalFilename = '${magasin.imagesMagasin.get(loop.index).originalFilename}';
-                </c:forEach>
-
-                </c:if>
-
-
-            </script>
-
 
             <div class="card section-create">
                 <!--L'entete de la page' -->
@@ -118,9 +99,6 @@
                                                         data-live-search="true">
                                                 </select>
                                             </div>
-
-                                            <input style="display: none" id="dossier_stock" value="${magasin.nomDossierStockage}" >
-
 
                                         </div>
 
@@ -213,25 +191,6 @@
                             <div id="collapseThree" class="collapse in" role="tabpanel" aria-labelledby="headingThree">
                                 <div class="panel-body">
 
-
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="fg-line">
-                                                <input id="telInput" placeholder="${magasin.telephone}"
-                                                       class="form-control compte">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <div class="fg-line">
-                                                <input id="mailInput" placeholder="${magasin.email}"
-                                                       class="form-control compte">
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <br>
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="fg-line">
@@ -250,20 +209,13 @@
                                     <br>
 
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-8">
                                             <div class="fg-line">
                                                 <input id="addressInput" placeholder="${magasin.getAdresseMagasin()}"
                                                        class="form-control compte">
                                             </div>
                                         </div>
 
-
-                                        <div class="col-sm-6">
-                                            <div class="fg-line">
-                                                <input id="placeIdInput" placeholder="${magasin.placeId}" type="text"
-                                                       class="controls form-control compte" readonly>
-                                            </div>
-                                        </div>
 
                                     </div>
                                     <br>
@@ -278,56 +230,6 @@
                                     <br/>
 
 
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="panel panel-collapse">
-                            <div class="panel-heading" role="tab" id="headingFour">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"
-                                       aria-expanded="false" aria-controls="collapseFour">
-                                        Média
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseFour" class="collapse in" role="tabpanel" aria-labelledby="headingFour">
-                                <div class="panel-body">
-
-
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                                <input id="youtubeIdInput" placeholder="${magasin.videoId}"
-                                                       class="form-control compte">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-collapse">
-                            <div class="panel-heading" role="tab" id="headingFive">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"
-                                       aria-expanded="false" aria-controls="collapseFive">
-                                        Images du Magasin
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseFive" class="collapse in" role="tabpanel" aria-labelledby="headingFive">
-                                <div class="panel-body">
-                                    <div class="col-sm-12">
-
-
-                                        <div class="dropzone needsclick dz-clickable" id="my-awesome-dropzone"></div>
-
-
-                                    </div>
-                                    <br>
                                 </div>
                             </div>
                         </div>
@@ -362,7 +264,6 @@
 <script type="text/javascript" src="js/locationpicker.jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAUtsGVCuVLk9MrJvg0hV0PXcR7h-zLZ8I"
         type="text/javascript"></script>
-<script type="text/javascript" src="js/dropzone/dropzone.min.js"></script>
 <script type="text/javascript" src="js/functions_gestion_magasins_show.js"></script>
 
 </body>

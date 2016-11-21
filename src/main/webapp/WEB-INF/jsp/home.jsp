@@ -469,13 +469,14 @@ fjs.parentNode.insertBefore(js, fjs);
                         <div class="product-type-overlay">
                             <div class="product-type-info">
                                 <i class="fa fa-search fa-2x gold-text"></i>
-                                <h3 class="gold-text text-uppercase">Alger</h3>
-                                <p class="text-uppercase white-text">34 Avenue Colonel Lotfi<br>Bab El-Oued</p>
-                                <p class="text-uppercase white-text">Tél : +213.561.74.34.12</p>
+                                <h3 class="gold-text text-uppercase">${magasinsHauts.get(loop.index-1).wilayaMagasin.intituleWilaya}</h3>
+                                <p class="text-uppercase white-text">${magasinsHauts.get(loop.index-1).adresseMagasin}</p>
+                                <p class="text-uppercase white-text">${magasinsHauts.get(loop.index-1).telephone}</p>
                             </div>
                         </div>
                     </a>
-                    <img src="./3B-Internationle_files/img/magasins/bab-eloued.png" alt="${magasinsHauts.get(loop.index-1).nomMagazin}"
+                    <img src="./3B-Internationle_files/img/magasins/bab-eloued.png"
+                         alt="${magasinsHauts.get(loop.index-1).nomMagazin}"
                          class="img-princip product-type-img product-type-img-responsive">
                 </div>
             </div>
@@ -652,10 +653,9 @@ fjs.parentNode.insertBefore(js, fjs);
                                                 <div class="product-type-overlay">
                                                     <div class="product-type-info">
                                                         <i class="fa fa-search fa-2x gold-text"></i>
-                                                        <h3 class="gold-text text-uppercase">Alger</h3>
-                                                        <p class="text-uppercase white-text">34 Avenue Colonel Lotfi<br>Bab
-                                                            El-Oued</p>
-                                                        <p class="text-uppercase white-text">Tél : +213.561.74.34.12</p>
+                                                        <h3 class="gold-text text-uppercase">${magasinsBas.get(loop.index-1).wilayaMagasin.intituleWilaya}</h3>
+                                                        <p class="text-uppercase white-text">${magasinsBas.get(loop.index-1).adresseMagasin}</p>
+                                                        <p class="text-uppercase white-text">${magasinsBas.get(loop.index-1).telephone}</p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -729,6 +729,7 @@ fjs.parentNode.insertBefore(js, fjs);
             <div id="portfolio" class="section-content">
                 <div class="container">
                     <div class="title-section text-center">
+                        <br>
                         <h2>Nos Marques</h2>
                         <span></span>
                     </div>
@@ -1180,233 +1181,108 @@ fjs.parentNode.insertBefore(js, fjs);
 <c:set var="opened_rows" value="${opened_rows + 1}" scope="page"/>
 
 <c:forEach begin="1" end="${magasinsHauts.size()  }" varStatus="loop">
-    <c:set var="magasins_count" scope="page" value="${magasins_count+1}"/>
-    <div class="cd-member-bio member-haut-${magasins_count}">
-        *
-        <!-- cd-member-bio-pict -->
+<c:set var="magasins_count" scope="page" value="${magasins_count+1}"/>
+<div class="cd-member-bio member-haut-${magasins_count}">
 
-        <div class="cd-bio-content">
+    <!-- cd-member-bio-pict -->
+
+    <div class="cd-bio-content">
+        <br>
+        <br>
+        <div class="title-section text-center" id="mag-${magasinsHauts.get(loop.index-1).idMagasin}"
+             style="margin-bottom: 30px;">
+            <h2>${magasinsHauts.get(loop.index-1).nomMagazin}</h2>
+            <span></span>
+        </div>
+
+
+        <div class="col m4 col s6">
+            <h4 class="widget-title">Comfort Footwear</h4>
             <br>
-            <br>
-            <div class="title-section text-center" id="mag-${magasinsHauts.get(loop.index-1).idMagasin}" style="margin-bottom: 30px;">
-                <h2>Bab El-Oued, Alger</h2>
-                <span></span>
+            <div class="contactMagasin-info">
+                    <span><i
+                            class="fa fa-home topHIc"></i>${magasinsHauts.get(loop.index-1).adresseMagasin}</span><br><br>
+                <span><i class="fa fa-phone topHIc"></i>${magasinsHauts.get(loop.index-1).telephone}</span>
             </div>
 
-            <div class="col m4 col s6">
-                <h4 class="widget-title">Comfort Footwear</h4>
-                <br>
-                <div class="contactMagasin-info">
-                    <span><i class="fa fa-home topHIc"></i>34 Avenue Colonel Lotfi - Bab El-Oued, Alger</span><br><br>
-                    <span><i class="fa fa-phone topHIc"></i>+213.561.74.34.12</span>
-                </div>
+            <br>
 
-                <br>
+
+            <c:if test="${magasinsHauts.get(loop.index-1).placeId !=null || magasinsHauts.get(loop.index-1).placeId.length()>0}">
+
 
                 <div class="title-section text-center" style="margin-bottom: 30px;">
                     <h2>Carte</h2>
                     <span></span>
                 </div>
-                <div class="container" id="map-zone-${magasinsHauts.get(loop.index-1).idMagasin}" style="height: 300px">
+
+                <div class="container" id="map-zone-${magasinsHauts.get(loop.index-1).idMagasin}"
+                     style="height: 300px">
                     <iframe width="500" height="300" frameborder="0" style="border:0"
-                            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJDbEvcKyzjxIREYKWUeD50ug&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                            src="https://www.google.com/maps/embed/v1/place?q=place_id:${magasinsHauts.get(loop.index-1).placeId}&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
                             allowfullscreen></iframe>
                 </div>
 
 
                 <br>
 
-            </div>
+
+            </c:if>
 
 
-            <div class="mag-photos">
-
-                <div class="title-section text-center" style="margin-bottom: 30px;font-size: large">
-                    <h2>Photos du Magasin</h2>
-                    <span></span>
-                </div>
-
-                <div class="container-mag">
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(1).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(2).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(3).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(4).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(5).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(6).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(7).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(8).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(9).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(10).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(11).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(12).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(13).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(14).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(15).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(16).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(17).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(18).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(19).jpg">
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-        <!-- cd-bio-content -->
-    </div>
-
-
-</c:forEach>
-
-
-
-<!-- Magasins Bas-->
-
-<c:set var="magasins_count" scope="page" value="${0}"/>
-<c:set var="opened_rows" scope="page" value="${0}"/>
-<c:set var="opened_rows" value="${opened_rows + 1}" scope="page"/>
-
-<c:forEach begin="1" end="${magasinsBas.size()  }" varStatus="loop">
-    <c:set var="magasins_count" scope="page" value="${magasins_count+1}"/>
-    <div class="cd-member-bio member-bas-${magasins_count}">
-
-        <!-- cd-member-bio-pict -->
-
-        <div class="cd-bio-content">
-            <br>
-            <br>
-            <div class="title-section text-center" id="mag-${magasinsBas.get(loop.index-1).idMagasin}" style="margin-bottom: 30px;">
-                <h2>Bab El-Oued, Alger</h2>
-                <span></span>
-            </div>
-
-            <div class="col m4 col s6">
-                <h4 class="widget-title">Comfort Footwear</h4>
-                <br>
-                <div class="contactMagasin-info">
-                    <span><i class="fa fa-home topHIc"></i>34 Avenue Colonel Lotfi - Bab El-Oued, Alger</span><br><br>
-                    <span><i class="fa fa-phone topHIc"></i>+213.561.74.34.12</span>
-                </div>
-
-                <br>
-
-
+            <c:if test="${magasinsHauts.get(loop.index-1).videoId !=null || magasinsHauts.get(loop.index-1).videoId.length()>0 }">
                 <div class="title-section text-center" style="margin-bottom: 30px;">
                     <h2>Vidéo du Magasin</h2>
                     <span></span>
                 </div>
 
-                <div class="container" id="vid-${magasinsBas.get(loop.index-1).idMagasin}" style="height: 300px">
-                <iframe width="300" height="300" src="https://www.youtube.com/embed/YWRdHZuQmhE" frameborder="0"
-                        allowfullscreen></iframe>
-                </div>
-
-
-                <div class="title-section text-center" style="margin-bottom: 30px;">
-                    <h2>Carte</h2>
-                    <span></span>
-                </div>
-                <div class="container" id="map-zone-${magasinsBas.get(loop.index-1).idMagasin}" style="height: 300px">
-                    <iframe width="500" height="300" frameborder="0" style="border:0"
-                            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJfZPVDK2sjxIRhqRF9c8-RWc&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                <div class="container" id="vid-${magasinsHauts.get(loop.index-1).idMagasin}" style="height: 300px">
+                    <iframe width="500" height="300"
+                            src="https://www.youtube.com/embed/${magasinsHauts.get(loop.index-1).videoId}"
+                            frameborder="0"
                             allowfullscreen></iframe>
                 </div>
 
+            </c:if>
 
-                <br>
+            <br>
 
+
+        </div>
+
+
+        <c:if test="${magasinsHauts.get(loop.index-1).imagesMagasin.size()>0}">
+
+
+        <div class="mag-photos">
+
+            <div class="title-section text-center" style="margin-bottom: 30px;font-size: large">
+                <h2>Photos du Magasin</h2>
+                <span></span>
             </div>
+            <div class="container-mag">
 
 
-            <div class="mag-photos">
+                <c:forEach begin="0" end="${magasinsHauts.get(loop.index-1).imagesMagasin.size()-1}" varStatus="loopb">
 
-                <div class="title-section text-center" style="margin-bottom: 30px;font-size: large">
-                    <h2>Photos du Magasin</h2>
-                    <span></span>
+
+                <c:if test="${loopb.index % 2 == 0}">
+                <div class="row">
+                    </c:if>
+                    <img src="${magasinsHauts.get(loop.index-1).imagesMagasin.get(loopb.index).path}">
+
+                    </c:forEach>
+
+
+                    <c:forEach begin="0" end="${((magasinsHauts.get(loop.index-1).imagesMagasin.size()+1)/2)-1}"
+                               varStatus="loopc">
+                    </div>
+
+                    </c:forEach>
+
                 </div>
 
-                <div class="container-mag">
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(1).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(2).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(3).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(4).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(5).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(6).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(7).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(8).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(9).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(10).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(11).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(12).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(13).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(14).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(15).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(16).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(17).jpg">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(18).jpg">
-                    </div>
-
-                    <div class="row">
-                        <img src="3B-Internationle_files/img/nos-magasins-dist/mag-bab-lwed/bab-eloued%20(19).jpg">
-                    </div>
-
-                </div>
+                </c:if>
 
 
             </div>
@@ -1417,14 +1293,130 @@ fjs.parentNode.insertBefore(js, fjs);
     </div>
 
 
-</c:forEach>
+    </c:forEach>
+
+
+    <!-- Magasins Bas-->
+
+    <c:set var="magasins_count" scope="page" value="${0}"/>
+    <c:set var="opened_rows" scope="page" value="${0}"/>
+    <c:set var="opened_rows" value="${opened_rows + 1}" scope="page"/>
+
+    <c:forEach begin="1" end="${magasinsBas.size()  }" varStatus="loop">
+        <c:set var="magasins_count" scope="page" value="${magasins_count+1}"/>
+        <div class="cd-member-bio member-bas-${magasins_count}">
+
+            <!-- cd-member-bio-pict -->
+
+            <div class="cd-bio-content">
+                <br>
+                <br>
+                <div class="title-section text-center" id="mag-${magasinsBas.get(loop.index-1).idMagasin}"
+                     style="margin-bottom: 30px;">
+                    <h2>${magasinsBas.get(loop.index-1).nomMagazin}</h2>
+                    <span></span>
+                </div>
+
+
+                <div class="col m4 col s6">
+                    <h4 class="widget-title">Comfort Footwear</h4>
+                    <br>
+                    <div class="contactMagasin-info">
+                    <span><i
+                            class="fa fa-home topHIc"></i>${magasinsHauts.get(loop.index-1).adresseMagasin}</span><br><br>
+                        <span><i class="fa fa-phone topHIc"></i>${magasinsHauts.get(loop.index-1).telephone}</span>
+                    </div>
+
+                    <br>
+
+
+                    <c:if test="${magasinsBas.get(loop.index-1).placeId !=null || magasinsBas.get(loop.index-1).placeId.length()>0}">
+
+                        <div class="title-section text-center" style="margin-bottom: 30px;">
+                            <h2>Carte</h2>
+                            <span></span>
+                        </div>
+
+
+                        <div class="container" id="map-zone-${magasinsBas.get(loop.index-1).idMagasin}"
+                             style="height: 300px">
+                            <iframe width="500" height="300" frameborder="0" style="border:0"
+                                    src="https://www.google.com/maps/embed/v1/place?q=place_id:${magasinsBas.get(loop.index-1).placeId}&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                                    allowfullscreen></iframe>
+                        </div>
+
+                        <br>
+                    </c:if>
+
+
+                    <c:if test="${magasinsBas.get(loop.index-1).videoId !=null || magasinsBas.get(loop.index-1).videoId != \"\"}">
+
+
+                        <div class="title-section text-center" style="margin-bottom: 30px;">
+                            <h2>Vidéo du Magasin</h2>
+                            <span></span>
+                        </div>
+
+                        <div class="container" id="vid-${magasinsBas.get(loop.index-1).idMagasin}"
+                             style="height: 300px">
+                            <iframe width="500" height="300"
+                                    src="https://www.youtube.com/embed/${magasinsBas.get(loop.index-1).videoId}"
+                                    frameborder="0"
+                                    allowfullscreen></iframe>
+                        </div>
+
+                    </c:if>
+
+                    <br>
+
+
+                </div>
+
+
+                <c:if test="${magasinsBas.get(loop.index-1).imagesMagasin.size()>0}">
+
+
+                <div class="mag-photos">
+
+                    <div class="title-section text-center" style="margin-bottom: 30px;font-size: large">
+                        <h2>Photos du Magasin</h2>
+                        <span></span>
+                    </div>
+                    <div class="container-mag">
+
+
+                        <c:forEach begin="0" end="${magasinsBas.get(loop.index-1).imagesMagasin.size()-1}" varStatus="loopb">
+
+
+                        <c:if test="${loopb.index % 2 == 0}">
+                        <div class="row">
+                            </c:if>
+                            <img src="${magasinsBas.get(loop.index-1).imagesMagasin.get(loopb.index).path}">
+
+                            </c:forEach>
+
+
+                            <c:forEach begin="0" end="${((magasinsBas.get(loop.index-1).imagesMagasin.size()+1)/2)-1}"
+                                       varStatus="loopc">
+                        </div>
+
+                        </c:forEach>
+
+                    </div>
+
+                    </c:if>
 
 
 
+                </div>
+            <!-- cd-bio-content -->
+        </div>
 
 
+    </c:forEach>
 
-<!-- cd-bio-content -->
+
+    <!-- cd-bio-content -->
 </div>
 
 <a href="#0" class="cd-member-bio-close">Close</a>
