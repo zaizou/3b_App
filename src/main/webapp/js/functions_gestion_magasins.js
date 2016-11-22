@@ -4,7 +4,7 @@ var compteSelected = false;
 var selectedCompte = -1;
 var compteCreationMode = false;
 var compteShowingMode = false;
-var nomMagasin="";
+var nomMagasin = "";
 var placeId = "";
 
 
@@ -39,18 +39,9 @@ function prepareGMAPS_view() {
         //autocomplete.setPosition(marker.getPosition());
     });
 
-    getLocationId(36.718863059742844,3.183347702026367);
-
-
-
-
-    //initMap();
+    getLocationId(36.718863059742844, 3.183347702026367);
 
 }
-
-
-//var imgUpload=$("div#imgUpload").dropzone({ url: "/file/post" });
-//var myDropzone = $("#imgFor").dropzone({ url: "/file-upload" });
 
 
 function getLocationId(latitude, longitude) {
@@ -72,68 +63,6 @@ function getLocationId(latitude, longitude) {
 }
 
 
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('mapSelector'), {
-        center: {lat: -33.8688, lng: 151.2195},
-        zoom: 13
-    });
-
-
-    var input = document.getElementById('addressInput');
-
-    var autocomplete = new google.maps.places.Autocomplete(input);
-    //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    autocomplete.bindTo('bounds', map);
-    var marker = new google.maps.Marker({
-        draggable: true,
-        position: {lat: -33.8688, lng: 151.2195},
-        animation: google.maps.Animation.DROP,
-        map: map
-    });
-    marker.setVisible(true);
-
-    autocomplete.addListener('place_changed', function () {
-        var place = autocomplete.getPlace();
-        console.log(place.geometry.location.toString());
-        if (!place.geometry) {
-            return;
-        }
-
-        if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-        } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);
-        }
-
-        // Set the position of the marker using the place ID and location.
-
-        marker = new google.maps.Marker({
-            draggable: true,
-            position: place.geometry.location,
-            animation: google.maps.Animation.DROP,
-            map: map
-        });
-        google.maps.event.addListener(marker, 'dragend', function () {
-            map.setCenter(marker.getPosition());
-            console.info(marker.getPosition().toString());
-            //autocomplete.setPosition(marker.getPosition());
-        });
-
-
-        marker.setVisible(true);
-
-
-    });
-
-    google.maps.event.addListener(marker, 'dragend', function () {
-        map.setCenter(marker.getPosition());
-        console.info(marker.getPosition().toString());
-        //autocomplete.setPosition(marker.getPosition());
-    });
-
-
-}
 
 
 function geocodePosition(pos) {
@@ -151,15 +80,13 @@ function geocodePosition(pos) {
 }
 
 
-
-
 //Initialisation du tableau contenant les sections
 $(document).ready(function () {
 
     init_users_list();
 
-    $("#creat_input_nom").on("change",function () {
-        nomMagasin=$(this).val();
+    $("#creat_input_nom").on("change", function () {
+        nomMagasin = $(this).val();
     })
 
     var myDropzone = new Dropzone("div#my-awesome-dropzone", {
@@ -178,8 +105,8 @@ $(document).ready(function () {
                 }
             });
 
-            this.on("processing", function(file) {
-                this.options.url = "/uploadfile.html?name="+nomMagasin;
+            this.on("processing", function (file) {
+                this.options.url = "/uploadfile.html?name=" + nomMagasin+"&dossier="+$("#doss_stock").val();
             });
 
             this.on("removedfile", function (file) {
@@ -200,9 +127,9 @@ $(document).ready(function () {
 
     });
 
- 
+
     //Initialisation
-    function init_users_list(){
+    function init_users_list() {
         $.getJSON('gestion_utilisateurs_utilisateurs_libres_list.json', {
             ajax: 'true'
         }, function (result) {
@@ -474,14 +401,11 @@ $(document).ready(function () {
         var lati = $("#latitudeInput").val();
         var longi = $("#longitudeInput").val();
         var address = $("#addressInput").val();
-        var mail=$("#mailInput").val();
-        var tel=$("#telInput").val();
-        var placeId=$("#placeIdInput").val();
-        var youtubeId=$("#youtubeIdInput").val();
-        var doss=$("#doss_stock").val();
-
-
-
+        var mail = $("#mailInput").val();
+        var tel = $("#telInput").val();
+        var placeId = $("#placeIdInput").val();
+        var youtubeId = $("#youtubeIdInput").val();
+        var doss = $("#doss_stock").val();
 
 
         swal({
@@ -506,11 +430,11 @@ $(document).ready(function () {
                         addresse: address,
                         type_magasin: type_mag,
                         ordre_magasin: ordre_mag,
-                        email:mail,
-                        telphone:tel,
-                        placeid:placeId,
-                        videoId:youtubeId,
-                        dossierStockage:doss
+                        email: mail,
+                        telphone: tel,
+                        placeid: placeId,
+                        videoId: youtubeId,
+                        dossierStockage: doss
                     }
                 }
                 )

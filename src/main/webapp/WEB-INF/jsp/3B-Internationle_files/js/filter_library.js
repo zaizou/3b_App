@@ -174,6 +174,7 @@ var buttonFilter = {
     	self.outputString = ''; // Reset output string
 
 	    for(var i = 0, group; group = self.groups[i]; i++){
+			console.log("active string is :"+group.active);
 	      	self.outputString += group.active;
 	    }
 

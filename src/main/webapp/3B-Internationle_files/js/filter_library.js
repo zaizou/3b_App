@@ -163,7 +163,7 @@ var $container=$('.cd-gallery ul');
 jQuery(document).ready(function($){
 
 	$( "li.mix" ).each(function( index ) {
-		console.log( index + ": " + $( this ).text() );
+		//console.log( index + ": " + $( this ).text() );
 	});
 
 });
@@ -174,7 +174,10 @@ jQuery(document).ready(function($){
 
 $("li.filter").on("click",function () {
 	if($container.mixItUp('isLoaded')){
-		filterString="."+$(this).attr('id');
+		if($(this).attr('id')!="all")
+			filterString="."+$(this).attr('id');
+		else
+			filterString=$(this).attr('id');
 		$container.mixItUp('filter',filterString);
 		console.log(filterString);
 
@@ -183,8 +186,6 @@ $("li.filter").on("click",function () {
 			case "chauss":  handleChaussChoose(); break;
 			default :handleDefaultChoose(); break
 		}
-
-
 	}
 });
 
@@ -301,6 +302,7 @@ function applyFilter(){
 		if(filterString=="")
 			filterString="all";
 		$container.mixItUp('filter',filterString);
+		filterString="";
 }
 
 	function addArticleView(classString,imageLink,price,model,stock,detailLink){

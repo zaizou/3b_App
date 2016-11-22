@@ -109,7 +109,7 @@ fjs.parentNode.insertBefore(js, fjs);
                     <li class="main-menu-elem"><a href="#section-nos-habim" style="color: #0a0a0a">Habillements</a></li>
                     <li class="main-menu-elem"><a href="#nos-marques" style="color: #0a0a0a">Marques</a></li>
                     <li class="main-menu-elem"><a href="#contact" style="color: #0a0a0a">Contact</a></li>
-                    <li class="main-menu-elem"><a href="" style="color: #0a0a0a">Shop</a></li>
+                    <li class="main-menu-elem"><a href="/shop.html" style="color: #0a0a0a">Shop</a></li>
                     <li class=" main-menu-elem"><a href="/management_gestion_dashboard.html" style="color: #0a0a0a">Management</a>
                     </li>
                 </ul>
@@ -673,47 +673,7 @@ fjs.parentNode.insertBefore(js, fjs);
                             </div>
 
 
-                            <div class="row">
-                                <div class="col m6 s6">
-                                    <div class="product-type-container" data-type="member-7">
-                                        <a href="depots.php?depot=2">
-                                            <div class="product-type-overlay">
-                                                <div class="product-type-info">
-                                                    <i class="fa fa-search fa-2x gold-text"></i>
-                                                    <h3 class="gold-text text-uppercase">Alger</h3>
-                                                    <p class="text-uppercase white-text">Bab-Azzoune</p>
-                                                    <p class="text-uppercase white-text">Tél : +213.###.##.##.##</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <img src="3B-Internationle_files/img/magdist/bab-azzoune-.jpg"
-                                             alt="Product Type 1"
-                                             class="product-type-img product-type-img-responsive">
-                                        <br>
-                                        <p>Vente au détail</p>
-                                    </div>
-                                </div>
-                                <div class="col m6 s6">
-                                    <div class="product-type-container" data-type="member-8">
-                                        <a href="depots.php?depot=2">
-                                            <div class="product-type-overlay">
-                                                <div class="product-type-info">
-                                                    <i class="fa fa-search fa-2x gold-text"></i>
-                                                    <h3 class="gold-text text-uppercase">Bab-Ezzouar</h3>
-                                                    <p class="text-uppercase white-text">N° 26, Lot F.Boushaki<br>Bab-Ezzouar,
-                                                        Alger</p>
-                                                    <p class="text-uppercase white-text">Tél : +213.23.83.20.24</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <img src="3B-Internationle_files/img/magdist/babez-.jpg" alt="Product Type 2"
-                                             class="product-type-img product-type-img-responsive">
-                                        <br>
-                                        <p>Vente au gros</p>
-                                    </div>
-                                </div>
 
-                            </div>
                         </div>
 
 
@@ -1181,101 +1141,102 @@ fjs.parentNode.insertBefore(js, fjs);
 <c:set var="opened_rows" value="${opened_rows + 1}" scope="page"/>
 
 <c:forEach begin="1" end="${magasinsHauts.size()  }" varStatus="loop">
-<c:set var="magasins_count" scope="page" value="${magasins_count+1}"/>
-<div class="cd-member-bio member-haut-${magasins_count}">
+    <c:set var="magasins_count" scope="page" value="${magasins_count+1}"/>
+    <div class="cd-member-bio member-haut-${magasins_count}">
 
-    <!-- cd-member-bio-pict -->
+        <!-- cd-member-bio-pict -->
 
-    <div class="cd-bio-content">
-        <br>
-        <br>
-        <div class="title-section text-center" id="mag-${magasinsHauts.get(loop.index-1).idMagasin}"
-             style="margin-bottom: 30px;">
-            <h2>${magasinsHauts.get(loop.index-1).nomMagazin}</h2>
-            <span></span>
-        </div>
-
-
-        <div class="col m4 col s6">
-            <h4 class="widget-title">Comfort Footwear</h4>
+        <div class="cd-bio-content">
             <br>
-            <div class="contactMagasin-info">
-                    <span><i
-                            class="fa fa-home topHIc"></i>${magasinsHauts.get(loop.index-1).adresseMagasin}</span><br><br>
-                <span><i class="fa fa-phone topHIc"></i>${magasinsHauts.get(loop.index-1).telephone}</span>
+            <br>
+            <div class="title-section text-center" id="mag-${magasinsHauts.get(loop.index-1).idMagasin}"
+                 style="margin-bottom: 30px;">
+                <h2>${magasinsHauts.get(loop.index-1).nomMagazin}</h2>
+                <span></span>
             </div>
 
-            <br>
 
-
-            <c:if test="${magasinsHauts.get(loop.index-1).placeId !=null || magasinsHauts.get(loop.index-1).placeId.length()>0}">
-
-
-                <div class="title-section text-center" style="margin-bottom: 30px;">
-                    <h2>Carte</h2>
-                    <span></span>
+            <div class="col m4 col s6">
+                <h4 class="widget-title">Comfort Footwear</h4>
+                <br>
+                <div class="contactMagasin-info">
+                    <span><i
+                            class="fa fa-home topHIc"></i>${magasinsHauts.get(loop.index-1).adresseMagasin}</span><br><br>
+                    <span><i class="fa fa-phone topHIc"></i>${magasinsHauts.get(loop.index-1).telephone}</span>
                 </div>
-
-                <div class="container" id="map-zone-${magasinsHauts.get(loop.index-1).idMagasin}"
-                     style="height: 300px">
-                    <iframe width="500" height="300" frameborder="0" style="border:0"
-                            src="https://www.google.com/maps/embed/v1/place?q=place_id:${magasinsHauts.get(loop.index-1).placeId}&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
-                            allowfullscreen></iframe>
-                </div>
-
 
                 <br>
 
 
-            </c:if>
+                <c:if test="${magasinsHauts.get(loop.index-1).placeId !=null || magasinsHauts.get(loop.index-1).placeId.length()>0}">
 
 
-            <c:if test="${magasinsHauts.get(loop.index-1).videoId !=null || magasinsHauts.get(loop.index-1).videoId.length()>0 }">
-                <div class="title-section text-center" style="margin-bottom: 30px;">
-                    <h2>Vidéo du Magasin</h2>
+                    <div class="title-section text-center" style="margin-bottom: 30px;">
+                        <h2>Carte</h2>
+                        <span></span>
+                    </div>
+
+                    <div class="container" id="map-zone-${magasinsHauts.get(loop.index-1).idMagasin}"
+                         style="height: 300px">
+                        <iframe width="500" height="300" frameborder="0" style="border:0"
+                                src="https://www.google.com/maps/embed/v1/place?q=place_id:${magasinsHauts.get(loop.index-1).placeId}&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                                allowfullscreen></iframe>
+                    </div>
+
+
+                    <br>
+
+
+                </c:if>
+
+
+                <c:if test="${magasinsHauts.get(loop.index-1).videoId !=null || magasinsHauts.get(loop.index-1).videoId.length()>0 }">
+                    <div class="title-section text-center" style="margin-bottom: 30px;">
+                        <h2>Vidéo du Magasin</h2>
+                        <span></span>
+                    </div>
+
+                    <div class="container" id="vid-${magasinsHauts.get(loop.index-1).idMagasin}" style="height: 300px">
+                        <iframe width="500" height="300"
+                                src="https://www.youtube.com/embed/${magasinsHauts.get(loop.index-1).videoId}"
+                                frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+
+                </c:if>
+
+                <br>
+
+
+            </div>
+
+
+            <c:if test="${magasinsHauts.get(loop.index-1).imagesMagasin.size()>0}">
+
+
+            <div class="mag-photos">
+
+                <div class="title-section text-center" style="margin-bottom: 30px;font-size: large">
+                    <h2>Photos du Magasin</h2>
                     <span></span>
                 </div>
-
-                <div class="container" id="vid-${magasinsHauts.get(loop.index-1).idMagasin}" style="height: 300px">
-                    <iframe width="500" height="300"
-                            src="https://www.youtube.com/embed/${magasinsHauts.get(loop.index-1).videoId}"
-                            frameborder="0"
-                            allowfullscreen></iframe>
-                </div>
-
-            </c:if>
-
-            <br>
+                <div class="container-mag">
 
 
-        </div>
+                    <c:forEach begin="0" end="${magasinsHauts.get(loop.index-1).imagesMagasin.size()-1}"
+                               varStatus="loopb">
 
 
-        <c:if test="${magasinsHauts.get(loop.index-1).imagesMagasin.size()>0}">
+                    <c:if test="${loopb.index % 2 == 0}">
+                    <div class="row">
+                        </c:if>
+                        <img src="${magasinsHauts.get(loop.index-1).imagesMagasin.get(loopb.index).path}">
+
+                        </c:forEach>
 
 
-        <div class="mag-photos">
-
-            <div class="title-section text-center" style="margin-bottom: 30px;font-size: large">
-                <h2>Photos du Magasin</h2>
-                <span></span>
-            </div>
-            <div class="container-mag">
-
-
-                <c:forEach begin="0" end="${magasinsHauts.get(loop.index-1).imagesMagasin.size()-1}" varStatus="loopb">
-
-
-                <c:if test="${loopb.index % 2 == 0}">
-                <div class="row">
-                    </c:if>
-                    <img src="${magasinsHauts.get(loop.index-1).imagesMagasin.get(loopb.index).path}">
-
-                    </c:forEach>
-
-
-                    <c:forEach begin="0" end="${((magasinsHauts.get(loop.index-1).imagesMagasin.size()+1)/2)-1}"
-                               varStatus="loopc">
+                        <c:forEach begin="0" end="${((magasinsHauts.get(loop.index-1).imagesMagasin.size()+1)/2)-1}"
+                                   varStatus="loopc">
                     </div>
 
                     </c:forEach>
@@ -1293,127 +1254,131 @@ fjs.parentNode.insertBefore(js, fjs);
     </div>
 
 
-    </c:forEach>
+</c:forEach>
 
 
-    <!-- Magasins Bas-->
+<!-- Magasins Bas-->
 
-    <c:set var="magasins_count" scope="page" value="${0}"/>
-    <c:set var="opened_rows" scope="page" value="${0}"/>
-    <c:set var="opened_rows" value="${opened_rows + 1}" scope="page"/>
+<c:set var="magasins_count" scope="page" value="${0}"/>
+<c:set var="opened_rows" scope="page" value="${0}"/>
+<c:set var="opened_rows" value="${opened_rows + 1}" scope="page"/>
 
-    <c:forEach begin="1" end="${magasinsBas.size()  }" varStatus="loop">
-        <c:set var="magasins_count" scope="page" value="${magasins_count+1}"/>
-        <div class="cd-member-bio member-bas-${magasins_count}">
 
-            <!-- cd-member-bio-pict -->
+<c:if test="${magasinsBas.size()>0}">
 
-            <div class="cd-bio-content">
-                <br>
-                <br>
-                <div class="title-section text-center" id="mag-${magasinsBas.get(loop.index-1).idMagasin}"
-                     style="margin-bottom: 30px;">
-                    <h2>${magasinsBas.get(loop.index-1).nomMagazin}</h2>
+
+<c:forEach begin="1" end="${magasinsBas.size()}" varStatus="loop">
+<c:set var="magasins_count" scope="page" value="${magasins_count+1}"/>
+<div class="cd-member-bio member-bas-${magasins_count}">
+
+    <!-- cd-member-bio-pict -->
+
+    <div class="cd-bio-content">
+        <br>
+        <br>
+        <div class="title-section text-center" id="mag-${magasinsBas.get(loop.index-1).idMagasin}"
+             style="margin-bottom: 30px;">
+            <h2>${magasinsBas.get(loop.index-1).nomMagazin}</h2>
+            <span></span>
+        </div>
+
+
+        <div class="col m4 col s6">
+            <h4 class="widget-title">Comfort Footwear</h4>
+            <br>
+            <div class="contactMagasin-info">
+                    <span><i class="fa fa-home topHIc"></i>${magasinsBas.get(loop.index-1).adresseMagasin}</span><br><br>
+                <span><i class="fa fa-phone topHIc"></i>${magasinsBas.get(loop.index-1).telephone}</span>
+            </div>
+
+            <br>
+
+
+            <c:if test="${magasinsBas.get(loop.index-1).placeId !=null || magasinsBas.get(loop.index-1).placeId.length()>0}">
+
+                <div class="title-section text-center" style="margin-bottom: 30px;">
+                    <h2>Carte</h2>
                     <span></span>
                 </div>
 
 
-                <div class="col m4 col s6">
-                    <h4 class="widget-title">Comfort Footwear</h4>
-                    <br>
-                    <div class="contactMagasin-info">
-                    <span><i
-                            class="fa fa-home topHIc"></i>${magasinsHauts.get(loop.index-1).adresseMagasin}</span><br><br>
-                        <span><i class="fa fa-phone topHIc"></i>${magasinsHauts.get(loop.index-1).telephone}</span>
-                    </div>
-
-                    <br>
-
-
-                    <c:if test="${magasinsBas.get(loop.index-1).placeId !=null || magasinsBas.get(loop.index-1).placeId.length()>0}">
-
-                        <div class="title-section text-center" style="margin-bottom: 30px;">
-                            <h2>Carte</h2>
-                            <span></span>
-                        </div>
-
-
-                        <div class="container" id="map-zone-${magasinsBas.get(loop.index-1).idMagasin}"
-                             style="height: 300px">
-                            <iframe width="500" height="300" frameborder="0" style="border:0"
-                                    src="https://www.google.com/maps/embed/v1/place?q=place_id:${magasinsBas.get(loop.index-1).placeId}&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
-                                    allowfullscreen></iframe>
-                        </div>
-
-                        <br>
-                    </c:if>
-
-
-                    <c:if test="${magasinsBas.get(loop.index-1).videoId !=null || magasinsBas.get(loop.index-1).videoId != \"\"}">
-
-
-                        <div class="title-section text-center" style="margin-bottom: 30px;">
-                            <h2>Vidéo du Magasin</h2>
-                            <span></span>
-                        </div>
-
-                        <div class="container" id="vid-${magasinsBas.get(loop.index-1).idMagasin}"
-                             style="height: 300px">
-                            <iframe width="500" height="300"
-                                    src="https://www.youtube.com/embed/${magasinsBas.get(loop.index-1).videoId}"
-                                    frameborder="0"
-                                    allowfullscreen></iframe>
-                        </div>
-
-                    </c:if>
-
-                    <br>
-
-
+                <div class="container" id="map-zone-${magasinsBas.get(loop.index-1).idMagasin}"
+                     style="height: 300px">
+                    <iframe width="500" height="300" frameborder="0" style="border:0"
+                            src="https://www.google.com/maps/embed/v1/place?q=place_id:${magasinsBas.get(loop.index-1).placeId}&key=AIzaSyAPxdVHyy-XjsleaF_oeWrmAOJBkhdkWrI"
+                            allowfullscreen></iframe>
                 </div>
 
-
-                <c:if test="${magasinsBas.get(loop.index-1).imagesMagasin.size()>0}">
-
-
-                <div class="mag-photos">
-
-                    <div class="title-section text-center" style="margin-bottom: 30px;font-size: large">
-                        <h2>Photos du Magasin</h2>
-                        <span></span>
-                    </div>
-                    <div class="container-mag">
+                <br>
+            </c:if>
 
 
-                        <c:forEach begin="0" end="${magasinsBas.get(loop.index-1).imagesMagasin.size()-1}" varStatus="loopb">
+            <c:if test="${magasinsBas.get(loop.index-1).videoId !=null || magasinsBas.get(loop.index-1).videoId != \"\"}">
 
 
-                        <c:if test="${loopb.index % 2 == 0}">
-                        <div class="row">
-                            </c:if>
-                            <img src="${magasinsBas.get(loop.index-1).imagesMagasin.get(loopb.index).path}">
-
-                            </c:forEach>
-
-
-                            <c:forEach begin="0" end="${((magasinsBas.get(loop.index-1).imagesMagasin.size()+1)/2)-1}"
-                                       varStatus="loopc">
-                        </div>
-
-                        </c:forEach>
-
-                    </div>
-
-                    </c:if>
-
-
-
+                <div class="title-section text-center" style="margin-bottom: 30px;">
+                    <h2>Vidéo du Magasin</h2>
+                    <span></span>
                 </div>
-            <!-- cd-bio-content -->
+
+                <div class="container" id="vid-${magasinsBas.get(loop.index-1).idMagasin}"
+                     style="height: 300px">
+                    <iframe width="500" height="300"
+                            src="https://www.youtube.com/embed/${magasinsBas.get(loop.index-1).videoId}"
+                            frameborder="0"
+                            allowfullscreen></iframe>
+                </div>
+
+            </c:if>
+
+            <br>
+
+
         </div>
 
 
+        <c:if test="${magasinsBas.get(loop.index-1).imagesMagasin.size()>0}">
+
+
+        <div class="mag-photos">
+
+            <div class="title-section text-center" style="margin-bottom: 30px;font-size: large">
+                <h2>Photos du Magasin</h2>
+                <span></span>
+            </div>
+            <div class="container-mag">
+
+
+                <c:forEach begin="0" end="${magasinsBas.get(loop.index-1).imagesMagasin.size()-1}" varStatus="loopb">
+
+
+                <c:if test="${loopb.index % 2 == 0}">
+                <div class="row">
+                    </c:if>
+                    <img src="${magasinsBas.get(loop.index-1).imagesMagasin.get(loopb.index).path}">
+
+                    </c:forEach>
+
+
+                    <c:forEach begin="0" end="${((magasinsBas.get(loop.index-1).imagesMagasin.size()+1)/2)-1}"
+                               varStatus="loopc">
+                </div>
+
+                </c:forEach>
+
+            </div>
+
+            </c:if>
+
+
+        </div>
+        <!-- cd-bio-content -->
+    </div>
+
+
     </c:forEach>
+
+    </c:if>
 
 
     <!-- cd-bio-content -->

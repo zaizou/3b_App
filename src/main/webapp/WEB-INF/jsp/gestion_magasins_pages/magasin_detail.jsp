@@ -360,8 +360,10 @@
 <script type="text/javascript" src="js/sugar.min.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
 <script type="text/javascript" src="js/locationpicker.jquery.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAUtsGVCuVLk9MrJvg0hV0PXcR7h-zLZ8I"
-        type="text/javascript"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUtsGVCuVLk9MrJvg0hV0PXcR7h-zLZ8I&libraries=places" ></script>
+
+
 <script type="text/javascript" src="js/dropzone/dropzone.min.js"></script>
 <script type="text/javascript" src="js/functions_gestion_magasins_show.js"></script>
 

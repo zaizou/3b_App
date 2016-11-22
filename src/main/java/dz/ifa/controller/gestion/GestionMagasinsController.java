@@ -222,12 +222,18 @@ public class GestionMagasinsController {
 
             magasin = magasinList.get(0);//new Magasin(nomMagasin, addresse, latitude, longitude, utilisateurs.get(0));
             magasin.setWilayaMagasin(wilayas.get(0));
-            magasin.setOrdre(ordre);
             magasin.setType(type);
             magasin.setEmail(email);;
             magasin.setTelephone(tel);
             magasin.setVideoId(vidId);
             magasin.setPlaceId(placId);
+            magasin.setAdresseMagasin(addresse);
+            magasin.setLongitude(longitude);
+            magasin.setLatitude(latitude);
+            if(ordre==null)
+                magasin.setOrdre(0);
+            else
+                magasin.setOrdre(ordre);
 
             if (magasinService.creerMagasin(magasin) != null)
                 return "100";

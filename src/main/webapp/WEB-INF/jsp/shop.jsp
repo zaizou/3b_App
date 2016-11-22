@@ -96,10 +96,7 @@
     <div class="cd-tab-filter-wrapper ">
         <div class="cd-tab-filter">
             <ul class="cd-filters" style="z-index: 2">
-                <li class="placeholder">
-                    <a data-filter="." href="#0">Tout</a> <!-- selected option on mobile -->
-                </li>
-
+                <li id="all" class="filter" data-filter=".all"><a href="#0" data-type=".all">All</a></li>
                 <li id="habim" class="filter" data-filter=".habim"><a href="#0" data-type="habim">Habillements</a></li>
                 <li id="chauss" class="filter" data-filter=".chauss"><a href="#0" data-type="chauss">Chaussures</a></li>
                 <li id="imac" style="" class="filter right-align" data-filter=".imac"><a href="#0" data-type="imac"><img
