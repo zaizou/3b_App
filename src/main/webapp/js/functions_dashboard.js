@@ -33,6 +33,7 @@ function loadGraphs() {
 
 $(document).ready(function () {
 
+
     drawGraphs(2016);
 
     var htln = "";
@@ -55,18 +56,16 @@ $(document).ready(function () {
         recettesGlobales = new Array();
         depensesGlobales = new Array();
         transfertsGlobaux = new Array();
-        selectedMagasins=parseInt(selectedMagasins)
+        selectedMagasins = parseInt(selectedMagasins)
         drawGraphs(selectedMagasins);
     });
 
 
-    for(i=0;i<magasins.length;i++){
-        $("#titleCompta"+i).append(magasins[i].nom);
-        $("#titleTransert"+i).append(magasins[i].nom);
+    for (i = 0; i < magasins.length; i++) {
+        $("#titleCompta" + i).append(magasins[i].nom);
+        $("#titleTransert" + i).append(magasins[i].nom);
 
     }
-
-
 
 
     function sommeDepnsesRecettesMois(indexDebut, mois, annee, tableau) {
@@ -74,9 +73,9 @@ $(document).ready(function () {
         console.log(annee);
 
         /*if (mois < 10)
-            mois = "0" + mois;*/
+         mois = "0" + mois;*/
         var beginTestDate = moment("01/" + mois + "/" + annee).format("DD/MM/YYYY");
-        var endTestDate = getMonthDateRange(annee, (mois+1)).end;
+        var endTestDate = getMonthDateRange(annee, (mois + 1)).end;
         var index = 0;
         var sommeDepenses = 0;
         var sommeRecettes = 0;
@@ -86,19 +85,19 @@ $(document).ready(function () {
             if (moment(tableau[indexDebut + index].date).diff(beginTestDate) >= 0) {
                 sommeDepenses += parseFloat(tableau[indexDebut + index].depense);
                 sommeRecettes += parseFloat(tableau[indexDebut + index].recette);
-                 /* console.log("date :"+tableau[indexDebut+index].date);
+                /* console.log("date :"+tableau[indexDebut+index].date);
                  console.log("depense "+tableau[indexDebut+index].depense);
                  console.log("recette parse "+parseFloat(tableau[indexDebut+index].recette));*/
             }
             index++;
         }
 
-       console.log("somme depenses du mois :" + mois + "est : " + sommeDepenses);
-       console.log("somme recettes du mois :" + mois + "est : " + sommeRecettes);
+        console.log("somme depenses du mois :" + mois + "est : " + sommeDepenses);
+        console.log("somme recettes du mois :" + mois + "est : " + sommeRecettes);
         return {
             depenses: sommeDepenses,
             recette: sommeRecettes,
-            index:index+indexDebut
+            index: index + indexDebut
         }
     }
 
@@ -122,8 +121,8 @@ $(document).ready(function () {
 
         //console.log("somme Transferts du mois :" + mois + "est : " + sommeTransferts);
         return {
-            transferts:sommeTransferts,
-            index:index+indexDebut
+            transferts: sommeTransferts,
+            index: index + indexDebut
         };
     }
 
@@ -148,29 +147,27 @@ $(document).ready(function () {
     /* Make some random data for Flot Line Chart*/
 
 
-    function drawGraphs(annnee){
+    function drawGraphs(annnee) {
         drawGraphRecetteDepense(annnee);
         drawGraphTransferts(annnee);
     }
 
 
-
     function drawGraphTransferts(annee) {
-        for(i=0;i<magasins.length;i++){
-            plotTransferts(i,prepareTransfertsTables(i));
+        for (i = 0; i < magasins.length; i++) {
+            plotTransferts(i, prepareTransfertsTables(i));
             //addingTooltips(i+4);
         }
 
     }
 
 
-
     function drawGraphRecetteDepense(annee) {
 
         prepareGraphData(annee);
 
-        for (i = 0; i < magasins.length; i++){
-            plotRecettesDepenses(i,prepareComptaTables(i));
+        for (i = 0; i < magasins.length; i++) {
+            plotRecettesDepenses(i, prepareComptaTables(i));
             //addingTooltips(i);
         }
 
@@ -179,39 +176,39 @@ $(document).ready(function () {
 
     function prepareGraphData(annnee) {
         for (j = 0; j < magasins.length; j++) {
-            recettesGlobales[j]=new Array();
-            depensesGlobales[j]=new Array();
-            transfertsGlobaux[j]=new Array();
-            var index=0;
-            var indexTransfert=0;
+            recettesGlobales[j] = new Array();
+            depensesGlobales[j] = new Array();
+            transfertsGlobaux[j] = new Array();
+            var index = 0;
+            var indexTransfert = 0;
             var compta;
             var transf;
             for (i = 1; i <= 12; i++) {
 
                 //compta=//sommeDepnsesRecettesMois(index, i, annnee, magasins[j].comptas);
-               /* var comp = {
-                    rec: compta.recette,
-                    dep: compta.depenses
-                }*/
+                /* var comp = {
+                 rec: compta.recette,
+                 dep: compta.depenses
+                 }*/
                 //index=compta.index;
                 console.log("index of");
                 console.log(years.indexOf(annnee));
 
-                if(typeof magasins[j].comptas[years.indexOf(annnee)] !="undefined"){
-                    recettesGlobales[j][i-1] = [i, magasins[j].comptas[years.indexOf(annnee)][i-1]];
-                    depensesGlobales[j][i-1] = [i,magasins[j].depenses[years.indexOf(annnee)][i-1]] ;
-                }else {
-                    recettesGlobales[j][i-1] = [i,0];
-                    depensesGlobales[j][i-1] = [i,0] ;
+                if (typeof magasins[j].comptas[years.indexOf(annnee)] != "undefined") {
+                    recettesGlobales[j][i - 1] = [i, magasins[j].comptas[years.indexOf(annnee)][i - 1]];
+                    depensesGlobales[j][i - 1] = [i, magasins[j].depenses[years.indexOf(annnee)][i - 1]];
+                } else {
+                    recettesGlobales[j][i - 1] = [i, 0];
+                    depensesGlobales[j][i - 1] = [i, 0];
                 }
 
 
                 //transf=sommeTransfertMois(indexTransfert, i, annnee, magasins[j].transferts);
                 //indexTransfert=transf.index;
-                if(typeof magasins[j].transferts[yearsTransfert.indexOf(annnee)] !="undefined")
-                    transfertsGlobaux[j][i-1] = [i, magasins[j].transferts[yearsTransfert.indexOf(annnee)][i-1]];
+                if (typeof magasins[j].transferts[yearsTransfert.indexOf(annnee)] != "undefined")
+                    transfertsGlobaux[j][i - 1] = [i, magasins[j].transferts[yearsTransfert.indexOf(annnee)][i - 1]];
                 else
-                    transfertsGlobaux[j][i-1] = [i, 0];
+                    transfertsGlobaux[j][i - 1] = [i, 0];
             }
         }
 
@@ -249,10 +246,10 @@ $(document).ready(function () {
 
     }
 
-    function plotRecettesDepenses(magasin,barData) {
+    function plotRecettesDepenses(magasin, barData) {
         /* Let's create the chart */
-        var strObj="#bar-chart"+magasin;
-        var strLegend=".flc-bar"+magasin;
+        var strObj = "#bar-chart" + magasin;
+        var strLegend = ".flc-bar" + magasin;
         if ($(strObj)[0]) {
             $.plot($(strObj), barData, {
                 grid: {
@@ -317,10 +314,10 @@ $(document).ready(function () {
 
     }
 
-    function plotTransferts(magasin,barData) {
+    function plotTransferts(magasin, barData) {
         /* Let's create the chart */
-        var strObj="#transfert-bar-chart"+magasin;
-        var strLegend=".transfert-flc-bar"+magasin;
+        var strObj = "#transfert-bar-chart" + magasin;
+        var strLegend = ".transfert-flc-bar" + magasin;
         if ($(strObj)[0]) {
             $.plot($(strObj), barData, {
                 grid: {
@@ -389,16 +386,17 @@ $(document).ready(function () {
     }
 
 
-
     function addHexColor(c1, c2) {
         var hexStr = (parseInt(c1, 16) + parseInt(c2, 16)).toString(16);
-        while (hexStr.length < 6) { hexStr = '0' + hexStr; } // Zero pad.
+        while (hexStr.length < 6) {
+            hexStr = '0' + hexStr;
+        } // Zero pad.
         return hexStr;
     }
 
 
-drawPieCharts(2016);
-    function drawPieCharts(annnee){
+    drawPieCharts(2016);
+    function drawPieCharts(annnee) {
         var pieData = [
             {data: 1, color: '#F44336', label: 'Toyota'},
             {data: 2, color: '#03A9F4', label: 'Nissan'},
@@ -408,29 +406,29 @@ drawPieCharts(2016);
         ];
 
 
-        var pieContainer=new Array();
-        var sum=0;
-        var color="F44336"
-        for(i=0;i<magasins.length;i++){
-            for(j=0;j<12;j++) {
+        var pieContainer = new Array();
+        var sum = 0;
+        var color = "F44336"
+        for (i = 0; i < magasins.length; i++) {
+            for (j = 0; j < 12; j++) {
                 if (typeof magasins[i].comptas[years.indexOf(annnee)] != "undefined")
                     sum += magasins[i].comptas[years.indexOf(annnee)][j];
 
             }
-            console.log("Data (sum) : "+sum);
-                pieContainer[i] = {
-                    data: sum,
-                    color: "#" + color,
-                    label: magasins[i].nom
-                }
+            console.log("Data (sum) : " + sum);
+            pieContainer[i] = {
+                data: sum,
+                color: "#" + color,
+                label: magasins[i].nom
+            }
 
-            sum=0;
-            addHexColor(color,'111111')
+            sum = 0;
+            addHexColor(color, '111111')
             console.log(pieContainer);
         }
 
 
-        if($('#pie-chart')[0]){
+        if ($('#pie-chart')[0]) {
             $.plot('#pie-chart', pieData, {
                 series: {
                     pie: {
@@ -469,16 +467,126 @@ drawPieCharts(2016);
     }
 
 
+    var gridLoaded = false;
+
+    var grid = $("#data-table-command").bootgrid({
+        css: {
+            icon: 'zmdi icon',
+            iconColumns: 'zmdi-view-module',
+            iconDown: 'zmdi-expand-more',
+            iconRefresh: 'zmdi-refresh',
+            iconUp: 'zmdi-expand-less'
+        }
+
+    }).on("loaded.rs.jquery.bootgrid", function () {
+        /*
+         *
+         *
+         * magasin.depenses[years.indexOf( moment(dat).year() ) ]=new Array();
+         magasin.transferts[yearsTransfert.indexOf( moment(dat).year() ) ][i]=0;
+         magasin.comptas[ years.indexOf( moment(dat).year() ) ][moment
+
+         magasin
+         -depenses [année][mois]
+         -comptas [année][mois]
+         -transferts [année][mois]
+
+         magasins [magasin]
+
+         *
+         *
+         * */
 
 
+        if (!gridLoaded) {
+            //var rows=[{"id":1,"magasin":"béjaia","recettesMag":15000,"depensesMag":15000,"transfertsMag":15000}];
+            var AnDebut = 2011;//years.indexOf(moment("01/01/2011").year());
+            var AnFin = 2017;//years.indexOf(moment("01/01/2017").year());
+            var moisDebut=1;//years.indexOf(moment("01/01/2016").month());;
+            var moisFin=1;//years.indexOf(moment("01/01/2017").month());;
+            var rows = new Array();
+            var recettes = 0;
+            var depenses = 0;
+            var transferts = 0;
+            console.log(magasins);
 
 
+            function doSums(mag, an, anDebut, anFin, moisDebut, moisFin) {
+                var canSum = false;
+                var anIndex=years.indexOf(moment(dat).year());
+                for (l = 0; l < 12; l++) {
+                    console.log("in Sums "+l);
+                    if (an == AnDebut)
+                        if (l +1 >= moisDebut)
+                            canSum = true;
+                        else canSum = false;
+
+                    if (an == AnFin)
+                        if (l +1  <= moisFin)
+                            canSum = true;
+                        else break;
+                    if(an >AnDebut && an<anFin)
+                        canSum=true;
+
+                    if (canSum) {
+
+                        if (!(magasins[mag].depenses === undefined ) && !(magasins[mag].depenses === null)) {
+                            if (!(magasins[mag].depenses[years.indexOf(an)] === undefined ) && !(magasins[mag].depenses[years.indexOf(an)] === null))
+                                if(   !(magasins[mag].depenses[years.indexOf(an)][l] === undefined ) && !(magasins[mag].depenses[years.indexOf(an)][l] === null) )
+                                    depenses += magasins[mag].depenses[years.indexOf(an)][l];
+                            else depenses += 0;
+                        }
+                        else depenses += 0;
 
 
+                        if (!(magasins[mag].comptas === undefined ) && !(magasins[mag].comptas=== null)) {
+                            if (!(magasins[mag].comptas[years.indexOf(an)] === undefined ) && !(magasins[mag].comptas[years.indexOf(an)] === null))
+                                if(   !(magasins[mag].comptas[years.indexOf(an)][l] === undefined ) && !(magasins[mag].comptas[years.indexOf(an)][l] === null) )
+                                    recettes += magasins[mag].comptas[years.indexOf(an)][l];
+
+                            else recettes += 0;
+                        }
+                        else recettes += 0;
+
+                        if (!(magasins[mag].transferts === undefined ) && !(magasins[mag].transferts=== null)) {
+                            if (!(magasins[mag].transferts[years.indexOf(an)] === undefined ) && !(magasins[mag].transferts[years.indexOf(an)] === null))
+                                if(   !(magasins[mag].transferts[years.indexOf(an)][l] === undefined ) && !(magasins[mag].transferts[years.indexOf(an)][l] === null) )
+                                transferts += magasins[mag].transferts[years.indexOf(an)][l];
+                            else transferts += 0;
+                        }
+                        else transferts += 0;
+                    }
+                }
+            }
 
 
+            for (i = 0; i < magasins.length; i++) {
+                if( !(magasins[i] === undefined ) && !(magasins[i] === null)  )
+                    for (k = 0; k < years.length; k++)
+                        if (years[k] >= AnDebut && years[k] <= AnFin){
+                            console.log("year : "+years[k]);
+                            doSums(i,years[k],AnDebut,AnFin,moisDebut,moisFin);
+                        }
 
 
+                rows[i] = {
+                    "id": i + 1,
+                    "magasin": "" + magasins[i].nom,
+                    "recettesMag": recettes,
+                    "depensesMag": depenses,
+                    "transfertsMag": transferts
+                };
+                recettes = 0;
+                depenses = 0;
+                transferts = 0;
+            }
+            grid.bootgrid("append", rows);
+            gridLoaded = true;
+
+        }
+
+
+    });
 
 
 });

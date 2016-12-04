@@ -20,6 +20,12 @@ public class Compta {
     @Column
     private String jourCompta;
     @Column
+    private Integer jour;
+    @Column
+    private  Integer mois;
+    @Column
+    private Integer annee;
+    @Column
     private Double montantCompta;
     @Column
     private Double depense;
@@ -56,6 +62,31 @@ public class Compta {
         this.montantCompta = montantCompta;
         this.depense = depense;
         this.magasin = magasin;
+    }
+
+
+    public Integer getJour() {
+        return jour;
+    }
+
+    public void setJour(Integer jour) {
+        this.jour = jour;
+    }
+
+    public Integer getMois() {
+        return mois;
+    }
+
+    public void setMois(Integer mois) {
+        this.mois = mois;
+    }
+
+    public Integer getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(Integer annee) {
+        this.annee = annee;
     }
 
     public Magasin getMagasin() {

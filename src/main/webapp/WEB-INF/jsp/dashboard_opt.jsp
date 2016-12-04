@@ -33,34 +33,11 @@
         <div class="container">
 
 
-
-
-
-
             <div class=" card col-sm-12">
 
                 <c:import url="dashboard_pages/resume_magasins.jsp">
                 </c:import>
             </div>
-
-
-
-            <div class="col-lg-offset-3 card col-sm-6">
-                <div class="card-header">
-                    <h2>Paramètres</h2>
-
-                </div>
-
-                <div class="card-body card-padding-sm">
-                    <div class="row">
-                        <div class="center col-sm-4 " style="margin-left: 25px">
-                            <select class="selectpicker" title="Année" id="year-select">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 
 
             <script>
@@ -150,9 +127,9 @@
                         </c:if>
                         </c:if>
 
-                        <c:if test="${listMagasins.get(count).comptabiliteMagasin==null || listMagasins.get(count).comptabiliteMagasin.size() <=0}">
+                        <c:if test="${listMagasins.get(count).comptabiliteMagasin!=null || listMagasins.get(count).comptabiliteMagasin.size() <=0}">
 
-                            magasin.comptas[years.indexOf(moment(dat).year())]=    [moment(dat).month()]
+                        magasin.comptas[years.indexOf(moment(dat).year())]=    [moment(dat).month()]
                         </c:if>
 
 

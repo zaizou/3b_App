@@ -4,9 +4,11 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import dz.ifa.model.gestion.*;
 import dz.ifa.model.gestion_utilisateurs.Magasin;
 import dz.ifa.model.gestion_utilisateurs.Utilisateur;
+import dz.ifa.repository.gestion.ComptaRepository;
 import dz.ifa.service.gestion.GestionService;
 import dz.ifa.service.gestion.MagasinService;
 import dz.ifa.service.gestion_utilisateurs.GestionUtilisateursService;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +35,8 @@ public class ComptabiliteController {
     private GestionUtilisateursService gestionUtilisateursService;
     @Autowired
     private MagasinService magasinService;
+    @Autowired
+    private ComptaRepository comptaRepository;
 
 
     @RequestMapping(
@@ -107,6 +111,7 @@ public class ComptabiliteController {
 
 
 
+
     @RequestMapping(
             value = {"/comptabilite_extraction_send.json"},
             method = {RequestMethod.POST}
@@ -130,6 +135,7 @@ public class ComptabiliteController {
         java.util.Date date;
         java.sql.Date dateSql;
         Compta compta;
+        DateTime dateTime;
 
         for(int i=0;i<comptas.length-1;i++){
             System.out.println("Compta : "+i);
@@ -139,10 +145,17 @@ public class ComptabiliteController {
             try {
                 date=dateFormatter.parse(comptas[i].getDateCompta());
                 dateSql=new java.sql.Date(date.getTime());
-                compta=gestionService.creerCompta(new Compta(dateSql,comptas[i].getJourCompta(),
+                dateTime=new DateTime(dateSql);
+                compta=new Compta(dateSql,comptas[i].getJourCompta(),
                         comptas[i].getMontantCompta(),
                         comptas[i].getDepense(),
-                        comptas[i].getObservationCompta(),magasins.get(0)));
+                        comptas[i].getObservationCompta(),magasins.get(0));
+
+                compta.setAnnee(dateTime.getYear());
+                compta.setMois(dateTime.getMonthOfYear());
+                compta.setJour(dateTime.getDayOfMonth());
+                compta=gestionService.creerCompta(compta);
+
                 if(compta==null)
                     return "101";
             } catch (ParseException e) {
@@ -184,6 +197,9 @@ public class ComptabiliteController {
         java.util.Date date;
         java.sql.Date dateSql;
         Compta compta;
+        DateTime dateTime;
+
+
 
         for(int i=0;i<comptas.length-1;i++){
             System.out.println("Compta : "+i);
@@ -196,10 +212,16 @@ public class ComptabiliteController {
                 dateSql=new java.sql.Date(date.getTime());
                 if(isDateComptaExist(dateSql,idMagasin))
                     return "201";
-                compta=gestionService.creerCompta(new Compta(dateSql,comptas[i].getJourCompta(),
+                dateTime=new DateTime(dateSql);
+                compta=new Compta(dateSql,comptas[i].getJourCompta(),
                         comptas[i].getMontantCompta(),
                         comptas[i].getDepense(),
-                        comptas[i].getObservationCompta(),magasins.get(0)));
+                        comptas[i].getObservationCompta(),magasins.get(0));
+
+                compta.setAnnee(dateTime.getYear());
+                compta.setMois(dateTime.getMonthOfYear());
+                compta.setJour(dateTime.getDayOfMonth());
+                compta=gestionService.creerCompta(compta);
                 if(compta==null)
                     return "101";
             } catch (ParseException e) {
